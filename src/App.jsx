@@ -9,6 +9,7 @@ import Smeta from './screens/Smeta.jsx';
 import Jobs from './screens/Jobs.jsx';
 import Hire from './screens/Hire.jsx';
 import Talk from './components/Talk.jsx';
+import CheckQuote from './screens/Check.jsx';
 
 const STEPS = ['analyze', 'measure', 'smeta', 'jobs', 'hire'];
 const STEP_LABEL = { analyze: 'step_film', measure: 'step_measure', smeta: 'step_smeta', jobs: 'step_jobs', hire: 'step_hire' };
@@ -67,7 +68,7 @@ export default function App() {
     const props = { project, setProject, config, go, trade: route.trade };
     screen = {
       analyze: <Analyze {...props} />, measure: <Measure {...props} />, smeta: <Smeta {...props} />,
-      jobs: <Jobs {...props} />, hire: <Hire {...props} />,
+      jobs: <Jobs {...props} />, hire: <Hire {...props} />, check: <CheckQuote {...props} />,
     }[route.step] ?? <Analyze {...props} />;
   }
 

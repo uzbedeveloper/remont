@@ -339,6 +339,29 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .versions img { aspect-ratio: 16/9; object-fit: cover; width: 100%; }
 .v-n { position: absolute; left: 6px; top: 6px; background: rgba(22, 24, 29, .75); color: #fff; font-size: 11px; font-weight: 800; border-radius: 6px; padding: 1px 6px; }
 
+/* ---------- quote check ---------- */
+.q-thumb { position: relative; width: 96px; height: 120px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.q-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.q-thumb button { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; border-radius: 50%; border: 0; background: rgba(22, 24, 29, .7); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.q-add { width: 96px; height: 120px; border-radius: 12px; border: 2px dashed #d3c9b8; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 800; color: var(--ink-2); cursor: pointer; }
+.q-lines { list-style: none; margin: 0; padding: 0; }
+.q-lines li { padding: 14px 0 14px 14px; border-top: 1px solid var(--line); border-left: 3px solid transparent; animation: rise .4s both; }
+.q-lines li.bad { border-left-color: var(--bad); }
+.q-lines li.ok { border-left-color: var(--good); }
+.q-lines li.vague { border-left-color: var(--line); }
+.q-lines .pill { white-space: normal; }
+.hand { font-family: 'Caveat', var(--body); font-size: 21px; line-height: 1.15; color: #1d2a6b; }
+.minus { color: var(--bad); font-weight: 800; font-size: 13px; }
+.missing { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+.flags.light { list-style: none; margin: 14px 0 0; padding: 0; position: relative; }
+.flags.light li { display: flex; gap: 8px; align-items: flex-start; color: #ffd7c7; font-size: 14px; font-weight: 700; padding: 3px 0; }
+.flags.light svg { flex: none; margin-top: 3px; }
+.bubble.mine { margin-left: auto; background: #e1fec6; border-radius: 16px 16px 4px 16px; }
+.check-cta { display: flex; align-items: center; gap: 14px; background: var(--deep); color: #fff; border: 0; border-radius: var(--r); padding: 18px 20px; cursor: pointer; text-align: left; width: 100%; }
+.check-cta .ic { width: 46px; height: 46px; border-radius: 14px; background: rgba(255, 255, 255, .12); display: grid; place-items: center; flex: none; }
+.check-cta b { display: block; font-family: var(--display); font-size: 17px; }
+.check-cta span { color: rgba(255, 255, 255, .7); font-size: 14px; }
+
 /* what the owner said while filming */
 .said { font-size: 14px; font-style: italic; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
 .said-card { background: var(--accent-soft); border-radius: 16px; padding: 12px 14px; margin-bottom: 14px; }

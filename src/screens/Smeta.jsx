@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, CalendarDays, ChevronRight, Loader2, Printer, RefreshCw, Sparkles, WandSparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Sparkles, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
 import { TRADE } from '../colors.js';
@@ -260,6 +260,12 @@ export default function Smeta({ project, setProject, config, go }) {
               </>
             )}
           </section>
+
+          <button className="check-cta no-print" onClick={() => go('check')}>
+            <span className="ic"><ScanText size={22} /></span>
+            <span className="grow"><b>{t('ck_cta_t')}</b><span>{t('ck_cta_d')}</span></span>
+            <ArrowRight size={20} />
+          </button>
 
           <div className="sticky-cta">
             <button className="btn lg" onClick={() => go('jobs')}>{t('sm_next')}<ArrowRight size={18} /></button>
