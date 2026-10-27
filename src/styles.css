@@ -339,6 +339,11 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .versions img { aspect-ratio: 16/9; object-fit: cover; width: 100%; }
 .v-n { position: absolute; left: 6px; top: 6px; background: rgba(22, 24, 29, .75); color: #fff; font-size: 11px; font-weight: 800; border-radius: 6px; padding: 1px 6px; }
 
+/* what the owner said while filming */
+.said { font-size: 14px; font-style: italic; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
+.said-card { background: var(--accent-soft); border-radius: 16px; padding: 12px 14px; margin-bottom: 14px; }
+.said-card .label { color: var(--accent); }
+
 /* ---------- touch vs mouse ---------- */
 .only-touch { display: none !important; }
 @media (hover: none) and (pointer: coarse) {

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowRight, Check, Film, Loader2, Ruler, TriangleAlert } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, Check, Ear, Film, Loader2, Ruler, TriangleAlert } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { stream } from '../api.js';
 import { SURFACE } from '../colors.js';
@@ -34,7 +34,18 @@ export default function Analyze({ project, setProject, go }) {
     } catch (e) { setError(e.message); }
   };
 
+  // A fresh upload starts right away: no extra button between filming and results.
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current || project.measure || project.stage !== 'uploaded') return;
+    started.current = true;
+    run();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const running = ev && !ev.done && !error;
+  const total = 2 + SURFACES.length + (isVideo ? 1 : 0);
+  const finished = [ev?.prep?.status === 'done', ev?.measure?.status === 'done', ev?.listen?.status === 'done',
+    ...SURFACES.map(k => ['done', 'error'].includes(ev?.sam?.[k]?.status))].filter(Boolean).length;
   const m = ev?.measure?.measure;
 
   return (
@@ -81,6 +92,18 @@ export default function Analyze({ project, setProject, go }) {
                     </li>
                   );
                 })}
+                {isVideo && ev.prep?.status === 'done' && (
+                  <li>
+                    <Status s={ev.listen?.status} />
+                    <div className="grow">
+                      <div style={{ fontWeight: 700 }}><Ear size={14} style={{ display: 'inline', verticalAlign: -2 }} /> {t('an_listen')}</div>
+                      {ev.listen?.status === 'done' && (ev.listen.said
+                        ? <div className="said">«{ev.listen.said}»</div>
+                        : <div className="muted small">{t('an_listen_none')}</div>)}
+                      {ev.wishes?.voice && <div className="chips"><span className="chip">{t.pick(ev.wishes.voice.heard)}</span></div>}
+                    </div>
+                  </li>
+                )}
                 {ev.prep?.status === 'done' && (
                   <li>
                     <Status s={ev.measure?.status} />
@@ -91,7 +114,12 @@ export default function Analyze({ project, setProject, go }) {
                   </li>
                 )}
               </ul>
-              {running && <p className="muted small">{t('an_wait')}</p>}
+              {running && (
+                <div>
+                  <div className="upload-progress"><div style={{ width: `${Math.max(6, (finished / total) * 100)}%` }} /></div>
+                  <p className="muted small" style={{ marginBottom: 0 }}>{t('an_wait')}</p>
+                </div>
+              )}
               {ev.done && <button className="btn lg" style={{ width: '100%' }} onClick={() => go('measure')}>{t('step_measure')} <ArrowRight size={18} /></button>}
             </>
           )}

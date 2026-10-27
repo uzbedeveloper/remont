@@ -47,8 +47,10 @@ function lookFor(choices, tier, note) {
 export default function Smeta({ project, setProject, config, go }) {
   const t = useT();
   const { prices } = config;
-  const [choices, setChoices] = useState(project.brief?.choices ?? defaults(project.measure));
-  const [note, setNote] = useState(project.brief?.text ?? '');
+  // Start from what the owner said while filming, filled in with sensible defaults.
+  const spoken = project.voice ? Object.fromEntries(Object.entries(project.voice.choices).filter(([, v]) => v)) : {};
+  const [choices, setChoices] = useState(project.brief?.choices ?? { ...defaults(project.measure), ...spoken });
+  const [note, setNote] = useState(project.brief?.text ?? project.voice?.note ?? '');
   const [tier, setTier] = useState(project.tier || 'standard');
   const [editing, setEditing] = useState(!project.plan);
   const [busy, setBusy] = useState('');
@@ -94,6 +96,13 @@ export default function Smeta({ project, setProject, config, go }) {
       {(editing || !project.plan) ? (
         <section className="card pad no-print">
           <div className="section-title"><h2>{t('sm_title')}</h2></div>
+          {project.voice?.said && !project.plan && (
+            <div className="said-card">
+              <div className="label">{t('sm_from_video')}</div>
+              <div className="said">«{project.voice.said}»</div>
+              <div className="chips"><span className="chip">{t.pick(project.voice.heard)}</span></div>
+            </div>
+          )}
           {Object.entries(OPTIONS).map(([k, opts]) => (
             <div key={k} className="brief-row">
               <div className="k">{t(`b_${k}`)}</div>

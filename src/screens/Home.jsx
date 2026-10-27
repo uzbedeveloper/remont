@@ -12,6 +12,7 @@ export default function Home({ open }) {
   const photo = useRef();
   const [sample, setSample] = useState(null);
   const [progress, setProgress] = useState(null);
+  const [retry, setRetry] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -21,7 +22,9 @@ export default function Home({ open }) {
     const f = e.target.files?.[0];
     if (!f) return;
     setError(''); setProgress(0);
-    try { open(await upload(f, setProgress), 'analyze'); } catch (err) { setError(err.message); setProgress(null); }
+    e.target.value = ''; // the same file can be picked again after an error
+    setRetry(0);
+    try { open(await upload(f, p => { setProgress(p); setRetry(0); }, setRetry), 'analyze'); } catch (err) { setError(err.message); setProgress(null); }
   };
   const onSample = async () => {
     setBusy(true); setError('');
@@ -67,6 +70,7 @@ export default function Home({ open }) {
           <input ref={film} type="file" accept="video/*" capture="environment" hidden onChange={onFile} />
           <input ref={photo} type="file" accept="image/*" capture="environment" hidden onChange={onFile} />
           {progress !== null && <div className="upload-progress"><div style={{ width: `${progress * 100}%` }} /></div>}
+          {retry > 0 && <p className="small" style={{ color: 'var(--warn)', fontWeight: 700, margin: '8px 0 0' }}>{t('an_retrying', { n: retry })}</p>}
           <p className="muted small" style={{ marginTop: 14 }}>{t('home_upload_hint')}</p>
           {error && <div className="err" style={{ marginTop: 12 }}>{t('error', { e: error })}</div>}
         </div>
