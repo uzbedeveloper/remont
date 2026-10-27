@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Loader2, Ruler, ReceiptText, Upload, Users } from 'lucide-react';
+import { ArrowRight, Camera, Images, Loader2, Ruler, ReceiptText, Upload, Users, Video } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { openSample, upload } from '../api.js';
 import { areas } from '../../lib/estimate.mjs';
@@ -8,6 +8,8 @@ import MaskPlayer from '../components/MaskPlayer.jsx';
 export default function Home({ open }) {
   const t = useT();
   const file = useRef();
+  const film = useRef();
+  const photo = useRef();
   const [sample, setSample] = useState(null);
   const [progress, setProgress] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -38,7 +40,21 @@ export default function Home({ open }) {
             <span className="hl">{t('home_title_3')}</span>
           </h1>
           <p className="sub">{t('home_sub')}</p>
-          <div className="ctas">
+          {/* On a phone: straight to the camera. On a computer: pick a file. */}
+          <div className="ctas only-touch">
+            <button className="btn lg cam" onClick={() => film.current.click()} disabled={progress !== null}>
+              {progress !== null ? <Loader2 size={20} className="spin" /> : <Video size={20} />}
+              {progress !== null ? t('an_uploading', { p: Math.round(progress * 100) }) : t('home_film')}
+            </button>
+            <div className="row" style={{ gap: 10 }}>
+              <button className="btn ghost grow" onClick={() => photo.current.click()} disabled={progress !== null}><Camera size={18} />{t('home_photo')}</button>
+              <button className="btn ghost grow" onClick={() => file.current.click()} disabled={progress !== null}><Images size={18} />{t('home_gallery')}</button>
+            </div>
+            <button className="btn ghost" onClick={onSample} disabled={busy}>
+              {busy ? <Loader2 size={18} className="spin" /> : null}{t('home_sample')} <ArrowRight size={18} />
+            </button>
+          </div>
+          <div className="ctas only-mouse">
             <button className="btn lg" onClick={() => file.current.click()} disabled={progress !== null}>
               {progress !== null ? <Loader2 size={18} className="spin" /> : <Upload size={18} />}
               {progress !== null ? t('an_uploading', { p: Math.round(progress * 100) }) : t('home_upload')}
@@ -46,8 +62,10 @@ export default function Home({ open }) {
             <button className="btn lg ghost" onClick={onSample} disabled={busy}>
               {busy ? <Loader2 size={18} className="spin" /> : null}{t('home_sample')} <ArrowRight size={18} />
             </button>
-            <input ref={file} type="file" accept="video/*,image/*" hidden onChange={onFile} />
           </div>
+          <input ref={file} type="file" accept="video/*,image/*" hidden onChange={onFile} />
+          <input ref={film} type="file" accept="video/*" capture="environment" hidden onChange={onFile} />
+          <input ref={photo} type="file" accept="image/*" capture="environment" hidden onChange={onFile} />
           {progress !== null && <div className="upload-progress"><div style={{ width: `${progress * 100}%` }} /></div>}
           <p className="muted small" style={{ marginTop: 14 }}>{t('home_upload_hint')}</p>
           {error && <div className="err" style={{ marginTop: 12 }}>{t('error', { e: error })}</div>}

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, CalendarDays, ChevronRight, Loader2, Printer, RefreshCw, Sparkles, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
@@ -55,6 +55,15 @@ export default function Smeta({ project, setProject, config, go }) {
   const [error, setError] = useState('');
   const [open, setOpen] = useState(null);
   const [frame, setFrame] = useState(project.render?.frame ?? project.hero_frame ?? 0);
+
+  // Usta (voice) can change the tier, the brief or the picture behind our back: follow it.
+  useEffect(() => { setTier(project.tier || 'standard'); }, [project.tier]);
+  useEffect(() => {
+    if (project.brief?.choices) setChoices(project.brief.choices);
+    setNote(project.brief?.text ?? '');
+    if (project.plan) setEditing(false);
+  }, [project.brief, project.plan]);
+  useEffect(() => { if (project.render) setFrame(project.render.frame); }, [project.render]);
 
   const smeta = useMemo(() => project.plan && priceSmeta(project.plan.works, prices, tier), [project.plan, prices, tier]);
   const jobs = useMemo(() => smeta && jobsFrom(smeta, prices), [smeta, prices]);
@@ -201,7 +210,7 @@ export default function Smeta({ project, setProject, config, go }) {
             )}
           </section>
 
-          <section className="card pad no-print">
+          <section className="card pad no-print" id="render">
             <div className="section-title">
               <div>
                 <h3 style={{ fontSize: 20 }}>{t('sm_render_t')}</h3>
@@ -227,6 +236,20 @@ export default function Smeta({ project, setProject, config, go }) {
             {project.render
               ? <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
               : busy === 'render' && <div className="skeleton" style={{ aspectRatio: '16/9' }} />}
+            {project.renders?.length > 1 && (
+              <>
+                <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_versions')}</div>
+                <div className="thumbs versions">
+                  {project.renders.map((r, i) => (
+                    <button key={r.after} className={project.render?.after === r.after ? 'on' : ''} title={r.change || r.style || ''}
+                      onClick={async () => setProject(await patch(project.id, { render: r }))}>
+                      <img src={`/media/${project.id}/${r.after}`} alt="" loading="lazy" />
+                      <span className="v-n">{i + 1}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </section>
 
           <div className="sticky-cta">
