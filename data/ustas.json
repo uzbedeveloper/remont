@@ -1,0 +1,26 @@
+{
+  "sample": true,
+  "note": "Sample profiles for the demo. Real ustas join through the Telegram bot. rate = their usual labor price as a share of the base price (1.0 = the fair middle).",
+  "ustas": [
+    { "id": "u01", "name": "Akmal Yusupov",      "trades": ["tiler"],                       "district": "Chilonzor",        "rate": 0.95, "years": 12, "rating": 4.9, "jobs": 140, "langs": ["uz", "ru"] },
+    { "id": "u02", "name": "Botir Rahimov",      "trades": ["tiler", "plasterer"],          "district": "Yunusobod",        "rate": 1.25, "years": 8,  "rating": 4.6, "jobs": 75,  "langs": ["uz"] },
+    { "id": "u03", "name": "Sardor Karimov",     "trades": ["electrician"],                 "district": "Mirzo Ulug'bek",   "rate": 1.0,  "years": 10, "rating": 4.8, "jobs": 210, "langs": ["uz", "ru"] },
+    { "id": "u04", "name": "Dilshod Ergashev",   "trades": ["electrician", "plumber"],      "district": "Chilonzor",        "rate": 0.9,  "years": 6,  "rating": 4.5, "jobs": 60,  "langs": ["uz"] },
+    { "id": "u05", "name": "Rustam Nazarov",     "trades": ["plumber"],                     "district": "Sergeli",          "rate": 1.05, "years": 15, "rating": 4.9, "jobs": 300, "langs": ["uz", "ru"] },
+    { "id": "u06", "name": "Jasur Toshmatov",    "trades": ["plasterer", "painter"],        "district": "Yakkasaroy",       "rate": 1.0,  "years": 9,  "rating": 4.7, "jobs": 120, "langs": ["uz", "ru"] },
+    { "id": "u07", "name": "Olim Qodirov",       "trades": ["plasterer"],                   "district": "Olmazor",          "rate": 0.85, "years": 20, "rating": 4.8, "jobs": 400, "langs": ["uz"] },
+    { "id": "u08", "name": "Farhod Mirzayev",    "trades": ["painter"],                     "district": "Uchtepa",          "rate": 0.95, "years": 5,  "rating": 4.4, "jobs": 45,  "langs": ["uz"] },
+    { "id": "u09", "name": "Shoxrux Aliyev",     "trades": ["floor"],                       "district": "Yunusobod",        "rate": 1.0,  "years": 7,  "rating": 4.7, "jobs": 95,  "langs": ["uz", "ru"] },
+    { "id": "u10", "name": "Anvar Saidov",       "trades": ["floor", "windows_doors"],      "district": "Chilonzor",        "rate": 1.1,  "years": 11, "rating": 4.6, "jobs": 150, "langs": ["uz", "ru"] },
+    { "id": "u11", "name": "Bekzod Umarov",      "trades": ["windows_doors"],               "district": "Mirobod",          "rate": 1.0,  "years": 9,  "rating": 4.8, "jobs": 260, "langs": ["uz", "ru"] },
+    { "id": "u12", "name": "Ulug'bek Hasanov",   "trades": ["ceiling"],                     "district": "Yashnobod",        "rate": 0.9,  "years": 6,  "rating": 4.7, "jobs": 180, "langs": ["uz", "ru"] },
+    { "id": "u13", "name": "Nodir Xolmatov",     "trades": ["ceiling", "electrician"],      "district": "Mirzo Ulug'bek",   "rate": 1.15, "years": 8,  "rating": 4.5, "jobs": 90,  "langs": ["uz"] },
+    { "id": "u14", "name": "Temur Abdullayev",   "trades": ["demolition"],                  "district": "Sergeli",          "rate": 0.9,  "years": 4,  "rating": 4.3, "jobs": 70,  "langs": ["uz"] },
+    { "id": "u15", "name": "Ravshan Jo'rayev",   "trades": ["demolition", "plasterer"],     "district": "Shayxontohur",     "rate": 1.0,  "years": 10, "rating": 4.6, "jobs": 110, "langs": ["uz", "ru"] },
+    { "id": "u16", "name": "Ilhom Sobirov",      "trades": ["tiler"],                       "district": "Olmazor",          "rate": 1.05, "years": 14, "rating": 4.9, "jobs": 230, "langs": ["uz"] },
+    { "id": "u17", "name": "Sherzod Ismoilov",   "trades": ["painter", "ceiling"],          "district": "Chilonzor",        "rate": 1.0,  "years": 6,  "rating": 4.6, "jobs": 85,  "langs": ["uz", "ru"] },
+    { "id": "u18", "name": "Abdulaziz Rahmonov", "trades": ["floor", "tiler"],              "district": "Yangihayot",       "rate": 0.88, "years": 5,  "rating": 4.5, "jobs": 55,  "langs": ["uz"] },
+    { "id": "u19", "name": "Mirjalol Hakimov",   "trades": ["electrician"],                 "district": "Yakkasaroy",       "rate": 1.3,  "years": 18, "rating": 5.0, "jobs": 350, "langs": ["uz", "ru"] },
+    { "id": "u20", "name": "Javohir Nematov",    "trades": ["plumber", "tiler"],            "district": "Uchtepa",          "rate": 1.0,  "years": 7,  "rating": 4.7, "jobs": 100, "langs": ["uz", "ru"] }
+  ]
+}

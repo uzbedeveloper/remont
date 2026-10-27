@@ -1,0 +1,88 @@
+// Plays the room frame by frame with SAM 3.1's tracked masks drawn on top.
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Pause, Play } from 'lucide-react';
+import { SURFACE } from '../colors.js';
+import { useT } from '../i18n.js';
+
+const pad = i => String(i + 1).padStart(4, '0');
+
+export default function MaskPlayer({ base, media, compact = false, speed = 2, onFrame, counts }) {
+  const t = useT();
+  const [overlays, setOverlays] = useState(null);
+  const [frame, setFrame] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const [hidden, setHidden] = useState({});
+  const timer = useRef();
+  const n = media?.frames || 1;
+
+  useEffect(() => {
+    let live = true;
+    fetch(`${base}/overlays.json`).then(r => (r.ok ? r.json() : null)).then(o => live && setOverlays(o)).catch(() => {});
+    // Warm the cache so playback doesn't stutter.
+    for (let i = 0; i < n; i++) new Image().src = `${base}/frames/${pad(i)}.jpg`;
+    return () => { live = false; };
+  }, [base, n]);
+
+  useEffect(() => {
+    if (!playing || n < 2) return;
+    const fps = (media.fps || 3) * speed;
+    timer.current = setInterval(() => setFrame(f => (f + 1) % n), 1000 / fps);
+    return () => clearInterval(timer.current);
+  }, [playing, n, media?.fps, speed]);
+
+  useEffect(() => { onFrame?.(frame); }, [frame, onFrame]);
+
+  // frame index → masks for that frame, grouped by label
+  const byFrame = useMemo(() => {
+    const m = {};
+    if (!overlays) return m;
+    for (const [label, masks] of Object.entries(overlays.labels)) {
+      for (const [f, id, d, x, y] of masks) (m[f] ??= []).push({ label, id, d, x, y });
+    }
+    return m;
+  }, [overlays]);
+
+  const labels = overlays ? Object.keys(SURFACE).filter(k => overlays.labels[k]?.length) : [];
+  const w = media?.w || overlays?.w || 1280, h = media?.h || overlays?.h || 720;
+  // Big surfaces first so doors and windows sit on top of walls.
+  const order = ['ceiling', 'floor', 'wall', 'radiator', 'window', 'door'];
+  const masks = (byFrame[frame] ?? []).filter(m => !hidden[m.label]).sort((a, b) => order.indexOf(a.label) - order.indexOf(b.label));
+
+  const seek = e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    setFrame(Math.min(n - 1, Math.max(0, Math.floor(((e.clientX - r.left) / r.width) * n))));
+  };
+
+  return (
+    <div>
+      <div className="player">
+        <svg viewBox={`0 0 ${w} ${h}`}>
+          <image href={`${base}/frames/${pad(frame)}.jpg`} width={w} height={h} />
+          {masks.map(m => (
+            <path key={`${m.label}-${m.id}`} transform={`translate(${m.x} ${m.y})`} d={m.d}
+              fill={SURFACE[m.label]} fillOpacity=".34" stroke={SURFACE[m.label]} strokeWidth={compact ? 3 : 2.5} strokeLinejoin="round" />
+          ))}
+        </svg>
+        {!overlays && <div className="scan" />}
+        {n > 1 && (
+          <div className="bar">
+            <button className="playbtn" onClick={() => setPlaying(p => !p)} aria-label={playing ? 'pause' : 'play'}>
+              {playing ? <Pause size={16} /> : <Play size={16} />}
+            </button>
+            <div className="scrub" onClick={seek}><div style={{ width: `${((frame + 1) / n) * 100}%` }} /></div>
+            <span className="frameno tab">{frame + 1}/{n}</span>
+          </div>
+        )}
+      </div>
+      {labels.length > 0 && (
+        <div className="legend">
+          {labels.map(k => (
+            <button key={k} className={`chip${hidden[k] ? ' off' : ''}`} onClick={() => setHidden(s => ({ ...s, [k]: !s[k] }))}>
+              <i style={{ background: SURFACE[k] }} />{t(k)}{counts?.[k] ? <b>{counts[k]}</b> : null}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

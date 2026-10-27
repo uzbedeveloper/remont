@@ -1,0 +1,108 @@
+import { useState } from 'react';
+import { ArrowRight, Check, Film, Loader2, Ruler, TriangleAlert } from 'lucide-react';
+import { useT } from '../i18n.js';
+import { stream } from '../api.js';
+import { SURFACE } from '../colors.js';
+
+const SURFACES = ['wall', 'floor', 'ceiling', 'door', 'window', 'radiator'];
+
+function Status({ s }) {
+  if (s === 'done') return <span className="ic ok"><Check size={16} strokeWidth={3} /></span>;
+  if (s === 'error') return <span className="ic err"><TriangleAlert size={16} /></span>;
+  return <span className="ic"><Loader2 size={16} className="spin" /></span>;
+}
+
+export default function Analyze({ project, setProject, go }) {
+  const t = useT();
+  const [hint, setHint] = useState('');
+  const [ev, setEv] = useState(null);
+  const [error, setError] = useState('');
+  const isVideo = /\.(mp4|mov|m4v|webm)$/i.test(project.media.original);
+  const src = `/media/${project.id}/${project.media.original}`;
+
+  const run = async () => {
+    setError('');
+    setEv({ sam: {} });
+    try {
+      await stream(project.id, 'analyze', { hint }, e => {
+        if (e.step === 'error') return setError(e.error);
+        if (e.step === 'done') { setProject(e.project); setTimeout(() => go('measure'), 900); }
+        setEv(s => e.step === 'sam'
+          ? { ...s, sam: { ...s.sam, [e.prompt]: e } }
+          : { ...s, [e.step]: e });
+      });
+    } catch (e) { setError(e.message); }
+  };
+
+  const running = ev && !ev.done && !error;
+  const m = ev?.measure?.measure;
+
+  return (
+    <main className="page">
+      <div className="section-title"><h2>{t('an_title')}</h2></div>
+      <div className="grid2">
+        <div className="preview card" style={{ padding: 0 }}>
+          {isVideo ? <video src={src} controls muted autoPlay loop playsInline /> : <img src={src} alt="" />}
+        </div>
+
+        <div className="card pad stack">
+          {!ev && (
+            <>
+              <label className="label" htmlFor="hint">{t('an_hint_label')}</label>
+              <input id="hint" className="input" value={hint} onChange={e => setHint(e.target.value)} placeholder={t('an_hint_ph')} />
+              <button className="btn lg" style={{ width: '100%' }} onClick={run}><Ruler size={18} />{t('an_start')}</button>
+              {project.measure && (
+                <button className="btn ghost" style={{ width: '100%' }} onClick={() => go('measure')}>{t('step_measure')} <ArrowRight size={16} /></button>
+              )}
+            </>
+          )}
+
+          {ev && (
+            <>
+              <ul className="checks">
+                <li>
+                  <Status s={ev.prep?.status} />
+                  <div className="grow">
+                    <div style={{ fontWeight: 700 }}><Film size={14} style={{ display: 'inline', verticalAlign: -2 }} /> {t('an_prep')}</div>
+                    {ev.prep?.media && <div className="muted small">{t('an_prep_done', { n: ev.prep.media.frames, fps: ev.prep.media.fps || 1 })}</div>}
+                  </div>
+                </li>
+                {ev.prep?.status === 'done' && SURFACES.map((k, i) => {
+                  const s = ev.sam[k];
+                  return (
+                    <li key={k} style={{ animationDelay: `${i * 0.05}s` }}>
+                      <Status s={s?.status} />
+                      <span className="sw" style={{ background: SURFACE[k] }} />
+                      <div className="grow">
+                        <div style={{ fontWeight: 700 }}>{t('an_sam', { what: t(k) })}</div>
+                        {s?.status === 'done' && <div className="muted small">{t('an_sam_done', { n: s.objects, f: s.frames })}</div>}
+                        {s?.status === 'error' && <div className="small" style={{ color: 'var(--bad)' }}>{s.error.slice(0, 120)}</div>}
+                      </div>
+                    </li>
+                  );
+                })}
+                {ev.prep?.status === 'done' && (
+                  <li>
+                    <Status s={ev.measure?.status} />
+                    <div className="grow">
+                      <div style={{ fontWeight: 700 }}>{t('an_measure')}</div>
+                      {m && <div className="muted small tab">{t.num(m.length_m)} × {t.num(m.width_m)} × {t.num(m.height_m)} m</div>}
+                    </div>
+                  </li>
+                )}
+              </ul>
+              {running && <p className="muted small">{t('an_wait')}</p>}
+              {ev.done && <button className="btn lg" style={{ width: '100%' }} onClick={() => go('measure')}>{t('step_measure')} <ArrowRight size={18} /></button>}
+            </>
+          )}
+          {error && (
+            <>
+              <div className="err">{t('error', { e: error })}</div>
+              <button className="btn ghost" onClick={run}>{t('retry')}</button>
+            </>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}

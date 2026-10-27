@@ -1,0 +1,8 @@
+node_modules
+dist
+.data
+.env
+spike/node_modules
+spike/out
+.shots
+.server.log
