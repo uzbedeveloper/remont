@@ -117,6 +117,7 @@ export default function Talk({ project, setProject, go }) {
     };
     rec.current = { stop: (cancel = false) => { cancelled = cancel; if (mr.state !== 'inactive') mr.stop(); } };
     mr.start();
+    navigator.vibrate?.(30);
     setSecs(0); setState('rec');
   };
 
@@ -143,6 +144,11 @@ export default function Talk({ project, setProject, go }) {
           </div>
           <div className="talk-list" ref={list}>
             <div className="msg ai">{t('talk_hello')}</div>
+            {chat.length === 0 && !pending && (
+              <div className="try">
+                {t('talk_try').map(x => <button key={x} disabled={state !== 'idle'} onClick={() => send(x)}>{x}</button>)}
+              </div>
+            )}
             {chat.map((c, i) => c.who === 'me'
               ? <div key={i} className="msg me">{c.text}</div>
               : (

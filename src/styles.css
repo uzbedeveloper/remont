@@ -339,6 +339,10 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .versions img { aspect-ratio: 16/9; object-fit: cover; width: 100%; }
 .v-n { position: absolute; left: 6px; top: 6px; background: rgba(22, 24, 29, .75); color: #fff; font-size: 11px; font-weight: 800; border-radius: 6px; padding: 1px 6px; }
 
+.try { display: flex; flex-wrap: wrap; gap: 6px; }
+.try button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--ink-2); }
+.try button:hover { border-color: var(--accent); color: var(--accent); }
+
 /* ---------- quote check ---------- */
 .q-thumb { position: relative; width: 96px; height: 120px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
 .q-thumb img { width: 100%; height: 100%; object-fit: cover; }

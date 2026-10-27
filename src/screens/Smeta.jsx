@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, CalendarDays, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Sparkles, WandSparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
 import { TRADE } from '../colors.js';
@@ -87,6 +87,15 @@ export default function Smeta({ project, setProject, config, go }) {
     setBusy('');
   };
 
+  const share = async () => {
+    const lines = smeta.lines.map(l => `- ${t.pick(l.name)}: ${t.num(l.qty)} ${t.unit(l.unit)}, ${t.money(l.total)}`).join('\n');
+    const text = `${t('sm_share_text', { room: t(`room_${project.measure.room_type}`), area: t.num(project.measure.length_m * project.measure.width_m), total: t.money(smeta.total), days: t.day(smeta.days) })}\n\n${lines}`;
+    try {
+      if (navigator.share) await navigator.share({ title: 'Remont', text });
+      else window.open(`https://t.me/share/url?url=${encodeURIComponent(text)}`, '_blank');
+    } catch { /* cancelled */ }
+  };
+
   const n = project.media.frames;
   const thumbs = Array.from({ length: Math.min(8, n) }, (_, i) => Math.round((i * (n - 1)) / Math.max(1, Math.min(8, n) - 1)));
   const pad = i => String(i + 1).padStart(4, '0');
@@ -167,6 +176,7 @@ export default function Smeta({ project, setProject, config, go }) {
                 <h3 style={{ fontSize: 20 }}>{t('sm_schedule')}</h3>
                 <div className="row no-print">
                   <button className="btn sm ghost" onClick={() => setEditing(true)}>{t('sm_title')}</button>
+                  <button className="btn sm ghost" onClick={share} aria-label={t('sm_share')}><Share2 size={15} /></button>
                   <button className="btn sm ghost" onClick={() => print()} aria-label={t('sm_print')}><Printer size={15} /></button>
                 </div>
               </div>
