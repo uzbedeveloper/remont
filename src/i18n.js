@@ -228,7 +228,9 @@ const D = {
   talk_name: ['Usta', 'Уста', 'Usta'],
   talk_ph: ['Ayting yoki yozing…', 'Скажите или напишите…', 'Say or type…'],
   talk_hello: ["Salom! Men Usta. Xonani o'zgartirishni ayting: \"devorni och kulrang qil\", \"arzonroq variant\", \"kafelchi top\".", 'Привет! Я Уста. Скажите, что поменять: «стены светло-серые», «подешевле», «найди плиточника».', "Hi! I'm Usta. Tell me what to change: \"light grey walls\", \"cheaper option\", \"find me a tiler\"."],
-  talk_listen: ['Eshityapman… tugatish uchun bosing', 'Слушаю… нажмите, чтобы отправить', 'Listening… tap to send'],
+  talk_listen: ["Gapiring… to'xtasangiz o'zi yuboradi", 'Говорите… замолчите, и я отправлю', "Talk… I'll send when you stop"],
+  talk_release: ["Qo'yib yuborsangiz yuboriladi", 'Отпустите, чтобы отправить', 'Release to send'],
+  talk_hint_t: ["Bosib turing va gapiring", 'Зажмите и говорите', 'Hold and talk'],
   talk_think: ["Usta o'ylayapti…", 'Уста думает…', 'Usta is thinking…'],
   talk_paint: ["Rasm chizilmoqda, taxminan 10 soniya…", 'Рисую, около 10 секунд…', 'Painting, about 10 seconds…'],
   talk_voice: ['Ovozli xabar', 'Голосовое', 'Voice note'],
@@ -274,6 +276,11 @@ const D = {
   ck_reply_t: ['Ustaga javob', 'Ответ мастеру', 'Reply to the usta'],
   ck_reply_d: ['Hurmat bilan, raqamlar bilan: Usta tayyorlab beradi, siz yuborasiz.', 'Вежливо и с цифрами: Уста напишет, вы отправите.', 'Polite and with numbers: Usta drafts it, you send it.'],
   ck_reply_btn: ['Javob yozib ber', 'Написать ответ', 'Draft the reply'],
+  talk_try_measure: [["Shift balandligi 2.7 metr", "Bu yotoqxona", 'Smetani tuz'], ['Потолок 2,7 метра', 'Это спальня', 'Составь смету'], ['The ceiling is 2.7 m', "It's a bedroom", 'Make the smeta']],
+  talk_try_smeta: [["Devorni och kulrang qil", "Loft uslubida ko'rsat", 'Arzonroq variant', 'Kafelchi kerak'], ['Стены светло-серые', 'Покажи в стиле лофт', 'Вариант подешевле', 'Нужен плиточник'], ['Light grey walls', 'Show it in loft style', 'Cheaper option', 'I need a tiler']],
+  talk_try_check: [['Ustaning smetasi qimmatmi?', 'Ustaga nima deyay?'], ['Смета мастера завышена?', 'Что ответить мастеру?'], ['Is this quote too high?', 'What do I tell the usta?']],
+  talk_try_jobs: [['Keyingi qadam nima?', "Elektrik bilan 600 mingga kelishdim", 'Kafelchi topib ber'], ['Что дальше?', 'Договорился с электриком за 600 тысяч', 'Найди плиточника'], ["What's next?", 'I agreed with the electrician for 600k', 'Find me a tiler']],
+  talk_try_hire: [['Yaqinroq usta bormi?', "Ustaga yozish uchun e'lon yoz", 'Necha pul berish adolatli?'], ['Есть мастер поближе?', 'Напиши объявление для мастера', 'Сколько честно заплатить?'], ['Any usta closer to me?', 'Write a post for ustas', "What's a fair price?"]],
   talk_try: [["Devorni och kulrang qil", 'Arzonroq variant', 'Kafelchi kerak', 'Ustaning smetasini tekshir'], ['Стены светло-серые', 'Вариант подешевле', 'Нужен плиточник', 'Проверь смету мастера'], ['Light grey walls', 'Cheaper option', 'I need a tiler', "Check an usta's quote"]],
   sm_share: ['Ulashish', 'Поделиться', 'Share'],
   sm_share_text: ["Remont smetasi: {room}, {area} m². Jami {total}, {days} ish kuni.", 'Смета Remont: {room}, {area} м². Итого {total}, {days} раб. дней.', 'Remont smeta: {room}, {area} m². Total {total}, {days} work days.'],
@@ -367,6 +374,7 @@ const D = {
   act_deal: ['Reja yangilandi', 'План обновлён', 'Plan updated'],
   what_deal: ['reja', 'план', 'plan'],
   sm_versions: ['Variantlar', 'Варианты', 'Versions'],
+  sm_all_lines: ["Barcha {n} ishni ko'rsatish", 'Показать все {n} работ', 'Show all {n} works'],
   home_film: ['Xonani videoga oling', 'Снять комнату', 'Film the room'],
   home_photo: ['Rasmga oling', 'Сфотографировать', 'Take a photo'],
   home_gallery: ['Galereyadan', 'Из галереи', 'From gallery'],
@@ -389,6 +397,7 @@ export function makeT(lang) {
     return s;
   };
   t.lang = lang;
+  t.has = key => key in D;
   // Pick the right language from a {en, uz, ru} object.
   t.pick = o => (o ? o[lang] ?? o.en ?? '' : '');
   t.district = d => (lang === 'ru' ? DISTRICTS_RU[d] ?? d : d);

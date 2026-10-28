@@ -121,7 +121,7 @@ export default function App() {
         </button>
       )}
       {screen}
-      {config && project?.measure && route.id === project.id && <Talk project={project} setProject={setProject} go={go} />}
+      {config && project?.measure && route.id === project.id && <Talk project={project} setProject={setProject} go={go} step={route.step} />}
     </I18n.Provider>
   );
 }

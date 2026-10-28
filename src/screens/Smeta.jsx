@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, CalendarDays, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, WandSparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
 import { TRADE } from '../colors.js';
 import { TIERS, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
 import { COLORS, OPTIONS, STYLES, lookFor, startChoices } from '../../lib/look.mjs';
 import BeforeAfter from '../components/BeforeAfter.jsx';
+
+// The works list shows this many until asked for all of them (print shows all).
+const SHORT = 5;
 
 export default function Smeta({ project, setProject, config, go }) {
   const t = useT();
@@ -20,6 +23,7 @@ export default function Smeta({ project, setProject, config, go }) {
   const [open, setOpen] = useState(null);
   const [frame, setFrame] = useState(project.render?.frame ?? project.hero_frame ?? 0);
   const [look, setLook] = useState(project.look ?? {});
+  const [allLines, setAllLines] = useState(false);
 
   // Usta (voice) and the background smeta change things behind our back: follow them.
   // Keyed by content, not identity: polling hands us a new object every few seconds.
@@ -143,6 +147,75 @@ export default function Smeta({ project, setProject, config, go }) {
               <RefreshCw size={14} style={{ display: 'inline', verticalAlign: -2 }} /> {t('me_edit_hint')} <button className="btn sm ghost" onClick={build}>{t('sm_rebuild')}</button>
             </div>
           )}
+          <section className="card pad no-print" id="render">
+            <div className="section-title">
+              <div>
+                <h3 style={{ fontSize: 20 }}>{t('sm_render_t')}</h3>
+                <p className="muted small" style={{ margin: '6px 0 0' }}>{t('sm_render_d')}</p>
+              </div>
+              <button className="btn dark" onClick={() => render()} disabled={busy === 'render' || autoRender}>
+                {busy === 'render' ? <Loader2 size={17} className="spin" /> : <WandSparkles size={17} />}
+                {busy === 'render' ? t('sm_rendering') : t('sm_render_btn')}
+              </button>
+            </div>
+            {project.render ? (
+              <div className="ba-wrap">
+                <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
+                {(busy === 'render' || autoRender) && <div className="painting"><Loader2 size={22} className="spin" />{t('sm_rendering_d')}</div>}
+              </div>
+            ) : (busy === 'render' || autoRender) && (
+              <div className="ba-wrap">
+                <div className="skeleton" style={{ aspectRatio: '16/9' }} />
+                <div className="painting"><Loader2 size={22} className="spin" />{t(autoRender ? 'sm_first_render' : 'sm_rendering_d')}</div>
+              </div>
+            )}
+            <div className="label" style={{ margin: '16px 0 8px' }}>{t('st_title')}</div>
+            <div className="styles">
+              {Object.entries(STYLES).map(([k, st]) => (
+                <button key={k} className={look.style === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('style', k)}>
+                  <img src={`/styles/${k}.webp`} alt="" loading="lazy" />
+                  <span className="st-name">{look.style === k && (busy === 'render' || autoRender) ? <Loader2 size={13} className="spin" /> : look.style === k && <Check size={13} strokeWidth={3} />}<b>{t(`st_${k}`)}</b></span>
+                  <span className="tiny muted">{t(`st_${k}_d`)}</span>
+                </button>
+              ))}
+            </div>
+            <div className="label" style={{ margin: '14px 0 8px' }}>{t('st_color')}</div>
+            <div className="swatches">
+              {Object.entries(COLORS).map(([k, c]) => (
+                <button key={k} className={look.color === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('color', k)}
+                  title={t(`c_${k}`)} aria-label={t(`c_${k}`)}>
+                  <i style={{ background: c.hex }} /><span className="tiny">{t(`c_${k}`)}</span>
+                </button>
+              ))}
+            </div>
+            {n > 1 && (
+              <>
+                <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_pick_view')}</div>
+                <div className="thumbs">
+                  {thumbs.map(f => (
+                    <button key={f} className={frame === f ? 'on' : ''} onClick={() => setFrame(f)}>
+                      <img src={`/media/${project.id}/frames/${pad(f)}.jpg`} alt="" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            {project.renders?.length > 1 && (
+              <>
+                <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_versions')}</div>
+                <div className="thumbs versions">
+                  {project.renders.map((r, i) => (
+                    <button key={r.after} className={project.render?.after === r.after ? 'on' : ''} title={r.change || r.style || ''}
+                      onClick={async () => setProject(await patch(project.id, { render: r }))}>
+                      <img src={`/media/${project.id}/${r.after}`} alt="" loading="lazy" />
+                      <span className="v-n">{i + 1}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </section>
+
           <div className="grid2">
             <section className="total-card rise">
               <div className="row" style={{ justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
@@ -187,7 +260,7 @@ export default function Smeta({ project, setProject, config, go }) {
               {smeta.lines.map((l, i) => {
                 const on = open === i;
                 return (
-                  <li key={l.item_id} className={`line${on ? ' open' : ''}`}>
+                  <li key={l.item_id} className={`line${on ? ' open' : ''}${!allLines && i >= SHORT ? ' extra' : ''}`}>
                     <button onClick={() => setOpen(on ? null : i)}>
                       <span className="n" style={{ background: TRADE[l.trade].color }}>{i + 1}</span>
                       <span className="grow">
@@ -212,80 +285,16 @@ export default function Smeta({ project, setProject, config, go }) {
                 );
               })}
             </ul>
+            {!allLines && smeta.lines.length > SHORT && (
+              <button className="btn ghost show-all no-print" onClick={() => setAllLines(true)}>
+                {t('sm_all_lines', { n: smeta.lines.length })}<ChevronDown size={16} />
+              </button>
+            )}
             {project.plan.assumptions?.length > 0 && (
               <div style={{ marginTop: 18 }}>
                 <div className="label" style={{ marginBottom: 6 }}>{t('sm_assumptions')}</div>
                 <ul className="notes">{project.plan.assumptions.map((x, i) => <li key={i} className="small">{t.pick(x)}</li>)}</ul>
               </div>
-            )}
-          </section>
-
-          <section className="card pad no-print" id="render">
-            <div className="section-title">
-              <div>
-                <h3 style={{ fontSize: 20 }}>{t('sm_render_t')}</h3>
-                <p className="muted small" style={{ margin: '6px 0 0' }}>{t('sm_render_d')}</p>
-              </div>
-              <button className="btn dark" onClick={() => render()} disabled={busy === 'render' || autoRender}>
-                {busy === 'render' ? <Loader2 size={17} className="spin" /> : <WandSparkles size={17} />}
-                {busy === 'render' ? t('sm_rendering') : t('sm_render_btn')}
-              </button>
-            </div>
-            {project.render ? (
-              <div className="ba-wrap">
-                <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
-                {(busy === 'render' || autoRender) && <div className="painting"><Loader2 size={22} className="spin" />{t('sm_rendering_d')}</div>}
-              </div>
-            ) : (busy === 'render' || autoRender) && (
-              <div className="ba-wrap">
-                <div className="skeleton" style={{ aspectRatio: '16/9' }} />
-                <div className="painting"><Loader2 size={22} className="spin" />{t(autoRender ? 'sm_first_render' : 'sm_rendering_d')}</div>
-              </div>
-            )}
-            <div className="label" style={{ margin: '16px 0 8px' }}>{t('st_title')}</div>
-            <div className="styles">
-              {Object.entries(STYLES).map(([k, st]) => (
-                <button key={k} className={look.style === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('style', k)}>
-                  <span className="pal">{st.palette.map(c => <i key={c} style={{ background: c }} />)}</span>
-                  <b>{t(`st_${k}`)}</b>
-                  <span className="tiny muted">{t(`st_${k}_d`)}</span>
-                </button>
-              ))}
-            </div>
-            <div className="label" style={{ margin: '14px 0 8px' }}>{t('st_color')}</div>
-            <div className="swatches">
-              {Object.entries(COLORS).map(([k, c]) => (
-                <button key={k} className={look.color === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('color', k)}
-                  title={t(`c_${k}`)} aria-label={t(`c_${k}`)}>
-                  <i style={{ background: c.hex }} /><span className="tiny">{t(`c_${k}`)}</span>
-                </button>
-              ))}
-            </div>
-            {n > 1 && (
-              <>
-                <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_pick_view')}</div>
-                <div className="thumbs">
-                  {thumbs.map(f => (
-                    <button key={f} className={frame === f ? 'on' : ''} onClick={() => setFrame(f)}>
-                      <img src={`/media/${project.id}/frames/${pad(f)}.jpg`} alt="" />
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-            {project.renders?.length > 1 && (
-              <>
-                <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_versions')}</div>
-                <div className="thumbs versions">
-                  {project.renders.map((r, i) => (
-                    <button key={r.after} className={project.render?.after === r.after ? 'on' : ''} title={r.change || r.style || ''}
-                      onClick={async () => setProject(await patch(project.id, { render: r }))}>
-                      <img src={`/media/${project.id}/${r.after}`} alt="" loading="lazy" />
-                      <span className="v-n">{i + 1}</span>
-                    </button>
-                  ))}
-                </div>
-              </>
             )}
           </section>
 
