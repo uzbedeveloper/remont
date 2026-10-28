@@ -4,7 +4,7 @@
  "sources": {
   "telegram_chats": 203,
   "telegram_ads": 23826,
-  "people": 1721
+  "people": 1729
  },
  "ustas": [
   {
@@ -1896,6 +1896,44 @@
    ]
   },
   {
+   "id": "998951070841",
+   "name": "Qodir",
+   "kind": "usta",
+   "phone": "998951070841",
+   "tg": null,
+   "trades": [
+    "windows_doors",
+    "plasterer",
+    "painter",
+    "floor"
+   ],
+   "districts": [
+    "Sergeli"
+   ],
+   "city": "tashkent",
+   "years": 0,
+   "materials": false,
+   "photos": true,
+   "langs": [
+    "ru",
+    "uz"
+   ],
+   "about": {
+    "en": "Window slopes, putty and decor master",
+    "ru": "Мастер по откосам, шпаклевке и декору",
+    "uz": "Otkos, shpaklyovka va dekor ustasi"
+   },
+   "posts": 1,
+   "first_seen": "2026-10-28",
+   "last_seen": "2026-10-28",
+   "sources": [
+    "olx"
+   ],
+   "ads": [
+    "https://www.olx.uz/d/obyavlenie/otkosy-delayu-otkos-qilamiza-i-drugie-uslugi-oboi-shpaklevka-dekor-ID2vwUB.html"
+   ]
+  },
+  {
    "id": "998917878837",
    "name": "Bek Bekniyozov",
    "kind": "usta",
@@ -1961,13 +1999,14 @@
     "ru": "Полный ремонт квартир и домов",
     "uz": "Kvartira va uylarni to'liq ta'mirlash"
    },
-   "posts": 2,
+   "posts": 3,
    "first_seen": "2026-10-28",
    "last_seen": "2026-10-28",
    "sources": [
     "olx"
    ],
    "ads": [
+    "https://www.olx.uz/d/obyavlenie/kafelshek-kafel-ishlari-ID3JA5z.html",
     "https://www.olx.uz/d/obyavlenie/remont-kvartiry-ID3WzWF.html",
     "https://www.olx.uz/d/obyavlenie/remont-kvartir-i-domov-ID48Aem.html"
    ]
@@ -5348,6 +5387,84 @@
    ]
   },
   {
+   "id": "998900316737",
+   "name": "Abdulaziz",
+   "kind": "usta",
+   "phone": "998900316737",
+   "tg": null,
+   "trades": [
+    "tiler"
+   ],
+   "districts": [
+    "Mirzo Ulug'bek"
+   ],
+   "city": "tashkent",
+   "years": 15,
+   "materials": false,
+   "photos": true,
+   "langs": [
+    "uz"
+   ],
+   "about": {
+    "en": "Tiler for floor, walls and socle",
+    "ru": "Плиточник, пол стены и цоколь",
+    "uz": "Kafelchi, pol devor va sokol teradi"
+   },
+   "posts": 2,
+   "first_seen": "2026-10-27",
+   "last_seen": "2026-10-27",
+   "sources": [
+    "olx"
+   ],
+   "ads": [
+    "https://www.olx.uz/d/obyavlenie/kafel-terish-hizmatlari-bulsa-murozhat-kilinglar-15-yillik-usta-ID2sbK7.html",
+    "https://www.olx.uz/d/obyavlenie/kafel-terish-hizmati-ID2JFLW.html"
+   ]
+  },
+  {
+   "id": "998946677055",
+   "name": "Sanjar",
+   "kind": "usta",
+   "phone": "998946677055",
+   "tg": null,
+   "trades": [
+    "demolition",
+    "electrician",
+    "windows_doors",
+    "plasterer",
+    "tiler",
+    "painter",
+    "ceiling",
+    "floor"
+   ],
+   "districts": [
+    "Yakkasaroy"
+   ],
+   "city": "tashkent",
+   "years": 0,
+   "materials": false,
+   "photos": true,
+   "langs": [
+    "uz",
+    "ru"
+   ],
+   "about": {
+    "en": "Painter and full euro renovation",
+    "ru": "Маляр и полный евроремонт",
+    "uz": "Malyar va to'liq yevro remont ustasi"
+   },
+   "posts": 2,
+   "first_seen": "2026-10-27",
+   "last_seen": "2026-10-27",
+   "sources": [
+    "olx"
+   ],
+   "ads": [
+    "https://www.olx.uz/d/obyavlenie/malyar-malyar-usta-oboi-evro-remont-otdelka-otochento-my-delaem-p-ID2u1Fh.html",
+    "https://www.olx.uz/d/obyavlenie/malyar-malyar-master-usta-oboi-otochento-otdelka-otachento-pod-kulich-e-ID2wJFg.html"
+   ]
+  },
+  {
    "id": "tg_ou_0000",
    "name": null,
    "kind": "usta",
@@ -6732,6 +6849,40 @@
    ],
    "ads": [
     "https://www.olx.uz/d/obyavlenie/otkosy-posle-ustanovki-okon-i-dverey-ID1ncem.html"
+   ]
+  },
+  {
+   "id": "998909281990",
+   "name": null,
+   "kind": "company",
+   "phone": "998909281990",
+   "tg": null,
+   "trades": [
+    "floor"
+   ],
+   "districts": [
+    "Sergeli"
+   ],
+   "city": "tashkent",
+   "years": 0,
+   "materials": false,
+   "photos": true,
+   "langs": [
+    "ru"
+   ],
+   "about": {
+    "en": "Floor screed specialists",
+    "ru": "Специалисты по стяжке пола",
+    "uz": "Pol styajkasi mutaxassislari"
+   },
+   "posts": 1,
+   "first_seen": "2026-10-26",
+   "last_seen": "2026-10-26",
+   "sources": [
+    "olx"
+   ],
+   "ads": [
+    "https://www.olx.uz/d/obyavlenie/styazhka-polov-v-tashkente-ID2Ho5v.html"
    ]
   },
   {
@@ -8924,6 +9075,92 @@
     "https://t.me/TOSHKENT_USTALARl/106840",
     "https://t.me/Toshkent_ustalar_ishchilar/178310",
     "https://t.me/TOSHKENT_USTALARl/106671"
+   ]
+  },
+  {
+   "id": "998983056759",
+   "name": "Denis",
+   "kind": "crew",
+   "phone": "998983056759",
+   "tg": null,
+   "trades": [
+    "demolition",
+    "electrician",
+    "plumber",
+    "windows_doors",
+    "plasterer",
+    "tiler",
+    "painter",
+    "ceiling",
+    "floor"
+   ],
+   "districts": [
+    "Yashnobod"
+   ],
+   "city": "tashkent",
+   "years": 0,
+   "materials": true,
+   "photos": true,
+   "langs": [
+    "ru"
+   ],
+   "about": {
+    "en": "Apartment renovation crew, balconies turnkey",
+    "ru": "Бригада по ремонту квартир и балконов под ключ",
+    "uz": "Kvartira va balkon remonti brigadasi, pod klyuch"
+   },
+   "posts": 2,
+   "first_seen": "2026-10-23",
+   "last_seen": "2026-10-23",
+   "sources": [
+    "olx"
+   ],
+   "ads": [
+    "https://www.olx.uz/d/obyavlenie/balkon-pod-klyuch-denis-ID2rOrc.html",
+    "https://www.olx.uz/d/obyavlenie/denis-brigada-masterov-sdelaet-remont-kvartiry-ID4ngRn.html"
+   ]
+  },
+  {
+   "id": "998932991216",
+   "name": "Матвей",
+   "kind": "usta",
+   "phone": "998932991216",
+   "tg": null,
+   "trades": [
+    "demolition",
+    "electrician",
+    "plumber",
+    "plasterer",
+    "tiler",
+    "painter",
+    "ceiling",
+    "floor"
+   ],
+   "districts": [
+    "Yashnobod"
+   ],
+   "city": "tashkent",
+   "years": 9,
+   "materials": true,
+   "photos": true,
+   "langs": [
+    "ru"
+   ],
+   "about": {
+    "en": "Universal tiler, bathroom and apartment renovation",
+    "ru": "Универсальный плиточник, ремонт ванны и квартир",
+    "uz": "Universal kafelchi, vanna va kvartira remonti"
+   },
+   "posts": 4,
+   "first_seen": "2026-10-06",
+   "last_seen": "2026-10-23",
+   "sources": [
+    "olx"
+   ],
+   "ads": [
+    "https://www.olx.uz/d/obyavlenie/kafelschik-plitochnik-ukladka-plitki-kafelschik-remont-vanny-remont-p-ID2C26k.html",
+    "https://www.olx.uz/d/obyavlenie/kafelschik-vana-kuhnya-pod-klyuch-ID2JaMy.html",
+    "https://www.olx.uz/d/obyavlenie/remont-kvartir-pod-klyuch-evroremont-kachestvo-i-sroki-ID2PPYf.html"
    ]
   },
   {
