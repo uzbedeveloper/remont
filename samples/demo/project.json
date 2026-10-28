@@ -1,6 +1,6 @@
 {
-  "id": "2610f3ea21",
-  "created": "2026-10-27T12:22:01.901Z",
+  "id": "demo",
+  "created": "2026-10-28T05:33:44.321Z",
   "media": {
     "original": "original.mp4",
     "kind": "video",
@@ -10,8 +10,8 @@
     "h": 720
   },
   "stage": "smeta",
-  "tier": "standard",
-  "updated": "2026-10-27T12:26:27.555Z",
+  "tier": "economy",
+  "updated": "2026-10-28T05:34:42.734Z",
   "sam": {
     "ceiling": {
       "objects": [
@@ -531,8 +531,295 @@
   },
   "render": {
     "before": "hero_10.jpg",
-    "after": "render_1793103972312.webp",
+    "after": "render_1793165645188.webp",
     "frame": 10,
-    "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator"
+    "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+    "change": null,
+    "at": "2026-10-28T05:34:17.819Z"
+  },
+  "renders": [
+    {
+      "before": "hero_10.jpg",
+      "after": "render_1793103972312.webp",
+      "frame": 10,
+      "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator"
+    },
+    {
+      "before": "hero_10.jpg",
+      "after": "render_1793165628767.webp",
+      "frame": 10,
+      "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator; paint walls light grey, light bright laminate floor",
+      "change": "paint walls light grey, light bright laminate floor",
+      "at": "2026-10-28T05:34:01.245Z"
+    },
+    {
+      "before": "hero_10.jpg",
+      "after": "render_1793165645188.webp",
+      "frame": 10,
+      "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+      "change": null,
+      "at": "2026-10-28T05:34:17.819Z"
+    }
+  ],
+  "chat": [
+    {
+      "who": "me",
+      "text": "devorlarni och kulrang qil, polga yorug' laminat",
+      "at": "2026-10-28T05:34:01.246Z"
+    },
+    {
+      "who": "ai",
+      "reply": {
+        "en": "Got it, showing light grey walls and a light laminate.",
+        "ru": "Понял, показываю светло-серые стены и светлый ламинат.",
+        "uz": "Bo'ldi, devorlarni och kulrang, polga yorug' laminat qilib ko'rsatayapman."
+      },
+      "actions": [
+        "render"
+      ],
+      "failed": [],
+      "image": "render_1793165628767.webp",
+      "at": "2026-10-28T05:34:01.246Z"
+    },
+    {
+      "who": "me",
+      "text": "arzonroq variant bo'lsa-chi?",
+      "at": "2026-10-28T05:34:05.146Z"
+    },
+    {
+      "who": "ai",
+      "reply": {
+        "en": "Got it, switching to a more budget-friendly option.",
+        "ru": "Понял, переключаю на более бюджетный вариант.",
+        "uz": "Bo'ldi, arzonroq variantga o'tkazyapman."
+      },
+      "actions": [
+        "tier"
+      ],
+      "failed": [],
+      "image": null,
+      "at": "2026-10-28T05:34:05.146Z"
+    },
+    {
+      "who": "me",
+      "text": "buzish ishlarini Akmal aka bilan 1.7 mlnga kelishdik, ertaga boshlaydi",
+      "at": "2026-10-28T05:34:39.417Z"
+    },
+    {
+      "who": "ai",
+      "reply": {
+        "en": "Got it, marked demolition agreed with Akmal aka for 1.7 million, good luck for tomorrow!",
+        "ru": "Понял, отметил демонтаж с Akmal aka за 1,7 млн, удачного старта завтра!",
+        "uz": "Bo'ldi, buzish ishlarini Akmal aka bilan 1,7 mlnga kelishildi deb belgiladim, ertaga omadli boshlasin!"
+      },
+      "actions": [
+        "deal"
+      ],
+      "failed": [],
+      "image": null,
+      "at": "2026-10-28T05:34:39.417Z"
+    },
+    {
+      "who": "me",
+      "text": "elektrik bilan gaplashdim, narxini ertaga aytadi",
+      "at": "2026-10-28T05:34:42.729Z"
+    },
+    {
+      "who": "ai",
+      "reply": {
+        "en": "Got it, marked talked with the electrician, waiting for the price tomorrow.",
+        "ru": "Понял, отметил что поговорили с электриком, ждем цену завтра.",
+        "uz": "Tushundim, elektrik bilan gaplashganingizni belgiladim, ertaga narxini kutamiz."
+      },
+      "actions": [
+        "deal"
+      ],
+      "failed": [],
+      "image": null,
+      "at": "2026-10-28T05:34:42.729Z"
+    }
+  ],
+  "look": {
+    "style": "scandi",
+    "color": "beige"
+  },
+  "check": {
+    "files": [
+      "quote_1793165657859.jpg"
+    ],
+    "read": {
+      "legible": "good",
+      "lines": [
+        {
+          "includes_materials": false,
+          "item_id": "demo_wall_finish",
+          "meaning": {
+            "en": "Strip old wallpaper",
+            "ru": "Снятие старых обоев",
+            "uz": "Eski oboylarni sidirish"
+          },
+          "qty": 48,
+          "surface": "walls",
+          "text": "Eski oboy sidirish 48 kv x 15 000",
+          "total_uzs": 720000,
+          "unit": "m2",
+          "unit_price_uzs": 15000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "pls_plaster",
+          "meaning": {
+            "en": "Level walls with gypsum plaster",
+            "ru": "Выравнивание стен гипсовой штукатуркой",
+            "uz": "Devorlarni shtukaturka qilish"
+          },
+          "qty": 48,
+          "surface": "walls",
+          "text": "Devor shtukaturka 48 kv x 60 000",
+          "total_uzs": 2880000,
+          "unit": "m2",
+          "unit_price_uzs": 60000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "pls_putty",
+          "meaning": {
+            "en": "Skim coat putty, 2 layers",
+            "ru": "Шпаклёвка в 2 слоя",
+            "uz": "Shpaklyovka 2 qavat qilish"
+          },
+          "qty": 48,
+          "surface": "walls",
+          "text": "Shpaklyovka 2 qavat 48 kv x 45 000",
+          "total_uzs": 2160000,
+          "unit": "m2",
+          "unit_price_uzs": 45000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "pt_wall_paint",
+          "meaning": {
+            "en": "Paint walls, 2 coats",
+            "ru": "Покраска стен в 2 слоя",
+            "uz": "Devorlarni 2 qavat kraska qilish"
+          },
+          "qty": 48,
+          "surface": "walls",
+          "text": "Kraska 2 qavat 48 kv x 30 000",
+          "total_uzs": 1440000,
+          "unit": "m2",
+          "unit_price_uzs": 30000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "fl_laminate",
+          "meaning": {
+            "en": "Lay laminate",
+            "ru": "Укладка ламината",
+            "uz": "Laminat ukladka qilish"
+          },
+          "qty": 18,
+          "surface": "floor",
+          "text": "Laminat ukladka 18 kv x 40 000",
+          "total_uzs": 720000,
+          "unit": "m2",
+          "unit_price_uzs": 40000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "fl_skirting",
+          "meaning": {
+            "en": "Fit skirting boards",
+            "ru": "Установка плинтуса",
+            "uz": "Plintus o'rnatish"
+          },
+          "qty": 16,
+          "surface": "none",
+          "text": "Plintus 16 m x 15 000",
+          "total_uzs": 240000,
+          "unit": "m",
+          "unit_price_uzs": 15000
+        },
+        {
+          "includes_materials": true,
+          "item_id": "cl_stretch",
+          "meaning": {
+            "en": "Stretch ceiling with materials",
+            "ru": "Натяжной потолок с материалом",
+            "uz": "Materiali bilan natyajnoy patolok"
+          },
+          "qty": 16,
+          "surface": "ceiling",
+          "text": "Natyajinoy patalok 16 kv x 95 000 (material bilan)",
+          "total_uzs": 1520000,
+          "unit": "m2",
+          "unit_price_uzs": 95000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "el_socket",
+          "meaning": {
+            "en": "Fit sockets and switches",
+            "ru": "Установка розеток и выключателей",
+            "uz": "Rozetka va viklyuchatel o'rnatish"
+          },
+          "qty": 6,
+          "surface": "none",
+          "text": "Rozetka, vikl. 6 ta x 50 000",
+          "total_uzs": 300000,
+          "unit": "pcs",
+          "unit_price_uzs": 50000
+        },
+        {
+          "includes_materials": false,
+          "item_id": "debris",
+          "meaning": {
+            "en": "Haul away rubble",
+            "ru": "Вывоз мусора",
+            "uz": "Musor vivoz qilish"
+          },
+          "qty": 0,
+          "surface": "none",
+          "text": "Musor vivoz",
+          "total_uzs": 400000,
+          "unit": "job",
+          "unit_price_uzs": 0
+        }
+      ],
+      "notes": [
+        {
+          "en": "Line totals sum to 10 380 000, but Jami written as 10 880 000, difference 500 000",
+          "ru": "Сумма строк 10 380 000, а итог написан 10 880 000, разница 500 000",
+          "uz": "Qatorlar yig'indisi 10 380 000 chiqadi, lekin Jami 10 880 000 deb yozilgan, farq 500 000"
+        },
+        {
+          "en": "70% advance payment requested upfront",
+          "ru": "Просят аванс 70% заранее",
+          "uz": "Oldindan 70% avans so'ralgan"
+        }
+      ],
+      "total_uzs": 10880000,
+      "usta": "Usta Baxtiyor"
+    },
+    "at": "2026-10-28T05:34:28.081Z",
+    "counter": {
+      "ru": "Ассалому алайкум, Уста Бахтиёр ака!\nПомерил комнату: стены не 48, а 36.8 м2, пол не 18, а 15.3 м2.\nЦены тоже выше обычных: сдирка 15 000 (около 12 000), штукатурка 60 000 (около 45 000), шпаклевка 45 000 (около 35 000), покраска 30 000, ламинат 40 000, розетки 50 000 (около 30 000).\nИтого написано 10 880 000, это на 500 000 больше суммы строк, наверное ошибка.\nЕсли за эту же работу будет около 7 200 000, я согласен.\nВместо большого аванса можно я оплачу материалы сразу, а остальное поэтапно?\nСбивка штукатурки, демонтаж пола, плинтуса и деревянного окна, штроба с кабелем и подрозетником, щиток с автоматами, замена радиатора входят или посчитаются отдельно?\nЧто входит в вывоз мусора? Жду исправленную смету, спасибо.",
+      "uz": "Assalomu alaykum, Usta Baxtiyor aka!\nXonani o'lchadim: devor 48 emas 36.8 m2, pol 18 emas 15.3 m2 ekan.\nNarxlar ham yuqori: sidirish 15 000 (12 000), shtukaturka 60 000 (45 000), shpaklyovka 45 000 (35 000), kraska 30 000, laminat 40 000, rozetka 50 000 (30 000) atrofida.\nJami 10 880 000 yozilibdi, qatorlar yig'indisidan 500 000 ko'p, adashgan bo'lsa kerak.\nShu ishga 7 200 000 atrofida kelishsak bo'ladimi?\nKatta avans o'rniga material pulini oldindan, qolganini bosqichma-bosqich to'lasam maylimi?\nSuvok ko'chirish, eski pol, plintus, yog'och deraza sökish, shtroba+kabel+podrozetnik, avtomatli shit, radiator almashtirish ichidami yoki alohida?\nMusor vivoz nimani o'z ichiga oladi? To'g'irlangan smeta kutaman, rahmat.",
+      "created": "2026-10-28T05:34:36.367Z"
+    }
+  },
+  "board": {
+    "demolition": {
+      "status": "agreed",
+      "calls": [],
+      "price": 1700000,
+      "usta": {
+        "name": "Akmal aka"
+      }
+    },
+    "electrician": {
+      "status": "talked",
+      "calls": []
+    }
   }
 }
