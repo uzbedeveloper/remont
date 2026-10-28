@@ -6,6 +6,8 @@ async function json(res) {
 }
 
 export const getConfig = () => fetch('/api/config').then(json);
+export const getUstas = (trade, district, offset = 0) =>
+  fetch(`/api/ustas?trade=${trade}&district=${encodeURIComponent(district || '')}&offset=${offset}&limit=8`).then(json);
 export const getProject = id => fetch(`/api/project/${id}`).then(json);
 export const openSample = () => fetch('/api/sample', { method: 'POST', body: '{"name":"demo"}' }).then(json);
 export const patch = (id, body) => fetch(`/api/project/${id}`, { method: 'PATCH', body: JSON.stringify(body) }).then(json);

@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
-import { ArrowLeft, Camera, Check, Copy, Loader2, MapPin, MessageCircle, Send, Sparkles, Star, TriangleAlert } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { ArrowLeft, Camera, Check, Copy, ExternalLink, Image, Loader2, MapPin, MessageCircle, Package, Phone, Send, Sparkles, Star, TriangleAlert } from 'lucide-react';
 import { DISTRICTS, useT } from '../i18n.js';
-import { act, patch } from '../api.js';
+import { act, getUstas, patch } from '../api.js';
 import { TRADE } from '../colors.js';
 import { jobsFrom, matchUstas, priceSmeta, quote } from '../../lib/estimate.mjs';
 
@@ -29,6 +29,21 @@ export default function Hire({ project, setProject, config, go, trade }) {
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
 
+  const [dir, setDir] = useState(null);
+  const [tgNote, setTgNote] = useState('');
+  useEffect(() => {
+    if (!config.directory) return;
+    let live = true;
+    setDir(null);
+    getUstas(job.trade, district).then(r => live && setDir(r)).catch(e => setError(e.message));
+    return () => { live = false; };
+  }, [job.trade, district, config.directory]);
+  const more = async () => {
+    setBusy('more');
+    try { const r = await getUstas(job.trade, district, dir.ustas.length); setDir(d => ({ ...d, ustas: [...d.ustas, ...r.ustas] })); } catch (e) { setError(e.message); }
+    setBusy('');
+  };
+
   const ad = project.ads?.[job.trade];
   const adText = ad?.[adLang] ?? '';
   const matches = useMemo(() => matchUstas(job, ustas, district).slice(0, 5), [job, ustas, district]);
@@ -42,6 +57,11 @@ export default function Hire({ project, setProject, config, go, trade }) {
     setBusy('');
   };
   const pickDistrict = d => { setDistrict(d); patch(project.id, { district: d }).then(setProject); };
+  // Opening an usta's Telegram: put the job post on the clipboard so it's one paste away.
+  const copyForTg = async () => {
+    const msg = ad?.[adLang] || `${t.pick(prices.trades[job.trade])}: ${job.lines.map(l => `${t.pick(l.name)} ${t.num(l.qty)} ${t.unit(l.unit)}`).join(', ')}. ${t.district(district)}.`;
+    try { await navigator.clipboard.writeText(msg); setTgNote(t('hi_tg_copied')); setTimeout(() => setTgNote(''), 3500); } catch { /* blocked */ }
+  };
   const copy = async () => {
     try { await navigator.clipboard.writeText(adText); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* blocked */ }
   };
@@ -76,6 +96,24 @@ export default function Hire({ project, setProject, config, go, trade }) {
       {error && <div className="err">{t('error', { e: error })}</div>}
 
       <div className="grid2">
+        {config.directory ? (
+          <section className="card pad">
+            <div className="section-title" style={{ marginBottom: 4 }}>
+              <h3 style={{ fontSize: 20 }}>{t('hi_real_t')}</h3>
+              {dir && <span className="badge">{t('hi_real_n', { n: dir.total })}</span>}
+            </div>
+            <p className="muted small" style={{ margin: '0 0 6px' }}>{t('hi_real_d', { ads: config.directory.sources.telegram_ads.toLocaleString('ru-RU'), chats: config.directory.sources.telegram_chats })}</p>
+            {!dir && <div className="stack" style={{ marginTop: 12 }}>{[1, 2, 3].map(i => <div key={i} className="skeleton" style={{ height: 64 }} />)}</div>}
+            {dir?.ustas.map((u, i) => <UstaCard key={u.id} u={u} i={i} color={color} t={t} onTg={copyForTg} />)}
+            {dir && dir.ustas.length < dir.total && (
+              <button className="btn ghost" style={{ width: '100%', marginTop: 8 }} onClick={more} disabled={busy === 'more'}>
+                {busy === 'more' ? <Loader2 size={16} className="spin" /> : null}{t('hi_more', { n: dir.total - dir.ustas.length })}
+              </button>
+            )}
+            {tgNote && <div className="toast">{tgNote}</div>}
+            <p className="tiny muted" style={{ margin: '12px 0 0' }}><TriangleAlert size={12} style={{ display: 'inline', verticalAlign: -2 }} /> {t('hi_real_warn')}</p>
+          </section>
+        ) : (
         <section className="card pad">
           <div className="section-title" style={{ marginBottom: 4 }}>
             <h3 style={{ fontSize: 20 }}>{t('hi_match_t')}</h3>
@@ -104,6 +142,7 @@ export default function Hire({ project, setProject, config, go, trade }) {
             </div>
           ))}
         </section>
+        )}
 
         <div className="stack">
           <section className="card pad stack">
@@ -199,5 +238,38 @@ export default function Hire({ project, setProject, config, go, trade }) {
         </div>
       </div>
     </main>
+  );
+}
+
+function ago(t, date) {
+  const d = Math.max(0, Math.round((Date.now() - Date.parse(date)) / 86400000));
+  return d === 0 ? t('hi_today') : t('hi_days_ago', { n: d });
+}
+
+function UstaCard({ u, i, color, t, onTg }) {
+  const initials = (u.name || 'U').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const where = u.districts.includes('all') ? t('hi_all_city') : u.districts.length ? u.districts.map(d => t.district(d)).join(', ') : u.city === 'tashkent_region' ? t('hi_region') : t('hi_city');
+  return (
+    <div className="usta real" style={{ animationDelay: `${i * 0.04}s` }}>
+      <span className="avatar" style={{ background: color }}>{initials}</span>
+      <div style={{ minWidth: 0 }}>
+        <div className="name">{u.name || t('hi_noname')}</div>
+        <div className="why" style={{ marginTop: 2 }}>{t.pick(u.about)}</div>
+        <div className="meta" style={{ marginTop: 6 }}>
+          <span className="row" style={{ gap: 3 }}><MapPin size={12} />{where}</span>
+          {u.near && <span className="pill v-fair" style={{ padding: '1px 8px' }}>{t('hi_near')}</span>}
+          <span>{t('hi_last_ad', { d: ago(t, u.last_seen) })}</span>
+          {u.posts > 1 && <span>{t('hi_posts', { n: u.posts })}</span>}
+          {u.years > 0 && <span>{t('hi_years', { n: u.years })}</span>}
+          {u.materials && <span className="row" style={{ gap: 3 }}><Package size={12} />{t('hi_brings_mat')}</span>}
+          {u.photos && <span className="row" style={{ gap: 3 }}><Image size={12} />{t('hi_has_photos')}</span>}
+        </div>
+      </div>
+      <div className="contact">
+        {u.phone && <a className="btn sm call" href={`tel:+${u.phone}`}><Phone size={14} />{t('hi_call')}</a>}
+        {u.tg && <a className="btn sm tg" href={`https://t.me/${u.tg.slice(1)}`} target="_blank" rel="noreferrer" onClick={onTg}><Send size={14} />Telegram</a>}
+        {u.ads[0] && <a className="tiny muted ad-link" href={u.ads[0]} target="_blank" rel="noreferrer"><ExternalLink size={11} />{t('hi_see_ad')}</a>}
+      </div>
+    </div>
   );
 }

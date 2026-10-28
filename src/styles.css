@@ -265,6 +265,13 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .usta .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; color: var(--muted); font-weight: 600; margin-top: 2px; }
 .usta .why { font-size: 13px; margin-top: 6px; color: var(--ink-2); }
 .usta .price { text-align: right; }
+.usta .contact { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.usta .contact .btn { width: 118px; justify-content: center; }
+.btn.call { background: #1f9d55; border-color: #1f9d55; color: #fff; }
+.btn.call:hover { background: #188448; }
+.ad-link { display: inline-flex; align-items: center; gap: 3px; text-decoration: none; }
+.ad-link:hover { color: var(--accent); }
+.toast { position: sticky; bottom: 90px; margin-top: 10px; padding: 10px 14px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 700; font-size: 14px; animation: rise .3s both; }
 .usta .price .v { font-weight: 800; white-space: nowrap; }
 .pill { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-weight: 800; font-size: 12px; white-space: nowrap; }
 .v-fair { background: var(--good-bg); color: var(--good); }
@@ -412,6 +419,8 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
   .gantt { grid-template-columns: 92px minmax(0, 1fr); }
   .usta { grid-template-columns: 44px minmax(0, 1fr); }
   .usta .price { grid-column: 2; text-align: left; }
+  .usta .contact { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .usta .contact .btn { width: auto; }
   .avatar { width: 44px; height: 44px; }
   .dims .input { font-size: 17px; }
   .talk { left: 0; right: 0; bottom: 0; width: auto; padding: 0 10px calc(10px + env(safe-area-inset-bottom)); }
