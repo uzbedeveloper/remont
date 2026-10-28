@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Camera, Check, Copy, ExternalLink, Image, Loader2, MapPin, MessageCircle, Package, Phone, Send, Sparkles, Star, TriangleAlert } from 'lucide-react';
 import { DISTRICTS, useT } from '../i18n.js';
 import { act, getUstas, patch } from '../api.js';
+import { AgreeForm, Verdict as PlanVerdict } from './Plan.jsx';
+import { cardOf } from '../../lib/board.mjs';
 import { TRADE } from '../colors.js';
 import { jobsFrom, matchUstas, priceSmeta, quote } from '../../lib/estimate.mjs';
 
@@ -62,6 +64,27 @@ export default function Hire({ project, setProject, config, go, trade }) {
     const msg = ad?.[adLang] || `${t.pick(prices.trades[job.trade])}: ${job.lines.map(l => `${t.pick(l.name)} ${t.num(l.qty)} ${t.unit(l.unit)}`).join(', ')}. ${t.district(district)}.`;
     try { await navigator.clipboard.writeText(msg); setTgNote(t('hi_tg_copied')); setTimeout(() => setTgNote(''), 3500); } catch { /* blocked */ }
   };
+  // After a call or a Telegram message, ask how it went and move the plan forward.
+  const [asked, setAsked] = useState(null);   // the usta just contacted
+  const [agreeWith, setAgreeWith] = useState(null);
+  const contact = (u, viaTg) => {
+    if (viaTg) copyForTg();
+    setTimeout(() => setAsked(u), 1200); // the sheet waits under the dialer / Telegram
+  };
+  const card = cardOf(project.board, job.trade);
+  const record = async (u, outcome, extra = {}) => {
+    const board = { ...(project.board ?? {}) };
+    const c = { ...cardOf(board, job.trade) };
+    c.calls = [...(c.calls ?? []), { usta: u.id, name: u.name, outcome, at: new Date().toISOString() }].slice(-20);
+    const who = { id: u.id, name: u.name, phone: u.phone, tg: u.tg };
+    if (outcome === 'talked' && c.status === 'need') Object.assign(c, { status: 'talked', usta: who });
+    if (outcome === 'agreed') Object.assign(c, { status: 'agreed', usta: who, ...extra });
+    board[job.trade] = c;
+    setProject(await patch(project.id, { board }));
+    setAsked(null); setAgreeWith(null);
+    if (outcome === 'agreed') go('jobs');
+  };
+
   const copy = async () => {
     try { await navigator.clipboard.writeText(adText); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* blocked */ }
   };
@@ -72,7 +95,10 @@ export default function Hire({ project, setProject, config, go, trade }) {
 
   return (
     <main className="page stack">
-      <button className="btn sm ghost" onClick={() => go('jobs')}><ArrowLeft size={15} />{t('hi_back')}</button>
+      <div className="row" style={{ justifyContent: 'space-between' }}>
+        <button className="btn sm ghost" onClick={() => go('jobs')}><ArrowLeft size={15} />{t('hi_back')}</button>
+        <span className={`st-chip st-${card.status}`}>{t(`st_${card.status}`)}{card.usta?.name ? `: ${card.usta.name}` : ''}</span>
+      </div>
 
       <section className="card pad">
         <div className="row wrap" style={{ gap: 16 }}>
@@ -104,7 +130,7 @@ export default function Hire({ project, setProject, config, go, trade }) {
             </div>
             <p className="muted small" style={{ margin: '0 0 6px' }}>{t('hi_real_d', { ads: config.directory.sources.telegram_ads.toLocaleString('ru-RU'), chats: config.directory.sources.telegram_chats })}</p>
             {!dir && <div className="stack" style={{ marginTop: 12 }}>{[1, 2, 3].map(i => <div key={i} className="skeleton" style={{ height: 64 }} />)}</div>}
-            {dir?.ustas.map((u, i) => <UstaCard key={u.id} u={u} i={i} color={color} t={t} onTg={copyForTg} />)}
+            {dir?.ustas.map((u, i) => <UstaCard key={u.id} u={u} i={i} color={color} t={t} onContact={contact} />)}
             {dir && dir.ustas.length < dir.total && (
               <button className="btn ghost" style={{ width: '100%', marginTop: 8 }} onClick={more} disabled={busy === 'more'}>
                 {busy === 'more' ? <Loader2 size={16} className="spin" /> : null}{t('hi_more', { n: dir.total - dir.ustas.length })}
@@ -237,6 +263,23 @@ export default function Hire({ project, setProject, config, go, trade }) {
           </section>
         </div>
       </div>
+      {asked && (
+        <div className="sheet-back" onClick={() => { setAsked(null); setAgreeWith(null); }}>
+          <div className="sheet" onClick={e => e.stopPropagation()}>
+            <h3 style={{ fontSize: 20 }}>{t('cs_title', { name: asked.name || t('hi_noname') })}</h3>
+            {agreeWith ? (
+              <AgreeForm t={t} card={card} job={job} onCancel={() => setAgreeWith(null)} onSave={(price, start) => record(asked, 'agreed', { price, start })} />
+            ) : (
+              <div className="stack" style={{ gap: 8, marginTop: 12 }}>
+                <button className="btn dark lg" onClick={() => setAgreeWith(asked)}>{t('cs_agreed')}</button>
+                <button className="btn ghost" onClick={() => record(asked, 'talked')}>{t('cs_talked')}</button>
+                <button className="btn ghost" onClick={() => record(asked, 'none')}>{t('cs_none')}</button>
+                <button className="btn sm ghost" style={{ alignSelf: 'center' }} onClick={() => setAsked(null)}>{t('cs_later')}</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
@@ -246,7 +289,7 @@ function ago(t, date) {
   return d === 0 ? t('hi_today') : t('hi_days_ago', { n: d });
 }
 
-function UstaCard({ u, i, color, t, onTg }) {
+function UstaCard({ u, i, color, t, onContact }) {
   const initials = (u.name || 'U').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
   const where = u.districts.includes('all') ? t('hi_all_city') : u.districts.length ? u.districts.map(d => t.district(d)).join(', ') : u.city === 'tashkent_region' ? t('hi_region') : t('hi_city');
   return (
@@ -266,8 +309,8 @@ function UstaCard({ u, i, color, t, onTg }) {
         </div>
       </div>
       <div className="contact">
-        {u.phone && <a className="btn sm call" href={`tel:+${u.phone}`}><Phone size={14} />{t('hi_call')}</a>}
-        {u.tg && <a className="btn sm tg" href={`https://t.me/${u.tg.slice(1)}`} target="_blank" rel="noreferrer" onClick={onTg}><Send size={14} />Telegram</a>}
+        {u.phone && <a className="btn sm call" href={`tel:+${u.phone}`} onClick={() => onContact(u, false)}><Phone size={14} />{t('hi_call')}</a>}
+        {u.tg && <a className="btn sm tg" href={`https://t.me/${u.tg.slice(1)}`} target="_blank" rel="noreferrer" onClick={() => onContact(u, true)}><Send size={14} />Telegram</a>}
         {u.ads[0] && <a className="tiny muted ad-link" href={u.ads[0]} target="_blank" rel="noreferrer"><ExternalLink size={11} />{t('hi_see_ad')}</a>}
       </div>
     </div>
