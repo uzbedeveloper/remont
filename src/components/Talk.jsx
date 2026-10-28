@@ -36,7 +36,7 @@ export default function Talk({ project, setProject, go }) {
   const [level, setLevel] = useState(0);
   const [pending, setPending] = useState(null); // what the owner just sent, shown until the answer lands
   const [note, setNote] = useState('');
-  const [slow, setSlow] = useState(false); // past ~8 s it's almost always Muse Image painting
+  const [slow, setSlow] = useState(false); // still thinking after 8 s
   const [speak, setSpeak] = useState(() => stored('speak', true));
   const rec = useRef(null);
   const list = useRef();
@@ -55,12 +55,21 @@ export default function Talk({ project, setProject, go }) {
   const send = async what => {
     setState('busy'); setNote(''); setOpen(true);
     setPending(what instanceof Blob ? { voice: true } : { text: what });
+    let spoke = false;
     try {
-      const r = await talk(project.id, what);
+      const r = await talk(project.id, what, e => {
+        if (e.step === 'heard') setPending(p => ({ ...p, said: e.said }));
+        if (e.step === 'reply') {
+          setPending(p => ({ ...p, reply: e.reply, painting: e.actions.includes('render') }));
+          if (speak) say(t.pick(e.reply), t.lang);
+          spoke = true;
+        }
+        if (e.step === 'project') setProject(e.project);
+      });
       setProject(r.project);
       if (!r.heard) setNote(t('talk_not_heard'));
       else {
-        if (speak) say(t.pick(r.reply), t.lang);
+        if (speak && !spoke) say(t.pick(r.reply), t.lang);
         if (r.go) {
           const [step, trade] = r.go.split('/');
           go(step, trade);
@@ -167,8 +176,11 @@ export default function Talk({ project, setProject, go }) {
                   )}
                 </div>
               ))}
-            {pending && <div className="msg me">{pending.voice ? <span className="row" style={{ gap: 6 }}><Mic size={14} />{t('talk_voice')}</span> : pending.text}</div>}
-            {pending && <div className="msg ai thinking"><Loader2 size={15} className="spin" />{t(slow ? 'talk_paint' : 'talk_think')}</div>}
+            {pending && <div className="msg me">{pending.said || pending.text || <span className="row" style={{ gap: 6 }}><Mic size={14} />{t('talk_voice')}</span>}</div>}
+            {pending?.reply && <div className="msg ai">{t.pick(pending.reply)}</div>}
+            {pending && (!pending.reply || pending.painting) && (
+              <div className="msg ai thinking"><Loader2 size={15} className="spin" />{t(pending.painting ? 'talk_paint' : slow ? 'talk_slow' : 'talk_think')}</div>
+            )}
             {note && <div className="msg ai warn">{note}</div>}
           </div>
         </div>

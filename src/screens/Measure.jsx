@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, DoorOpen, Ruler, ScanLine } from 'lucide-react';
+import { ArrowRight, DoorOpen, Loader2, Ruler, ScanLine } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { patch } from '../api.js';
 import { SURFACE } from '../colors.js';
@@ -53,8 +53,11 @@ export default function Measure({ project, setProject, go }) {
       <div className="grid2">
         <div className="stack">
           <div className="card" style={{ padding: 10, background: 'var(--ink)', borderColor: 'var(--ink)' }}>
-            <MaskPlayer base={`/media/${project.id}`} media={project.media} counts={counts} />
+            <MaskPlayer base={`/media/${project.id}`} media={project.media} counts={counts} ready={project.sam?.seconds ?? 0} />
           </div>
+          {project.bg?.sam && Date.now() - Date.parse(project.bg.at) < 180000 && (
+            <p className="row muted small" style={{ gap: 6, margin: 0 }}><Loader2 size={14} className="spin" />{t('me_sam_bg')}</p>
+          )}
           {project.sample && <span className="badge">{t('sample_badge')}</span>}
         </div>
 

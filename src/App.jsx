@@ -48,6 +48,17 @@ export default function App() {
     getProject(route.id).then(setProject).catch(e => setError(e.message));
   }, [route.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // While the server finishes SAM, the first smeta and the first picture, poll the project.
+  const bgBusy = Boolean(project?.bg && ['sam', 'plan', 'render'].some(k => project.bg[k]) && Date.now() - Date.parse(project.bg.at) < 180000);
+  useEffect(() => {
+    if (!bgBusy) return;
+    const id = project.id;
+    const timer = setInterval(() => {
+      getProject(id).then(p => setProject(cur => (cur?.id === p.id && cur.updated !== p.updated ? p : cur))).catch(() => {});
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [bgBusy, project?.id]);
+
   const go = useCallback((step, trade) => {
     location.hash = step === 'home' ? '#/' : `#/p/${route.id ?? project?.id}/${step}${trade ? `/${trade}` : ''}`;
   }, [route.id, project?.id]);

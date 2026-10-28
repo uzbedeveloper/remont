@@ -6,7 +6,7 @@ import { useT } from '../i18n.js';
 
 const pad = i => String(i + 1).padStart(4, '0');
 
-export default function MaskPlayer({ base, media, compact = false, speed = 2, onFrame, counts }) {
+export default function MaskPlayer({ base, media, compact = false, speed = 2, onFrame, counts, ready }) {
   const t = useT();
   const [overlays, setOverlays] = useState(null);
   const [frame, setFrame] = useState(0);
@@ -17,10 +17,13 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
 
   useEffect(() => {
     let live = true;
-    fetch(`${base}/overlays.json`).then(r => (r.ok ? r.json() : null)).then(o => live && setOverlays(o)).catch(() => {});
+    // ready changes when SAM finishes in the background; '0' = still tracking, don't cache a 404.
+    if (ready !== 0) fetch(`${base}/overlays.json?v=${ready ?? ''}`).then(r => (r.ok ? r.json() : null)).then(o => live && setOverlays(o)).catch(() => {});
+    return () => { live = false; };
+  }, [base, ready]);
+  useEffect(() => {
     // Warm the cache so playback doesn't stutter.
     for (let i = 0; i < n; i++) new Image().src = `${base}/frames/${pad(i)}.jpg`;
-    return () => { live = false; };
   }, [base, n]);
 
   useEffect(() => {

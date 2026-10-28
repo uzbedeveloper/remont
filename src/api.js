@@ -60,10 +60,8 @@ export async function upload(file, onProgress, onRetry) {
   return getProject(project.id);
 }
 
-// POST that streams back NDJSON events (the analyze pipeline).
-export async function stream(id, action, body, onEvent) {
-  const res = await fetch(`/api/project/${id}/${action}`, { method: 'POST', body: JSON.stringify(body) });
-  if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
+// Read an NDJSON response line by line.
+async function lines(res, onEvent) {
   const reader = res.body.getReader();
   const dec = new TextDecoder();
   let buf = '';
@@ -80,12 +78,29 @@ export async function stream(id, action, body, onEvent) {
   }
 }
 
-// Talk to the project: a recorded Blob (audio) or a string.
-export function talk(id, what) {
+// POST that streams back NDJSON events (the analyze pipeline).
+export async function stream(id, action, body, onEvent) {
+  const res = await fetch(`/api/project/${id}/${action}`, { method: 'POST', body: JSON.stringify(body) });
+  if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
+  await lines(res, onEvent);
+}
+
+// Talk to the project: a recorded Blob (audio) or a string. onEvent sees 'heard', 'reply' and
+// 'project' as they happen; resolves with the final 'done' event.
+export async function talk(id, what, onEvent) {
   const audio = what instanceof Blob;
-  return fetch(`/api/project/${id}/talk`, {
+  const res = await fetch(`/api/project/${id}/talk`, {
     method: 'POST',
     headers: { 'Content-Type': audio ? (what.type.split(';')[0] || 'audio/webm') : 'application/json' },
     body: audio ? what : JSON.stringify({ text: what }),
-  }).then(json);
+  });
+  if (!res.ok || !res.body) await json(res);
+  let last = null;
+  await lines(res, e => {
+    if (e.step === 'error') throw new Error(e.error);
+    if (e.step === 'done') last = e;
+    else onEvent?.(e);
+  });
+  if (!last) throw new Error('no answer');
+  return last;
 }

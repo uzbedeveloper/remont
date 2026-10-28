@@ -4,52 +4,14 @@ import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
 import { TRADE } from '../colors.js';
 import { TIERS, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
+import { COLORS, OPTIONS, STYLES, lookFor, startChoices } from '../../lib/look.mjs';
 import BeforeAfter from '../components/BeforeAfter.jsx';
-
-const OPTIONS = {
-  walls: ['paint', 'wallpaper', 'tiles', 'keep'],
-  floor: ['laminate', 'tiles', 'linoleum', 'keep'],
-  ceiling: ['stretch', 'paint', 'keep'],
-  window: ['replace', 'keep'],
-  door: ['replace', 'keep'],
-  radiator: ['replace', 'keep'],
-  electrics: ['rewire', 'points', 'keep'],
-};
-
-function defaults(m) {
-  const bath = m.room_type === 'bathroom';
-  const tired = c => c === 'worn' || c === 'poor';
-  return {
-    walls: bath ? 'tiles' : tired(m.condition.walls) ? 'paint' : 'keep',
-    floor: bath ? 'tiles' : tired(m.condition.floor) ? 'laminate' : 'keep',
-    ceiling: m.condition.ceiling === 'poor' ? 'stretch' : tired(m.condition.ceiling) ? 'paint' : 'keep',
-    window: tired(m.condition.window) ? 'replace' : 'keep',
-    door: 'replace',
-    radiator: m.radiators ? 'replace' : 'keep',
-    electrics: 'points',
-  };
-}
-
-const LOOK = {
-  walls: { paint: 'smooth light warm-grey painted walls', wallpaper: 'light, subtly textured wallpaper', tiles: 'light large-format wall tiles' },
-  floor: { laminate: 'natural oak laminate floor', tiles: 'light grey porcelain floor tiles', linoleum: 'neat light wood-look linoleum' },
-  ceiling: { stretch: 'flat white matte stretch ceiling with small spot lights', paint: 'smooth white painted ceiling' },
-  window: { replace: 'new white PVC window with a white sill' },
-  door: { replace: 'new white interior door' },
-  radiator: { replace: 'slim modern white radiator' },
-};
-function lookFor(choices, tier, note) {
-  const parts = Object.entries(LOOK).map(([k, v]) => v[choices[k]]).filter(Boolean);
-  const level = { economy: 'simple, affordable finishes', standard: 'modern, warm, good-quality finishes', premium: 'premium finishes, refined details' }[tier];
-  return [level, ...parts, note].filter(Boolean).join(', ');
-}
 
 export default function Smeta({ project, setProject, config, go }) {
   const t = useT();
   const { prices } = config;
   // Start from what the owner said while filming, filled in with sensible defaults.
-  const spoken = project.voice ? Object.fromEntries(Object.entries(project.voice.choices).filter(([, v]) => v)) : {};
-  const [choices, setChoices] = useState(project.brief?.choices ?? { ...defaults(project.measure), ...spoken });
+  const [choices, setChoices] = useState(project.brief?.choices ?? startChoices(project));
   const [note, setNote] = useState(project.brief?.text ?? project.voice?.note ?? '');
   const [tier, setTier] = useState(project.tier || 'standard');
   const [editing, setEditing] = useState(!project.plan);
@@ -57,15 +19,23 @@ export default function Smeta({ project, setProject, config, go }) {
   const [error, setError] = useState('');
   const [open, setOpen] = useState(null);
   const [frame, setFrame] = useState(project.render?.frame ?? project.hero_frame ?? 0);
+  const [look, setLook] = useState(project.look ?? {});
 
-  // Usta (voice) can change the tier, the brief or the picture behind our back: follow it.
+  // Usta (voice) and the background smeta change things behind our back: follow them.
+  // Keyed by content, not identity: polling hands us a new object every few seconds.
+  const briefKey = JSON.stringify(project.brief ?? null);
+  const planKey = project.plan ? JSON.stringify(project.plan.works) : '';
   useEffect(() => { setTier(project.tier || 'standard'); }, [project.tier]);
   useEffect(() => {
     if (project.brief?.choices) setChoices(project.brief.choices);
     setNote(project.brief?.text ?? '');
     if (project.plan) setEditing(false);
-  }, [project.brief, project.plan]);
-  useEffect(() => { if (project.render) setFrame(project.render.frame); }, [project.render]);
+  }, [briefKey, planKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (project.render) setFrame(project.render.frame); }, [project.render?.after]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const fresh = at => Boolean(at) && Date.now() - Date.parse(at) < 180000;
+  const autoPlan = !project.plan && project.bg?.plan && fresh(project.bg.at);
+  const autoRender = !project.render && project.bg?.render && fresh(project.bg.at);
 
   const smeta = useMemo(() => project.plan && priceSmeta(project.plan.works, prices, tier), [project.plan, prices, tier]);
   const jobs = useMemo(() => smeta && jobsFrom(smeta, prices), [smeta, prices]);
@@ -80,11 +50,19 @@ export default function Smeta({ project, setProject, config, go }) {
     setTier(v);
     setProject(await patch(project.id, { tier: v }));
   };
-  const render = async () => {
+  const render = async (l = look) => {
     setBusy('render'); setError('');
-    try { setProject(await act(project.id, 'render', { frame, style: lookFor(choices, tier, note) })); }
+    try { setProject(await act(project.id, 'render', { frame, style: lookFor(choices, tier, note, l) })); }
     catch (e) { setError(e.message); }
     setBusy('');
+  };
+  // Tap a style or a colour: remember it and paint the room in it right away.
+  const pickLook = (k, v) => {
+    if (busy === 'render') return;
+    const next = { ...look, [k]: look[k] === v ? undefined : v };
+    setLook(next);
+    patch(project.id, { look: next }).catch(() => {});
+    render(next);
   };
 
   const share = async () => {
@@ -102,7 +80,20 @@ export default function Smeta({ project, setProject, config, go }) {
 
   return (
     <main className="page stack">
-      {(editing || !project.plan) ? (
+      {autoPlan ? (
+        <section className="card pad no-print">
+          <div className="section-title"><h2>{t('sm_title')}</h2></div>
+          {project.voice?.said && (
+            <div className="said-card">
+              <div className="label">{t('sm_from_video')}</div>
+              <div className="said">«{project.voice.said}»</div>
+              <div className="chips"><span className="chip">{t.pick(project.voice.heard)}</span></div>
+            </div>
+          )}
+          <p className="row muted" style={{ gap: 8 }}><Loader2 size={16} className="spin" />{t('sm_auto')}</p>
+          <div className="stack">{[70, 55, 85, 40].map((w, i) => <div key={i} className="skeleton" style={{ height: 18, width: `${w}%` }} />)}</div>
+        </section>
+      ) : (editing || !project.plan) ? (
         <section className="card pad no-print">
           <div className="section-title"><h2>{t('sm_title')}</h2></div>
           {project.voice?.said && !project.plan && (
@@ -235,15 +226,45 @@ export default function Smeta({ project, setProject, config, go }) {
                 <h3 style={{ fontSize: 20 }}>{t('sm_render_t')}</h3>
                 <p className="muted small" style={{ margin: '6px 0 0' }}>{t('sm_render_d')}</p>
               </div>
-              <button className="btn dark" onClick={render} disabled={busy === 'render'}>
+              <button className="btn dark" onClick={() => render()} disabled={busy === 'render' || autoRender}>
                 {busy === 'render' ? <Loader2 size={17} className="spin" /> : <WandSparkles size={17} />}
                 {busy === 'render' ? t('sm_rendering') : t('sm_render_btn')}
               </button>
             </div>
+            {project.render ? (
+              <div className="ba-wrap">
+                <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
+                {(busy === 'render' || autoRender) && <div className="painting"><Loader2 size={22} className="spin" />{t('sm_rendering_d')}</div>}
+              </div>
+            ) : (busy === 'render' || autoRender) && (
+              <div className="ba-wrap">
+                <div className="skeleton" style={{ aspectRatio: '16/9' }} />
+                <div className="painting"><Loader2 size={22} className="spin" />{t(autoRender ? 'sm_first_render' : 'sm_rendering_d')}</div>
+              </div>
+            )}
+            <div className="label" style={{ margin: '16px 0 8px' }}>{t('st_title')}</div>
+            <div className="styles">
+              {Object.entries(STYLES).map(([k, st]) => (
+                <button key={k} className={look.style === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('style', k)}>
+                  <span className="pal">{st.palette.map(c => <i key={c} style={{ background: c }} />)}</span>
+                  <b>{t(`st_${k}`)}</b>
+                  <span className="tiny muted">{t(`st_${k}_d`)}</span>
+                </button>
+              ))}
+            </div>
+            <div className="label" style={{ margin: '14px 0 8px' }}>{t('st_color')}</div>
+            <div className="swatches">
+              {Object.entries(COLORS).map(([k, c]) => (
+                <button key={k} className={look.color === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('color', k)}
+                  title={t(`c_${k}`)} aria-label={t(`c_${k}`)}>
+                  <i style={{ background: c.hex }} /><span className="tiny">{t(`c_${k}`)}</span>
+                </button>
+              ))}
+            </div>
             {n > 1 && (
               <>
-                <div className="label" style={{ marginBottom: 8 }}>{t('sm_pick_view')}</div>
-                <div className="thumbs" style={{ marginBottom: 14 }}>
+                <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_pick_view')}</div>
+                <div className="thumbs">
                   {thumbs.map(f => (
                     <button key={f} className={frame === f ? 'on' : ''} onClick={() => setFrame(f)}>
                       <img src={`/media/${project.id}/frames/${pad(f)}.jpg`} alt="" />
@@ -252,9 +273,6 @@ export default function Smeta({ project, setProject, config, go }) {
                 </div>
               </>
             )}
-            {project.render
-              ? <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
-              : busy === 'render' && <div className="skeleton" style={{ aspectRatio: '16/9' }} />}
             {project.renders?.length > 1 && (
               <>
                 <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_versions')}</div>

@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Ear, Film, Loader2, Ruler, TriangleAlert } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { stream } from '../api.js';
-import { SURFACE } from '../colors.js';
-
-const SURFACES = ['wall', 'floor', 'ceiling', 'door', 'window', 'radiator'];
 
 function Status({ s }) {
   if (s === 'done') return <span className="ic ok"><Check size={16} strokeWidth={3} /></span>;
@@ -26,9 +23,9 @@ export default function Analyze({ project, setProject, go }) {
     try {
       await stream(project.id, 'analyze', { hint }, e => {
         if (e.step === 'error') return setError(e.error);
-        if (e.step === 'done') { setProject(e.project); setTimeout(() => go('measure'), 900); }
+        if (e.step === 'done') { setProject(e.project); setTimeout(() => go('measure'), 500); }
         setEv(s => e.step === 'sam'
-          ? { ...s, sam: { ...s.sam, [e.prompt]: e } }
+          ? s // SAM tracks in the background; the Measure screen shows it
           : { ...s, [e.step]: e });
       });
     } catch (e) { setError(e.message); }
@@ -43,9 +40,8 @@ export default function Analyze({ project, setProject, go }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const running = ev && !ev.done && !error;
-  const total = 2 + SURFACES.length + (isVideo ? 1 : 0);
-  const finished = [ev?.prep?.status === 'done', ev?.measure?.status === 'done', ev?.listen?.status === 'done',
-    ...SURFACES.map(k => ['done', 'error'].includes(ev?.sam?.[k]?.status))].filter(Boolean).length;
+  const total = 2 + (isVideo ? 1 : 0);
+  const finished = [ev?.prep?.status === 'done', ev?.measure?.status === 'done', ev?.listen?.status === 'done'].filter(Boolean).length;
   const m = ev?.measure?.measure;
 
   return (
@@ -78,20 +74,6 @@ export default function Analyze({ project, setProject, go }) {
                     {ev.prep?.media && <div className="muted small">{t('an_prep_done', { n: ev.prep.media.frames, fps: ev.prep.media.fps || 1 })}</div>}
                   </div>
                 </li>
-                {ev.prep?.status === 'done' && SURFACES.map((k, i) => {
-                  const s = ev.sam[k];
-                  return (
-                    <li key={k} style={{ animationDelay: `${i * 0.05}s` }}>
-                      <Status s={s?.status} />
-                      <span className="sw" style={{ background: SURFACE[k] }} />
-                      <div className="grow">
-                        <div style={{ fontWeight: 700 }}>{t('an_sam', { what: t(k) })}</div>
-                        {s?.status === 'done' && <div className="muted small">{t('an_sam_done', { n: s.objects, f: s.frames })}</div>}
-                        {s?.status === 'error' && <div className="small" style={{ color: 'var(--bad)' }}>{s.error.slice(0, 120)}</div>}
-                      </div>
-                    </li>
-                  );
-                })}
                 {isVideo && ev.prep?.status === 'done' && (
                   <li>
                     <Status s={ev.listen?.status} />

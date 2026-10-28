@@ -343,6 +343,21 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .try button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--ink-2); }
 .try button:hover { border-color: var(--accent); color: var(--accent); }
 
+.styles, .swatches { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -4px; padding: 2px 4px 4px; scroll-snap-type: x proximity; }
+.styles::-webkit-scrollbar, .swatches::-webkit-scrollbar { display: none; }
+.styles button { flex: 0 0 148px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; text-align: left; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--card); cursor: pointer; color: var(--ink); }
+.styles button.on { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+.styles button:disabled, .swatches button:disabled { opacity: .55; cursor: default; }
+.styles .pal { display: flex; margin-bottom: 4px; }
+.styles .pal i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--card); margin-right: -6px; box-shadow: 0 0 0 1px var(--line); }
+.swatches { gap: 12px; }
+.swatches button { flex: 0 0 auto; min-width: 48px; display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: 0; padding: 4px 0 0; cursor: pointer; color: var(--ink-2); }
+.swatches button i { width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); transition: box-shadow .15s; }
+.swatches button.on i { box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--accent); }
+.swatches button.on { color: var(--ink); font-weight: 700; }
+.ba-wrap { position: relative; }
+.painting { position: absolute; inset: auto 12px 12px 12px; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; background: rgba(20, 20, 20, .72); color: #fff; font-weight: 700; font-size: 14px; backdrop-filter: blur(6px); }
+
 /* ---------- quote check ---------- */
 .q-thumb { position: relative; width: 96px; height: 120px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
 .q-thumb img { width: 100%; height: 100%; object-fit: cover; }
