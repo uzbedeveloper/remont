@@ -7,6 +7,7 @@ import { TIERS, areas, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
 import { COLORS, OPTIONS, STYLES, lookFor, startChoices } from '../../lib/look.mjs';
 import BeforeAfter from '../components/BeforeAfter.jsx';
 import Shopping from '../components/Shopping.jsx';
+import Budget from '../components/Budget.jsx';
 import { familyPicture, sharePicture, shareText } from '../share.js';
 
 // The works list shows this many until asked for all of them (print shows all).
@@ -271,6 +272,8 @@ export default function Smeta({ project, setProject, config, go }) {
               </div>
             </section>
           </div>
+
+          <Budget project={project} setProject={setProject} prices={prices} />
 
           <section className="card pad">
             <div className="section-title"><h3 style={{ fontSize: 20 }}>{t('sm_lines')}</h3><span className="muted small">{smeta.lines.length}</span></div>
