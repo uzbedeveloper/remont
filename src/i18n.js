@@ -31,6 +31,13 @@ const D = {
   home_upload_hint: ["20-40 soniya, xona bo'ylab sekin aylaning va nima xohlashingizni ayting: \"devorni oq qilamiz, polga laminat\".", 'Медленно пройдите по комнате 20–40 секунд и скажите, что хотите: «стены белые, на пол ламинат».', 'Walk slowly around the room for 20-40 seconds and say what you want: "white walls, laminate floor".'],
   hero_caption: ['SAM 3.1 namuna xonani kadrma-kadr kuzatmoqda', 'SAM 3.1 отслеживает комнату кадр за кадром', 'SAM 3.1 tracking a sample room, frame by frame'],
   mine_title: ['Mening loyihalarim', 'Мои проекты', 'Your projects'],
+  mine_short: ['Loyihalar', 'Проекты', 'Projects'],
+  pr_sub: ["Shu qurilmada ochilgan xonalar. Hammasi saqlangan, istalgan vaqt davom ettiring.", 'Комнаты, открытые на этом устройстве. Всё сохранено, продолжайте когда удобно.', 'Rooms opened on this device. Everything is saved, pick up any time.'],
+  pr_new: ['Yangi xona', 'Новая комната', 'New room'],
+  pr_empty: ["Hali loyiha yo'q. Xonani videoga oling yoki namunani oching.", 'Пока нет проектов. Снимите комнату или откройте пример.', 'No projects yet. Film a room or open the sample.'],
+  pr_opened: ['Oxirgi marta: {d}', 'Открыт: {d}', 'Last opened {d}'],
+  pr_remove: ["Ro'yxatdan olib tashlash", 'Убрать из списка', 'Remove from list'],
+  pr_remove_q: ["Bu loyihani ro'yxatdan olib tashlaysizmi?", 'Убрать этот проект из списка?', 'Remove this project from the list?'],
   how_title: ['Qanday ishlaydi', 'Как это работает', 'How it works'],
   how1_t: ['Xonani videoga oling', 'Снимите комнату', 'Film the room'],
   how1_d: [

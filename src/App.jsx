@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, FolderOpen } from 'lucide-react';
 import { I18n, LANGS, makeT } from './i18n.js';
 import { getConfig, getProject } from './api.js';
-import { remember } from './mine.js';
+import { mine, remember } from './mine.js';
+import Projects from './screens/Projects.jsx';
 import Home from './screens/Home.jsx';
 import Analyze from './screens/Analyze.jsx';
 import Measure from './screens/Measure.jsx';
@@ -21,6 +22,7 @@ const PARENT = { hire: 'jobs', check: 'smeta' };
 
 function readRoute() {
   const [, id, step = 'analyze', trade] = location.hash.replace(/^#\/?/, '').split('/');
+  if (location.hash.startsWith('#/projects')) return { id: null, page: 'projects' };
   return location.hash.startsWith('#/p/') ? { id, step, trade } : { id: null };
 }
 
@@ -35,6 +37,7 @@ export default function App() {
   const [config, setConfig] = useState(null);
   const [project, setProject] = useState(null);
   const [error, setError] = useState('');
+  const [count, setCount] = useState(() => mine().length);
 
   useEffect(() => {
     const on = () => { setRoute(readRoute()); window.scrollTo({ top: 0 }); };
@@ -54,7 +57,7 @@ export default function App() {
   }, [route.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Remember the project and the screen, so the home screen can bring them back.
-  useEffect(() => { if (project?.id && project.id === route.id) remember(project.id, route.step); }, [project?.id, route.id, route.step]);
+  useEffect(() => { if (project?.id && project.id === route.id) { remember(project.id, route.step); setCount(mine().length); } }, [project?.id, route.id, route.step]);
 
   // While the server finishes SAM, the first smeta and the first picture, poll the project.
   const bgBusy = Boolean(project?.bg && ['sam', 'plan', 'render'].some(k => project.bg[k]) && Date.now() - Date.parse(project.bg.at) < 180000);
@@ -86,6 +89,7 @@ export default function App() {
   let screen;
   if (error) screen = <div className="page"><div className="err">{t('error', { e: error })}</div></div>;
   else if (!config) screen = <div className="page muted">{t('loading')}</div>;
+  else if (route.page === 'projects') screen = <Projects config={config} open={open} onCount={() => setCount(mine().length)} />;
   else if (!route.id) screen = <Home config={config} open={open} />;
   else if (!project) screen = <div className="page muted">{t('loading')}</div>;
   else {
@@ -112,6 +116,9 @@ export default function App() {
               ))}
             </nav>
           ) : <div className="grow" />}
+          <a className={`my-btn${route.page === 'projects' ? ' on' : ''}`} href="#/projects" title={t('mine_title')}>
+            <FolderOpen size={17} /><span className="lbl">{t('mine_short')}</span>{count > 0 && <b>{count}</b>}
+          </a>
           <div className="langs">
             {LANGS.map(l => <button key={l} className={l === lang ? 'on' : ''} onClick={() => setLang(l)}>{l.toUpperCase()}</button>)}
           </div>

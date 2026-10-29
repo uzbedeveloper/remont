@@ -38,6 +38,7 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .row { display: flex; align-items: center; gap: 10px; }
 .wrap { flex-wrap: wrap; }
 .grow { flex: 1; min-width: 0; }
+.nowrap { white-space: nowrap; }
 .spin { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -134,13 +135,25 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .float .big { font-family: var(--display); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
 .float.a { left: -26px; bottom: 124px; animation-delay: .4s; }
 .float.b { right: -18px; top: 26px; animation-delay: .7s; }
-.mine { margin: 0 0 8px; }
-.mine h2 { display: flex; align-items: center; gap: 10px; }
-.mine-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 12px; }
-.mine-card { display: flex; align-items: center; gap: 14px; padding: 10px 14px 10px 10px; text-align: left; font: inherit; color: inherit; cursor: pointer; }
-.mine-card:hover { border-color: var(--accent); }
-.mine-card img { width: 84px; height: 56px; object-fit: cover; border-radius: 10px; flex: none; background: var(--line); }
-.mine-card .grow { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.pr-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.pr-title { display: flex; align-items: center; gap: 12px; font-size: clamp(28px, 5vw, 40px); margin: 0 0 4px; }
+.pr-head p { margin: 0; }
+.pr-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
+.pr-card { position: relative; overflow: hidden; }
+.pr-open { display: flex; align-items: center; gap: 14px; width: 100%; padding: 12px 44px 12px 12px; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.pr-card:hover { border-color: var(--accent); }
+.pr-open img { width: 112px; height: 80px; object-fit: cover; border-radius: 12px; flex: none; background: var(--line); }
+.pr-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.pr-body b { font-size: 16px; }
+.pr-sum { font-weight: 800; color: var(--accent); }
+.pr-go { color: var(--muted); flex: none; }
+.pr-del { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 10px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; cursor: pointer; }
+.pr-del:hover { background: var(--bad-bg); color: var(--bad); }
+.pr-card .pr-go { margin-top: 28px; }
+.pr-empty { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 40px 20px; text-align: center; color: var(--muted); }
+.my-btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; background: var(--bg-2); color: var(--ink-2); text-decoration: none; font-weight: 700; font-size: 13px; }
+.my-btn:hover, .my-btn.on { background: var(--ink); color: #fff; }
+.my-btn b { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--accent); color: #fff; font-size: 11px; display: grid; place-items: center; }
 .how { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 16px; }
 .how .card { padding: 26px; }
 .how .n { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); margin-bottom: 18px; }
@@ -491,7 +504,11 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
   .pitch { padding: 30px; }
 }
 @media (max-width: 720px) {
-  .top-in { flex-wrap: wrap; padding: 10px 16px; }
+  .top-in { flex-wrap: wrap; padding: 10px 16px; gap: 10px; }
+  .top-in .logo { margin-right: auto; }
+  .my-btn .lbl { display: none; }
+  .pr-list { grid-template-columns: minmax(0, 1fr); }
+  .pr-open img { width: 92px; height: 68px; }
   .steps { order: 3; flex-basis: 100%; justify-content: space-between; gap: 2px; }
   .step { gap: 5px; padding: 5px 9px 5px 5px; font-size: 13px; }
   .step .dot { width: 22px; height: 22px; font-size: 11px; }
