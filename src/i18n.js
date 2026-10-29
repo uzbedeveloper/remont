@@ -74,6 +74,8 @@ const D = {
   an_other: ['Boshqa video tanlash', 'Выбрать другое видео', 'Choose another video'],
 
   me_title: ["Videongizdan o'lchandi", 'Измерено по вашему видео', 'Measured from your video'],
+  mask_hint: ["Bittasini ko'rish uchun bosing", 'Нажмите, чтобы увидеть одну поверхность', 'Tap one to see just that surface'],
+  mask_all: ['Hammasi', 'Все', 'All'],
   floor: ['Pol', 'Пол', 'Floor'],
   walls: ['Devorlar', 'Стены', 'Walls'],
   ceiling: ['Shift', 'Потолок', 'Ceiling'],

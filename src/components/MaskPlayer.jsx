@@ -1,6 +1,6 @@
 // Plays the room frame by frame with SAM 3.1's tracked masks drawn on top.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Pause, Play } from 'lucide-react';
+import { Check, Layers, Pause, Play, Pointer } from 'lucide-react';
 import { SURFACE } from '../colors.js';
 import { useT } from '../i18n.js';
 
@@ -11,7 +11,7 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
   const [overlays, setOverlays] = useState(null);
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const [hidden, setHidden] = useState({});
+  const [only, setOnly] = useState(null); // one surface picked from the chips, or all of them
   const timer = useRef();
   const n = media?.frames || 1;
 
@@ -49,7 +49,7 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
   const w = media?.w || overlays?.w || 1280, h = media?.h || overlays?.h || 720;
   // Big surfaces first so doors and windows sit on top of walls.
   const order = ['ceiling', 'floor', 'wall', 'radiator', 'window', 'door'];
-  const masks = (byFrame[frame] ?? []).filter(m => !hidden[m.label]).sort((a, b) => order.indexOf(a.label) - order.indexOf(b.label));
+  const masks = (byFrame[frame] ?? []).filter(m => !only || m.label === only).sort((a, b) => order.indexOf(a.label) - order.indexOf(b.label));
 
   const seek = e => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -63,10 +63,15 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
           <image href={`${base}/frames/${pad(frame)}.jpg`} width={w} height={h} />
           {masks.map(m => (
             <path key={`${m.label}-${m.id}`} transform={`translate(${m.x} ${m.y})`} d={m.d}
-              fill={SURFACE[m.label]} fillOpacity=".34" stroke={SURFACE[m.label]} strokeWidth={compact ? 3 : 2.5} strokeLinejoin="round" />
+              fill={SURFACE[m.label]} fillOpacity={only ? '.55' : '.34'} stroke={SURFACE[m.label]} strokeWidth={only ? 5 : compact ? 3 : 2.5} strokeLinejoin="round" />
           ))}
         </svg>
         {!overlays && <div className="scan" />}
+        {only && (
+          <button className="only-tag" onClick={() => setOnly(null)}>
+            <i style={{ background: SURFACE[only] }} />{t(only)}<span>×</span>
+          </button>
+        )}
         {n > 1 && (
           <div className="bar">
             <button className="playbtn" onClick={() => setPlaying(p => !p)} aria-label={playing ? 'pause' : 'play'}>
@@ -79,9 +84,14 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
       </div>
       {labels.length > 0 && (
         <div className="legend">
+          <p className="legend-hint"><Pointer size={14} />{t('mask_hint')}</p>
+          <button className={`seg${only ? '' : ' on'}`} onClick={() => setOnly(null)}>
+            <Layers size={14} />{t('mask_all')}
+          </button>
           {labels.map(k => (
-            <button key={k} className={`chip${hidden[k] ? ' off' : ''}`} onClick={() => setHidden(s => ({ ...s, [k]: !s[k] }))}>
-              <i style={{ background: SURFACE[k] }} />{t(k)}{counts?.[k] ? <b>{counts[k]}</b> : null}
+            <button key={k} className={`seg${only === k ? ' on' : ''}`} style={{ '--c': SURFACE[k] }}
+              onClick={() => setOnly(o => (o === k ? null : k))} aria-pressed={only === k}>
+              {only === k ? <Check size={14} strokeWidth={3} /> : <i />}{t(k)}{counts?.[k] ? <b>{counts[k]}</b> : null}
             </button>
           ))}
         </div>

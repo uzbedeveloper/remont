@@ -163,13 +163,21 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .player .scan { position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12), transparent); animation: scan 2.4s linear infinite; pointer-events: none; }
 @keyframes scan { from { left: -30%; } to { left: 100%; } }
 .legend { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 6px 4px; }
-.chip {
-  display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 999px; cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .06); color: #fff; font-weight: 700; font-size: 13px;
+.legend-hint { flex-basis: 100%; display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .7); }
+.seg {
+  --c: #fff; display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; cursor: pointer; font: inherit;
+  border: 1.5px solid rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: #fff; font-weight: 700; font-size: 14px;
+  transition: background .15s, border-color .15s, transform .1s;
 }
-.chip.off { opacity: .4; }
-.chip i { width: 10px; height: 10px; border-radius: 3px; display: block; }
-.chip b { font-weight: 800; opacity: .7; }
+.seg:hover { border-color: var(--c); }
+.seg:active { transform: scale(.96); }
+.seg i { width: 11px; height: 11px; border-radius: 3px; display: block; background: var(--c); }
+.seg b { font-weight: 800; opacity: .7; }
+.seg.on { background: var(--c); border-color: var(--c); color: #111; }
+.seg.on svg { color: #111; }
+.only-tag { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 0; border-radius: 999px; background: rgba(0, 0, 0, .6); color: #fff; font: inherit; font-weight: 800; font-size: 14px; cursor: pointer; backdrop-filter: blur(6px); }
+.only-tag i { width: 11px; height: 11px; border-radius: 3px; }
+.only-tag span { opacity: .7; font-size: 16px; line-height: 1; }
 
 /* ---------- analyze ---------- */
 .checks { list-style: none; padding: 0; margin: 0; }
