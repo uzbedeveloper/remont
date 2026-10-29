@@ -178,15 +178,17 @@ export default function Smeta({ project, setProject, config, go }) {
               <div className="ba-wrap">
                 <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
                 {(busy === 'render' || autoRender) && <div className="painting"><Loader2 size={22} className="spin" />{t('sm_rendering_d')}</div>}
-                <button className="btn family" onClick={toFamily} disabled={busy === 'family' || busy === 'render'}>
-                  {busy === 'family' ? <Loader2 size={17} className="spin" /> : <Users size={17} />}{t('fam_btn')}
-                </button>
               </div>
             ) : (busy === 'render' || autoRender) && (
               <div className="ba-wrap">
                 <div className="skeleton" style={{ aspectRatio: '16/9' }} />
                 <div className="painting"><Loader2 size={22} className="spin" />{t(autoRender ? 'sm_first_render' : 'sm_rendering_d')}</div>
               </div>
+            )}
+            {project.render && (
+              <button className="btn tg family" onClick={toFamily} disabled={busy === 'family' || busy === 'render'}>
+                {busy === 'family' ? <Loader2 size={17} className="spin" /> : <Users size={17} />}{t('fam_btn')}
+              </button>
             )}
             <div className="label" style={{ margin: '16px 0 8px' }}>{t('st_title')}</div>
             <div className="styles">
@@ -208,7 +210,7 @@ export default function Smeta({ project, setProject, config, go }) {
               ))}
             </div>
             {n > 1 && (
-              <>
+              <div className="adv">
                 <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_pick_view')}</div>
                 <div className="thumbs">
                   {thumbs.map(f => (
@@ -217,10 +219,10 @@ export default function Smeta({ project, setProject, config, go }) {
                     </button>
                   ))}
                 </div>
-              </>
+              </div>
             )}
             {project.renders?.length > 1 && (
-              <>
+              <div className="adv">
                 <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_versions')}</div>
                 <div className="thumbs versions">
                   {project.renders.map((r, i) => (
@@ -231,7 +233,7 @@ export default function Smeta({ project, setProject, config, go }) {
                     </button>
                   ))}
                 </div>
-              </>
+              </div>
             )}
           </section>
 
@@ -251,7 +253,7 @@ export default function Smeta({ project, setProject, config, go }) {
               <div className="seg no-print" style={{ position: 'relative' }}>
                 {TIERS.map(x => <button key={x} className={tier === x ? 'on' : ''} onClick={() => pickTier(x)}>{t(`tier_${x}`)}</button>)}
               </div>
-              <p className="tiny" style={{ color: 'rgba(255,255,255,.5)', margin: '14px 0 0', position: 'relative' }}>{t('sm_price_note', { date: prices.date })}</p>
+              <p className="tiny adv" style={{ color: 'rgba(255,255,255,.5)', margin: '14px 0 0', position: 'relative' }}>{t('sm_price_note', { date: prices.date })}</p>
             </section>
 
             <section className="card pad">
@@ -263,7 +265,7 @@ export default function Smeta({ project, setProject, config, go }) {
                   <button className="btn sm ghost" onClick={() => print()} aria-label={t('sm_print')}><Printer size={15} /></button>
                 </div>
               </div>
-              <div className="gantt">
+              <div className="gantt adv">
                 {jobs.map((j, ji) => (
                   <Row key={j.trade} t={t} j={j} days={smeta.days} name={t.pick(prices.trades[j.trade])} delay={ji * 0.06} />
                 ))}
@@ -312,7 +314,7 @@ export default function Smeta({ project, setProject, config, go }) {
               </button>
             )}
             {project.plan.assumptions?.length > 0 && (
-              <div style={{ marginTop: 18 }}>
+              <div className="adv" style={{ marginTop: 18 }}>
                 <div className="label" style={{ marginBottom: 6 }}>{t('sm_assumptions')}</div>
                 <ul className="notes">{project.plan.assumptions.map((x, i) => <li key={i} className="small">{t.pick(x)}</li>)}</ul>
               </div>

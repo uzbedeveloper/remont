@@ -181,7 +181,7 @@ export default function Plan({ project, setProject, config, go }) {
                   )}
                   {c.photo && <img className="plan-photo" src={`/media/${project.id}/${c.photo}`} alt="" />}
                   {c.calls?.length > 0 && (
-                    <div className="tiny muted">{t('pl_calls')}: {c.calls.slice(-4).map(x => `${x.name || t('hi_noname')} (${t(`cs_${x.outcome}`)})`).join(', ')}</div>
+                    <div className="tiny muted adv">{t('pl_calls')}: {c.calls.slice(-4).map(x => `${x.name || t('hi_noname')} (${t(`cs_${x.outcome}`)})`).join(', ')}</div>
                   )}
                 </div>
               )}

@@ -358,6 +358,8 @@ const D = {
   pay_del_q: ["Bu to'lovni o'chirasizmi?", 'Удалить этот платёж?', 'Delete this payment?'],
   pay_over: ["Kelishilgan narxdan {x} ortiq to'langan", 'Оплачено на {x} больше договорённой цены', '{x} more than the agreed price has been paid'],
   pay_check_first: ["Tekshiruv hali tugamagan. Oxirgi to'lovni ish tekshirilgandan keyin bering.", 'Проверка ещё не закончена. Последний платёж отдавайте после проверки.', 'The check is not finished. Make the last payment after the work is checked.'],
+  easy_t: ['Oson rejim', 'Простой режим', 'Easy mode'],
+  easy_d: ["Katta yozuv, kamroq tugma. Ota-onalar uchun qulay.", 'Крупный текст, меньше кнопок. Удобно для родителей.', 'Bigger text, fewer buttons. Good for parents.'],
   fam_btn: ['Oilaga yuborish', 'Отправить семье', 'Send to family'],
   fam_now: ['Hozir', 'Сейчас', 'Now'],
   fam_after: ["Ta'mirdan keyin", 'После ремонта', 'After'],

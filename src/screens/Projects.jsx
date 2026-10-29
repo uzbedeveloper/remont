@@ -4,6 +4,7 @@ import { ChevronRight, FolderOpen, Loader2, Plus, Trash2 } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { getProject } from '../api.js';
 import { forget, mine } from '../mine.js';
+import EasyToggle from '../components/EasyToggle.jsx';
 import { areas, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
 import { progress } from '../../lib/board.mjs';
 
@@ -32,6 +33,7 @@ export default function Projects({ config, open, onCount }) {
         <div>
           <h1 className="pr-title"><FolderOpen size={26} />{t('mine_title')}</h1>
           <p className="muted">{t('pr_sub')}</p>
+          <EasyToggle />
         </div>
         <a className="btn" href="#/"><Plus size={18} />{t('pr_new')}</a>
       </div>

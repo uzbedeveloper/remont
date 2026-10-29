@@ -4,6 +4,7 @@ import { useT } from '../i18n.js';
 import { openSample, upload } from '../api.js';
 import { areas } from '../../lib/estimate.mjs';
 import MaskPlayer from '../components/MaskPlayer.jsx';
+import EasyToggle from '../components/EasyToggle.jsx';
 
 export default function Home({ open }) {
   const t = useT();
@@ -72,6 +73,7 @@ export default function Home({ open }) {
           {progress !== null && <div className="upload-progress"><div style={{ width: `${progress * 100}%` }} /></div>}
           {retry > 0 && <p className="small" style={{ color: 'var(--warn)', fontWeight: 700, margin: '8px 0 0' }}>{t('an_retrying', { n: retry })}</p>}
           <p className="muted small" style={{ marginTop: 14 }}>{t('home_upload_hint')}</p>
+          <EasyToggle />
           {error && <div className="err" style={{ marginTop: 12 }}>{t('error', { e: error })}</div>}
         </div>
 
@@ -95,7 +97,7 @@ export default function Home({ open }) {
         </div>
       </section>
 
-      <section>
+      <section className="adv">
         <div className="section-title"><h2>{t('how_title')}</h2></div>
         <div className="how">
           {[[Ruler, 'how1'], [ReceiptText, 'how2'], [Users, 'how3']].map(([Icon, k], i) => (
@@ -108,7 +110,7 @@ export default function Home({ open }) {
         </div>
       </section>
 
-      <section className="pitch">
+      <section className="pitch adv">
         <blockquote>{t('pitch')}</blockquote>
         <div>
           <div className="label" style={{ color: 'rgba(255,255,255,.6)' }}>{t('built_with')}</div>
