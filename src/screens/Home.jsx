@@ -102,7 +102,7 @@ export default function Home({ open }) {
         <div className="how">
           {[[Ruler, 'how1'], [ReceiptText, 'how2'], [Users, 'how3']].map(([Icon, k], i) => (
             <div key={k} className="card rise" style={{ animationDelay: `${0.1 * i}s` }}>
-              <div className="n"><Icon size={20} /></div>
+              <div className="n"><Icon size={20} /><b>{i + 1}</b></div>
               <h3>{t(`${k}_t`)}</h3>
               <p>{t(`${k}_d`)}</p>
             </div>

@@ -105,12 +105,12 @@ function Deal({ project, job, card, prices, save }) {
         </label>
       </div>
       <pre className="ag-text">{text}</pre>
-      <div className="row wrap" style={{ gap: 8 }}>
+      <div className="row wrap ag-acts" style={{ gap: 8 }}>
         <button className="btn tg" onClick={send}><Send size={16} />{t('ag_send')}</button>
-        <button className="btn ghost" onClick={copy}>{copied ? <Check size={16} /> : <Copy size={16} />}{copied ? t('ag_copied') : t('ag_copy')}</button>
         {card.agreement?.ok_at
-          ? <span className="pill v-fair" style={{ marginLeft: 'auto' }}><Check size={12} strokeWidth={3} />{t('ag_ok_on', { d: new Date(card.agreement.ok_at).toLocaleDateString(t.lang) })}</span>
-          : <button className="btn dark" style={{ marginLeft: 'auto' }} onClick={() => set({ ok_at: new Date().toISOString() })}><FileSignature size={16} />{t('ag_ok')}</button>}
+          ? <span className="pill v-fair"><Check size={12} strokeWidth={3} />{t('ag_ok_on', { d: new Date(card.agreement.ok_at).toLocaleDateString(t.lang) })}</span>
+          : <button className="btn dark" onClick={() => set({ ok_at: new Date().toISOString() })}><FileSignature size={16} />{t('ag_ok')}</button>}
+        <button className="btn sm ghost" onClick={copy}>{copied ? <Check size={16} /> : <Copy size={16} />}{copied ? t('ag_copied') : t('ag_copy')}</button>
       </div>
     </div>
   );

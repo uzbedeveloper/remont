@@ -649,3 +649,43 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
   .shop-item .small { min-width: 0; font-size: 12px; }
 }
 .shop-sum b { white-space: nowrap; }
+
+/* ---------- style pass ---------- */
+.how .card { position: relative; }
+.how .n b { display: none; }
+.ag-text { font: 14px/1.55 var(--body, inherit); }
+.btn.tg { box-shadow: 0 8px 18px -12px rgba(34, 158, 217, .8); }
+.pu-av { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--ink); color: #fff; font-weight: 800; font-size: 13px; }
+.plan-acts .reset { margin-left: auto; background: none; border: 0; color: var(--muted); }
+.plan-acts .reset:hover { color: var(--ink); }
+.ag-acts .pill { align-self: center; }
+@media (max-width: 720px) {
+  /* How it works: icon on the left, a small step number on it, text on the right. */
+  .how { gap: 10px; }
+  .how .card { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; padding: 16px; }
+  .how .n { grid-row: span 2; margin: 0; position: relative; }
+  .how .n b { display: grid; place-items: center; position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 11px; border: 2px solid var(--card); }
+  .how h3 { font-size: 17px; margin-bottom: 4px; }
+  .how p { font-size: 14px; }
+  /* The m² boxes on the home video: smaller, so the colours underneath stay visible. */
+  .float { padding: 8px 12px; border-radius: 12px; }
+  .float .big { font-size: 19px; }
+  .float .label, .float .tiny { font-size: 10px; }
+  .metrics { gap: 10px; }
+  .metric { padding: 12px 14px; border-radius: 16px; }
+  .metric .v { font-size: 27px; margin: 6px 0 2px; }
+  .metric .v small { font-size: 14px; }
+  /* Plan card buttons: the main ones share the row evenly, reset sits under them. */
+  .plan-acts .btn:not(.reset) { flex: 1 1 auto; justify-content: center; white-space: nowrap; }
+  .plan-acts .btn.dark { flex-basis: 100%; }
+  .plan-acts .reset { flex-basis: 100%; justify-content: flex-end; padding: 4px 0; }
+  /* Send, then I agreed: both full width; copy is the small one. */
+  .ag-acts { display: flex; flex-direction: column; align-items: stretch; }
+  .ag-acts .btn { justify-content: center; }
+  .ag-acts .btn.sm { align-self: flex-start; }
+  .ag-acts .pill { align-self: flex-start; }
+}
+.ck.ok:not(.on) { color: var(--good); border-color: color-mix(in srgb, var(--good) 35%, var(--line)); }
+.ck.bad:not(.on) { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 30%, var(--line)); }
+.ck { transition: transform .12s, background .15s; }
+.ck:active { transform: scale(.92); }

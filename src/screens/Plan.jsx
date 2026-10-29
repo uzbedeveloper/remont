@@ -144,6 +144,7 @@ export default function Plan({ project, setProject, config, go }) {
 
                   {c.usta && (
                     <div className="plan-usta">
+                      <span className="pu-av">{(c.usta.name || '?').trim()[0].toUpperCase()}</span>
                       <b>{c.usta.name || t('hi_noname')}</b>
                       {c.start && <span className="muted small">· {t('pl_starts', { d: c.start })}</span>}
                       <span className="grow" />
@@ -156,7 +157,7 @@ export default function Plan({ project, setProject, config, go }) {
                     <AgreeForm t={t} card={c} job={j} onCancel={() => setAgreeing(null)}
                       onSave={async (price, start) => { await save(j.trade, x => ({ ...x, status: 'agreed', price, start })); setAgreeing(null); }} />
                   ) : (
-                    <div className="row wrap" style={{ gap: 8 }}>
+                    <div className="row wrap plan-acts" style={{ gap: 8 }}>
                       {c.status === 'need' && <button className="btn dark" onClick={() => go('hire', j.trade)}><Hammer size={16} />{t('jb_find')}</button>}
                       {c.status === 'talked' && <>
                         <button className="btn dark" onClick={() => setAgreeing(j.trade)}><Check size={16} />{t('pl_agree_btn')}</button>
@@ -175,7 +176,7 @@ export default function Plan({ project, setProject, config, go }) {
                         </button>
                       )}
                       {c.status !== 'need' && (
-                        <button className="btn sm ghost" style={{ marginLeft: 'auto' }} onClick={() => setStatus(j.trade, 'need')} title={t('pl_reset')}><RotateCcw size={14} />{t('pl_reset')}</button>
+                        <button className="btn sm ghost reset" onClick={() => setStatus(j.trade, 'need')} title={t('pl_reset')}><RotateCcw size={14} />{t('pl_reset')}</button>
                       )}
                     </div>
                   )}
