@@ -7,6 +7,8 @@ import { patch } from '../api.js';
 import { TRADE } from '../colors.js';
 import { jobsFrom, priceSmeta, verdict } from '../../lib/estimate.mjs';
 import { STATES, cardOf, parseSum, progress } from '../../lib/board.mjs';
+import { checksDone, paidOf } from '../../lib/checks.mjs';
+import TradeTools from '../components/TradeTools.jsx';
 
 export function Verdict({ v }) {
   const t = useT();
@@ -27,6 +29,7 @@ export default function Plan({ project, setProject, config, go }) {
   const pr = progress(project.board, jobs);
   const [open, setOpen] = useState(null);
   const [agreeing, setAgreeing] = useState(null); // trade whose price form is open
+  const [tabs, setTabs] = useState({}); // trade → open tab in its card
   const [busy, setBusy] = useState('');
   const [error, setError] = useState('');
   const photo = useRef();
@@ -37,6 +40,12 @@ export default function Plan({ project, setProject, config, go }) {
     board[trade] = fn({ ...cardOf(board, trade) });
     setProject(await patch(project.id, { board }));
   };
+  // Done means checked: until every check passes, "done" opens the checklist instead.
+  const finish = trade => {
+    if (checksDone(cardOf(project.board, trade), trade).all) return setStatus(trade, 'done');
+    setTabs(x => ({ ...x, [trade]: 'check' }));
+  };
+  const paidAll = jobs.reduce((s, j) => s + paidOf(cardOf(project.board, j.trade)), 0);
   const setStatus = (trade, status) => save(trade, c => ({ ...c, status, ...(status === 'need' ? { usta: null, price: 0, start: '' } : {}) }));
 
   const sendPhoto = async e => {
@@ -74,6 +83,7 @@ export default function Plan({ project, setProject, config, go }) {
           <div><div className="tiny" style={{ color: 'rgba(255,255,255,.6)' }}>{t('pl_done_n')}</div><b className="tab">{pr.done} / {pr.total}</b></div>
           <div><div className="tiny" style={{ color: 'rgba(255,255,255,.6)' }}>{t('pl_agreed')}</div><b className="tab">{pr.agreed ? t.money(pr.agreed) : '—'}</b></div>
           {pr.fair > 0 && <div><div className="tiny" style={{ color: 'rgba(255,255,255,.6)' }}>{t('pl_fair_for')}</div><b className="tab">{t.money(pr.fair)}</b></div>}
+          {paidAll > 0 && <div><div className="tiny" style={{ color: 'rgba(255,255,255,.6)' }}>{t('pay_paid')}</div><b className="tab">{t.money(paidAll)}</b></div>}
           {pr.verdict && <Verdict v={pr.verdict} />}
         </div>
         <div className="plan-next">
@@ -120,13 +130,17 @@ export default function Plan({ project, setProject, config, go }) {
 
               {isOpen && (
                 <div className="plan-body">
-                  <ul className="scope">
-                    {j.lines.map(l => <li key={l.item_id}><span>{t.pick(l.name)}</span><span className="tab">{t.num(l.qty)} {t.unit(l.unit)}</span></li>)}
-                  </ul>
-                  <div className="row wrap" style={{ gap: 8 }}>
-                    <span className="label" style={{ margin: 0 }}>{t('jb_fair')}</span><b className="tab">{t.range(j.fair)}</b>
-                    {v && <Verdict v={v} />}
-                  </div>
+                  <TradeTools project={project} job={j} card={c} prices={prices} save={fn => save(j.trade, fn)}
+                    tab={tabs[j.trade] ?? 'scope'} setTab={k => setTabs(x => ({ ...x, [j.trade]: k }))}
+                    scope={<>
+                      <ul className="scope">
+                        {j.lines.map(l => <li key={l.item_id}><span>{t.pick(l.name)}</span><span className="tab">{t.num(l.qty)} {t.unit(l.unit)}</span></li>)}
+                      </ul>
+                      <div className="row wrap" style={{ gap: 8 }}>
+                        <span className="label" style={{ margin: 0 }}>{t('jb_fair')}</span><b className="tab">{t.range(j.fair)}</b>
+                        {v && <Verdict v={v} />}
+                      </div>
+                    </>} />
 
                   {c.usta && (
                     <div className="plan-usta">
@@ -153,7 +167,7 @@ export default function Plan({ project, setProject, config, go }) {
                         <button className="btn ghost" onClick={() => setAgreeing(j.trade)}>{t('pl_edit_price')}</button>
                       </>}
                       {c.status === 'working' && (
-                        <button className="btn dark" onClick={() => setStatus(j.trade, 'done')}><Check size={16} />{t('pl_done_btn')}</button>
+                        <button className="btn dark" onClick={() => finish(j.trade)}><Check size={16} />{t('pl_done_btn')}</button>
                       )}
                       {['working', 'done'].includes(c.status) && (
                         <button className="btn ghost" disabled={busy === `photo_${j.trade}`} onClick={() => { photoFor.current = j.trade; photo.current.click(); }}>

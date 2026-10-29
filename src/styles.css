@@ -308,9 +308,9 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .job .body { padding: 20px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
 .job .icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: #fff; flex: none; }
 .job h3 { font-size: 20px; }
-.job .scope { list-style: none; margin: 0; padding: 0; font-size: 14px; }
-.job .scope li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
-.job .scope li span:last-child { font-weight: 800; white-space: nowrap; }
+.job .scope, .plan-body .scope { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+.job .scope li, .plan-body .scope li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.job .scope li span:last-child, .plan-body .scope li span:last-child { font-weight: 800; white-space: nowrap; }
 .job .fair { background: #faf7f2; border-radius: 14px; padding: 12px 14px; }
 .job .fair .v { font-family: var(--display); font-size: 20px; font-weight: 700; letter-spacing: -0.03em; }
 .job .btn { margin-top: auto; }
@@ -565,4 +565,48 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
   .total-card { background: #fff; color: var(--ink); border: 1px solid var(--line); }
   .line .more { display: block !important; }
   .line.extra { display: block; }
+}
+
+/* ---------- trade tools: agreement, check, payments ---------- */
+.tt-tabs { display: flex; gap: 4px; padding: 4px; border-radius: 14px; background: var(--bg-2); overflow-x: auto; scrollbar-width: none; }
+.tt-tabs button { flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 8px 7px; border: 0; border-radius: 10px; background: none; font: inherit; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; white-space: nowrap; }
+.tt-tabs button.on { background: var(--card); color: var(--ink); box-shadow: 0 1px 4px rgba(0, 0, 0, .08); }
+.tt-tabs b { font-size: 11px; padding: 1px 6px; border-radius: 99px; background: var(--good-bg); color: var(--good); }
+.tt-tabs b.bad { background: var(--bad-bg); color: var(--bad); }
+.tt-body { display: flex; flex-direction: column; gap: 12px; }
+.tt-empty { margin: 0; padding: 14px; border-radius: 12px; background: var(--bg-2); color: var(--muted); font-weight: 600; }
+.tt-opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.tt-opts label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.tt-opts select { padding: 8px 10px; font-size: 14px; }
+.ag-text { margin: 0; padding: 14px; border-radius: 12px; background: var(--bg-2); font: 13px/1.5 ui-monospace, Consolas, monospace; white-space: pre-wrap; max-height: 260px; overflow: auto; }
+.tt-note { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; font-weight: 700; font-size: 14px; }
+.tt-note.ok { background: var(--good-bg); color: var(--good); }
+.tt-note.bad { background: var(--bad-bg); color: var(--bad); }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.checks li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); font-size: 14px; }
+.checks li.is-ok { background: var(--good-bg); border-color: transparent; }
+.checks li.is-bad { background: var(--bad-bg); border-color: transparent; }
+.ck { width: 38px; height: 38px; flex: none; border-radius: 11px; border: 1.5px solid var(--line); background: var(--card); color: var(--muted); display: grid; place-items: center; cursor: pointer; }
+.ck.ok.on { background: var(--good); border-color: var(--good); color: #fff; }
+.ck.bad.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+.pay-sum { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; padding: 12px 14px; border-radius: 14px; background: var(--bg-2); }
+.pay-sum > div { display: flex; flex-direction: column; }
+.pay-sum b { font-size: 17px; }
+.pay-bar { grid-column: 1 / -1; height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; }
+.pay-bar i { display: block; height: 100%; background: var(--good); }
+.pays { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.pays li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; border: 1px solid var(--line); }
+.pays img { width: 44px; height: 44px; border-radius: 9px; object-fit: cover; display: block; }
+.pay-ic { width: 44px; height: 44px; border-radius: 9px; background: var(--bg-2); display: grid; place-items: center; color: var(--muted); flex: none; }
+.pays .grow { display: flex; flex-direction: column; }
+.btn.receipt { justify-content: center; border-style: dashed; }
+.btn.receipt.has { border-style: solid; color: var(--good); }
+@media (max-width: 420px) { .tt-tabs button { font-size: 12.5px; padding: 8px 5px; } .tt-tabs b { padding: 1px 4px; } }
+@media (max-width: 400px) {
+  .langs button { padding: 5px 8px; }
+  .logo { font-size: 17px; gap: 8px; }
+  .logo-mark { width: 30px; height: 30px; }
+  .my-btn { padding: 6px 9px; }
+  .step { padding: 4px 7px 4px 4px; font-size: 12px; gap: 4px; }
+  .step .dot { width: 20px; height: 20px; }
 }
