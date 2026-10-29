@@ -97,11 +97,11 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
       {labels.length > 0 && (
         <div className="legend">
           <p className="legend-hint"><Pointer size={14} />{t('mask_hint')}</p>
-          <button className={`seg${only ? '' : ' on'}${auto ? ' auto' : ''}`} onClick={() => pick(null)}>
+          <button className={`surf${only ? '' : ' on'}${auto ? ' auto' : ''}`} onClick={() => pick(null)}>
             <Layers size={14} />{t('mask_all')}
           </button>
           {labels.map(k => (
-            <button key={`${k}${only === k}`} className={`seg${only === k ? ' on' : ''}${auto ? ' auto' : ''}`} style={{ '--c': SURFACE[k] }}
+            <button key={`${k}${only === k}`} className={`surf${only === k ? ' on' : ''}${auto ? ' auto' : ''}`} style={{ '--c': SURFACE[k] }}
               onClick={() => pick(only === k && !auto ? null : k)} aria-pressed={only === k}>
               {only === k ? <Check size={14} strokeWidth={3} /> : <i />}{t(k)}{counts?.[k] ? <b>{counts[k]}</b> : null}
             </button>

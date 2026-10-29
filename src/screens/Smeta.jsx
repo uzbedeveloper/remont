@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, CalendarDays, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, WandSparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, Users, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
 import { TRADE } from '../colors.js';
-import { TIERS, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
+import { TIERS, areas, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
 import { COLORS, OPTIONS, STYLES, lookFor, startChoices } from '../../lib/look.mjs';
 import BeforeAfter from '../components/BeforeAfter.jsx';
+import Shopping from '../components/Shopping.jsx';
+import { familyPicture, sharePicture, shareText } from '../share.js';
 
 // The works list shows this many until asked for all of them (print shows all).
 const SHORT = 5;
@@ -72,10 +74,23 @@ export default function Smeta({ project, setProject, config, go }) {
   const share = async () => {
     const lines = smeta.lines.map(l => `- ${t.pick(l.name)}: ${t.num(l.qty)} ${t.unit(l.unit)}, ${t.money(l.total)}`).join('\n');
     const text = `${t('sm_share_text', { room: t(`room_${project.measure.room_type}`), area: t.num(project.measure.length_m * project.measure.width_m), total: t.money(smeta.total), days: t.day(smeta.days) })}\n\n${lines}`;
+    shareText(text);
+  };
+
+  // Before/after in one picture with the total, for the family chat: renovation is a family decision.
+  const toFamily = async () => {
+    setBusy('family');
     try {
-      if (navigator.share) await navigator.share({ title: 'Remont', text });
-      else window.open(`https://t.me/share/url?url=${encodeURIComponent(text)}`, '_blank');
-    } catch { /* cancelled */ }
+      const room = t(`room_${project.measure.room_type}`);
+      const caption = `${room} · ${t.mln(smeta.total)}`;
+      const sub = `${t.num(areas(project.measure).floor)} m² · ${t('sm_days', { n: t.day(smeta.days) })} · Remont`;
+      const blob = await familyPicture({
+        before: `/media/${project.id}/${project.render.before}`, after: `/media/${project.id}/${project.render.after}`,
+        nowLabel: t('fam_now'), afterLabel: t('fam_after'), caption, sub,
+      });
+      await sharePicture(blob, t('fam_text', { room, total: t.money(smeta.total), days: t.day(smeta.days) }));
+    } catch (e) { setError(e.message); }
+    setBusy('');
   };
 
   const n = project.media.frames;
@@ -162,6 +177,9 @@ export default function Smeta({ project, setProject, config, go }) {
               <div className="ba-wrap">
                 <BeforeAfter before={`/media/${project.id}/${project.render.before}`} after={`/media/${project.id}/${project.render.after}`} />
                 {(busy === 'render' || autoRender) && <div className="painting"><Loader2 size={22} className="spin" />{t('sm_rendering_d')}</div>}
+                <button className="btn family" onClick={toFamily} disabled={busy === 'family' || busy === 'render'}>
+                  {busy === 'family' ? <Loader2 size={17} className="spin" /> : <Users size={17} />}{t('fam_btn')}
+                </button>
               </div>
             ) : (busy === 'render' || autoRender) && (
               <div className="ba-wrap">
@@ -297,6 +315,8 @@ export default function Smeta({ project, setProject, config, go }) {
               </div>
             )}
           </section>
+
+          <Shopping project={project} setProject={setProject} smeta={smeta} prices={prices} />
 
           <button className="check-cta no-print" onClick={() => go('check')}>
             <span className="ic"><ScanText size={22} /></span>

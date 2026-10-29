@@ -135,6 +135,25 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .float .big { font-family: var(--display); font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
 .float.a { left: -26px; bottom: 124px; animation-delay: .4s; }
 .float.b { right: -18px; top: 26px; animation-delay: .7s; }
+.ba-wrap .family { position: absolute; right: 12px; bottom: 12px; z-index: 3; box-shadow: 0 8px 24px rgba(0, 0, 0, .3); }
+.shop .section-title h3 { gap: 8px; }
+.shop-sum { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--bg-2); font-weight: 700; margin-bottom: 8px; }
+.shop-groups { position: relative; max-height: 260px; overflow: hidden; }
+.shop-groups:not(.open)::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(transparent, var(--card)); pointer-events: none; }
+.shop-groups.open { max-height: none; }
+.shop-group { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.shop-group:last-child { border-bottom: 0; }
+.shop-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.shop-head .dot { width: 10px; height: 10px; border-radius: 3px; }
+.shop-group ul { list-style: none; margin: 0; padding: 0; }
+.shop-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 4px; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; border-radius: 10px; }
+.shop-item:hover { background: var(--bg-2); }
+.shop-item .box { width: 22px; height: 22px; border-radius: 7px; border: 2px solid #cfc6b6; display: grid; place-items: center; flex: none; color: #fff; }
+.shop-item.on .box { background: var(--good, #1f9d55); border-color: var(--good, #1f9d55); }
+.shop-item.on .grow, .shop-item.on .qty { text-decoration: line-through; color: var(--muted); }
+.shop-item .qty { font-weight: 800; white-space: nowrap; }
+.shop-item .small { white-space: nowrap; min-width: 92px; text-align: right; }
+@media print { .shop-groups { max-height: none; } .shop-groups::after { display: none; } }
 .pr-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .pr-title { display: flex; align-items: center; gap: 12px; font-size: clamp(28px, 5vw, 40px); margin: 0 0 4px; }
 .pr-head p { margin: 0; }
@@ -177,20 +196,20 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 @keyframes scan { from { left: -30%; } to { left: 100%; } }
 .legend { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 6px 4px; }
 .legend-hint { flex-basis: 100%; display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .7); }
-.seg {
+.surf {
   --c: #fff; display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; cursor: pointer; font: inherit;
   border: 1.5px solid rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: #fff; font-weight: 700; font-size: 14px;
   transition: background .15s, border-color .15s, transform .1s;
 }
-.seg:hover { border-color: var(--c); }
-.seg:active { transform: scale(.96); }
-.seg i { width: 11px; height: 11px; border-radius: 3px; display: block; background: var(--c); }
-.seg b { font-weight: 800; opacity: .7; }
-.seg.on { background: var(--c); border-color: var(--c); color: #111; }
-.seg.on svg { color: #111; }
+.surf:hover { border-color: var(--c); }
+.surf:active { transform: scale(.96); }
+.surf i { width: 11px; height: 11px; border-radius: 3px; display: block; background: var(--c); }
+.surf b { font-weight: 800; opacity: .7; }
+.surf.on { background: var(--c); border-color: var(--c); color: #111; }
+.surf.on svg { color: #111; }
 /* While the chips walk by themselves, the picked one fills up like a timer. */
-.seg.auto.on { position: relative; overflow: hidden; }
-.seg.auto.on::after { content: ''; position: absolute; left: 0; bottom: 0; height: 3px; background: rgba(0, 0, 0, .35); animation: seg-timer 2.2s linear both; }
+.surf.auto.on { position: relative; overflow: hidden; }
+.surf.auto.on::after { content: ''; position: absolute; left: 0; bottom: 0; height: 3px; background: rgba(0, 0, 0, .35); animation: seg-timer 2.2s linear both; }
 @keyframes seg-timer { from { width: 0; } to { width: 100%; } }
 .only-tag { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 0; border-radius: 999px; background: rgba(0, 0, 0, .6); color: #fff; font: inherit; font-weight: 800; font-size: 14px; cursor: pointer; backdrop-filter: blur(6px); }
 .only-tag i { width: 11px; height: 11px; border-radius: 3px; }
