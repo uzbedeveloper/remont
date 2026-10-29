@@ -44,6 +44,8 @@ Click **Try the sample room** to see a finished project without spending API cre
 
 **On a phone** (camera and mic need https): `npm run phone` builds the app, opens a temporary Cloudflare tunnel and prints a QR code. Needs `cloudflared` installed.
 
+**On a phone on the same Wi-Fi** (no internet tunnel): `npm run lan` serves https on this computer's Wi-Fi address with a self-made certificate and prints a QR code. The phone warns once that the connection is not private; tap Advanced → continue.
+
 ## The usta directory
 
 `data/ustas_directory.json` is built from public ads, where ustas post their phone numbers to find clients:
