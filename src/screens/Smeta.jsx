@@ -342,7 +342,7 @@ function Row({ t, j, days, name, delay }) {
   const { color, Icon } = TRADE[j.trade];
   return (
     <>
-      <div className="t"><Icon size={15} color={color} />{name}</div>
+      <div className="t" title={name}><Icon size={15} color={color} /><span>{name}</span></div>
       <div className="track" style={{ '--d': `${100 / Math.max(1, days)}%` }}>
         {j.lines.map(l => (
           <div key={l.item_id} className="seg-bar" title={`${t.pick(l.name)} · ${t.span(l.start, l.end)}`}

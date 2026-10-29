@@ -624,3 +624,28 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .easy .adv { display: none !important; }
 .easy .btn { min-height: 50px; }
 .easy .muted, .easy .tiny { color: var(--ink-2); }
+
+/* ---------- phone polish ---------- */
+.gantt .t span { overflow: hidden; text-overflow: ellipsis; }
+.gantt .t svg { flex: none; }
+@media (max-width: 720px) {
+  .section-title { flex-wrap: wrap; align-items: center; }
+  .gantt { grid-template-columns: 112px minmax(0, 1fr); gap: 8px 10px; }
+  .gantt .t { font-size: 13px; gap: 6px; }
+  /* A work line: the name gets the whole width, quantity and price go under it. */
+  .line > button { grid-template-columns: 30px minmax(0, 1fr) 16px; grid-template-areas: 'n w c' 'n s c'; gap: 4px 12px; }
+  .line .n { grid-area: n; width: 28px; height: 28px; align-self: start; margin-top: 2px; }
+  .line > button > .grow { grid-area: w; }
+  .line .sum { grid-area: s; text-align: left; color: var(--accent); }
+  .line .chev { grid-area: c; }
+  .line .more { padding-left: 4px; }
+  .mats td { font-size: 13px; }
+}
+.plan-list { margin-top: 16px; }
+.shop-num { display: flex; align-items: center; gap: 10px; flex: none; }
+@media (max-width: 720px) {
+  /* Quantity over price, so the item name keeps the room. */
+  .shop-num { flex-direction: column; align-items: flex-end; gap: 0; }
+  .shop-item .small { min-width: 0; font-size: 12px; }
+}
+.shop-sum b { white-space: nowrap; }

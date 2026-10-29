@@ -9,6 +9,14 @@ import { areas, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
 import { progress } from '../../lib/board.mjs';
 
 const STEP_LABEL = { analyze: 'step_film', measure: 'step_measure', smeta: 'step_smeta', check: 'step_smeta', jobs: 'step_jobs', hire: 'step_jobs' };
+// "today, 14:05", "yesterday" or a date: easier to read than 2026-10-29.
+function when(t, at) {
+  const d = new Date(at), day = x => new Date(x).setHours(0, 0, 0, 0);
+  const ago = Math.round((day(Date.now()) - day(d)) / 864e5);
+  if (ago === 0) return t('pr_today', { h: d.toTimeString().slice(0, 5) });
+  if (ago === 1) return t('pr_yday');
+  return d.toLocaleDateString(t.lang === 'uz' ? 'uz-Latn' : t.lang, { day: 'numeric', month: 'long' });
+}
 const pad = i => String(i + 1).padStart(4, '0');
 
 export default function Projects({ config, open, onCount }) {
@@ -33,7 +41,6 @@ export default function Projects({ config, open, onCount }) {
         <div>
           <h1 className="pr-title"><FolderOpen size={26} />{t('mine_title')}</h1>
           <p className="muted">{t('pr_sub')}</p>
-          <EasyToggle />
         </div>
         <a className="btn" href="#/"><Plus size={18} />{t('pr_new')}</a>
       </div>
@@ -61,7 +68,7 @@ export default function Projects({ config, open, onCount }) {
                   <span className="muted small">
                     {t(STEP_LABEL[step] ?? 'step_film')}{plan ? ` · ${t('pl_found', { n: plan.hired, t: plan.total })}` : ''}
                   </span>
-                  <span className="muted tiny">{t('pr_opened', { d: new Date(at).toLocaleDateString(t.lang) })}</span>
+                  <span className="muted tiny">{t('pr_opened', { d: when(t, at) })}</span>
                 </span>
                 <ChevronRight size={20} className="pr-go" />
               </button>
@@ -70,6 +77,7 @@ export default function Projects({ config, open, onCount }) {
           );
         })}
       </div>
+      <EasyToggle />
     </main>
   );
 }

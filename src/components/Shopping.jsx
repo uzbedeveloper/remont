@@ -65,8 +65,10 @@ export default function Shopping({ project, setProject, smeta, prices }) {
                     <button className={`shop-item${on ? ' on' : ''}`} onClick={() => toggle(k)} aria-pressed={on}>
                       <span className="box">{on && <Check size={14} strokeWidth={3} />}</span>
                       <span className="grow">{t.pick(it.name)}</span>
-                      <span className="tab qty">{t.num(it.qty)} {t.unit(it.unit)}</span>
-                      <span className="tab muted small">{t.money(it.total)}</span>
+                      <span className="shop-num">
+                        <span className="tab qty">{t.num(it.qty)} {t.unit(it.unit)}</span>
+                        <span className="tab muted small">{t.money(it.total)}</span>
+                      </span>
                     </button>
                   </li>
                 );

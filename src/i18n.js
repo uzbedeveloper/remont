@@ -36,6 +36,8 @@ const D = {
   pr_new: ['Yangi xona', 'Новая комната', 'New room'],
   pr_empty: ["Hali loyiha yo'q. Xonani videoga oling yoki namunani oching.", 'Пока нет проектов. Снимите комнату или откройте пример.', 'No projects yet. Film a room or open the sample.'],
   pr_opened: ['Oxirgi marta: {d}', 'Открыт: {d}', 'Last opened {d}'],
+  pr_today: ['bugun, {h}', 'сегодня, {h}', 'today, {h}'],
+  pr_yday: ['kecha', 'вчера', 'yesterday'],
   pr_remove: ["Ro'yxatdan olib tashlash", 'Убрать из списка', 'Remove from list'],
   pr_remove_q: ["Bu loyihani ro'yxatdan olib tashlaysizmi?", 'Убрать этот проект из списка?', 'Remove this project from the list?'],
   how_title: ['Qanday ishlaydi', 'Как это работает', 'How it works'],
@@ -66,7 +68,8 @@ const D = {
 
   an_title: ['Sizning xonangiz', 'Ваша комната', 'Your room'],
   an_hint_label: ["Bitta o'lchamni bilasizmi? (ixtiyoriy)", 'Знаете один размер? (необязательно)', 'Know one size? (optional)'],
-  an_hint_ph: ['masalan, deraza tomondagi devor 3,4 m', 'например, стена с окном 3,4 м', 'e.g. the window wall is 3.4 m'],
+  an_hint_ph: ['masalan, devor 3,4 m', 'например, стена 3,4 м', 'e.g. one wall is 3.4 m'],
+  an_again: ["Qaytadan o'lchash", 'Измерить заново', 'Measure again'],
   an_start: ["Xonamni o'lcha", 'Измерить комнату', 'Measure my room'],
   an_uploading: ['Yuklanmoqda {p}%', 'Загрузка {p}%', 'Uploading {p}%'],
   an_retrying: ["Internet sust, qayta urinyapman ({n})…", 'Связь слабая, пробую снова ({n})…', 'Weak connection, retrying ({n})…'],

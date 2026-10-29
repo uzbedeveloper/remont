@@ -57,9 +57,14 @@ export default function Analyze({ project, setProject, go }) {
             <>
               <label className="label" htmlFor="hint">{t('an_hint_label')}</label>
               <input id="hint" className="input" value={hint} onChange={e => setHint(e.target.value)} placeholder={t('an_hint_ph')} />
-              <button className="btn lg" style={{ width: '100%' }} onClick={run}><Ruler size={18} />{t('an_start')}</button>
-              {project.measure && (
-                <button className="btn ghost" style={{ width: '100%' }} onClick={() => go('measure')}>{t('step_measure')} <ArrowRight size={16} /></button>
+              {/* Already measured: going on is the main action, measuring again the second one. */}
+              {project.measure ? (
+                <>
+                  <button className="btn lg" style={{ width: '100%' }} onClick={() => go('measure')}>{t('step_measure')} <ArrowRight size={18} /></button>
+                  <button className="btn ghost" style={{ width: '100%' }} onClick={run}><Ruler size={16} />{t('an_again')}</button>
+                </>
+              ) : (
+                <button className="btn lg" style={{ width: '100%' }} onClick={run}><Ruler size={18} />{t('an_start')}</button>
               )}
             </>
           )}

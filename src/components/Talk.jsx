@@ -52,7 +52,13 @@ export default function Talk({ project, setProject, go, step }) {
 
   useEffect(() => { try { localStorage.setItem('speak', speak ? '1' : '0'); } catch { /* private mode */ } }, [speak]);
   useEffect(() => { if (used) try { localStorage.setItem('talked', '1'); } catch { /* private mode */ } }, [used]);
-  useEffect(() => { const id = setTimeout(() => setBubble(false), 7000); return () => clearTimeout(id); }, []);
+  useEffect(() => {
+    // Gone after 7 s or as soon as the owner scrolls: it sits over the page buttons.
+    const hide = () => setBubble(false);
+    const id = setTimeout(hide, 7000);
+    addEventListener('scroll', hide, { once: true, passive: true });
+    return () => { clearTimeout(id); removeEventListener('scroll', hide); };
+  }, []);
   const tries = t(t.has(`talk_try_${step}`) ? `talk_try_${step}` : 'talk_try');
   const canSay = lang => 'speechSynthesis' in window && speechSynthesis.getVoices().some(v => v.lang.toLowerCase().startsWith(lang));
   useEffect(() => { list.current?.scrollTo({ top: list.current.scrollHeight, behavior: 'smooth' }); }, [chat.length, pending, open]);
