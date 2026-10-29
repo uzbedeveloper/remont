@@ -188,6 +188,10 @@ h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; letter-spacing: 
 .seg b { font-weight: 800; opacity: .7; }
 .seg.on { background: var(--c); border-color: var(--c); color: #111; }
 .seg.on svg { color: #111; }
+/* While the chips walk by themselves, the picked one fills up like a timer. */
+.seg.auto.on { position: relative; overflow: hidden; }
+.seg.auto.on::after { content: ''; position: absolute; left: 0; bottom: 0; height: 3px; background: rgba(0, 0, 0, .35); animation: seg-timer 2.2s linear both; }
+@keyframes seg-timer { from { width: 0; } to { width: 100%; } }
 .only-tag { position: absolute; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 0; border-radius: 999px; background: rgba(0, 0, 0, .6); color: #fff; font: inherit; font-weight: 800; font-size: 14px; cursor: pointer; backdrop-filter: blur(6px); }
 .only-tag i { width: 11px; height: 11px; border-radius: 3px; }
 .only-tag span { opacity: .7; font-size: 16px; line-height: 1; }

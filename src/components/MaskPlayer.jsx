@@ -5,6 +5,7 @@ import { SURFACE } from '../colors.js';
 import { useT } from '../i18n.js';
 
 const pad = i => String(i + 1).padStart(4, '0');
+const AUTO_MS = 2200;
 
 export default function MaskPlayer({ base, media, compact = false, speed = 2, onFrame, counts, ready }) {
   const t = useT();
@@ -12,6 +13,7 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
   const [frame, setFrame] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [only, setOnly] = useState(null); // one surface picked from the chips, or all of them
+  const [auto, setAuto] = useState(true); // walks through the surfaces by itself until the owner taps a chip
   const timer = useRef();
   const n = media?.frames || 1;
 
@@ -51,6 +53,16 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
   const order = ['ceiling', 'floor', 'wall', 'radiator', 'window', 'door'];
   const masks = (byFrame[frame] ?? []).filter(m => !only || m.label === only).sort((a, b) => order.indexOf(a.label) - order.indexOf(b.label));
 
+  // All → walls → floor → … → all again, so people see what the chips do without being told.
+  const cycle = labels.join();
+  useEffect(() => {
+    if (!auto || !labels.length) return;
+    const steps = [null, ...labels];
+    const id = setInterval(() => setOnly(o => steps[(steps.indexOf(o) + 1) % steps.length]), AUTO_MS);
+    return () => clearInterval(id);
+  }, [auto, cycle]); // eslint-disable-line react-hooks/exhaustive-deps
+  const pick = k => { setAuto(false); setOnly(k); };
+
   const seek = e => {
     const r = e.currentTarget.getBoundingClientRect();
     setFrame(Math.min(n - 1, Math.max(0, Math.floor(((e.clientX - r.left) / r.width) * n))));
@@ -68,7 +80,7 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
         </svg>
         {!overlays && <div className="scan" />}
         {only && (
-          <button className="only-tag" onClick={() => setOnly(null)}>
+          <button className="only-tag" onClick={() => pick(null)}>
             <i style={{ background: SURFACE[only] }} />{t(only)}<span>×</span>
           </button>
         )}
@@ -85,12 +97,12 @@ export default function MaskPlayer({ base, media, compact = false, speed = 2, on
       {labels.length > 0 && (
         <div className="legend">
           <p className="legend-hint"><Pointer size={14} />{t('mask_hint')}</p>
-          <button className={`seg${only ? '' : ' on'}`} onClick={() => setOnly(null)}>
+          <button className={`seg${only ? '' : ' on'}${auto ? ' auto' : ''}`} onClick={() => pick(null)}>
             <Layers size={14} />{t('mask_all')}
           </button>
           {labels.map(k => (
-            <button key={k} className={`seg${only === k ? ' on' : ''}`} style={{ '--c': SURFACE[k] }}
-              onClick={() => setOnly(o => (o === k ? null : k))} aria-pressed={only === k}>
+            <button key={`${k}${only === k}`} className={`seg${only === k ? ' on' : ''}${auto ? ' auto' : ''}`} style={{ '--c': SURFACE[k] }}
+              onClick={() => pick(only === k && !auto ? null : k)} aria-pressed={only === k}>
               {only === k ? <Check size={14} strokeWidth={3} /> : <i />}{t(k)}{counts?.[k] ? <b>{counts[k]}</b> : null}
             </button>
           ))}
