@@ -163,6 +163,7 @@ const D = {
   sm_render_t: ["Tayyor holatini ko'ring", 'Посмотрите результат', 'See it finished'],
   sm_render_d: ['Muse Image aynan shu xonani siz tanlagan pardoz bilan qayta chizadi.', 'Muse Image перерисует именно эту комнату с выбранной отделкой.', 'Muse Image repaints this exact room with the finishes you chose.'],
   sm_render_btn: ["Ko'rsat", 'Показать', 'Show me'],
+  sm_render_again: ['Qayta chizish', 'Нарисовать заново', 'Draw again'],
   sm_rendering: ['Chizilmoqda…', 'Рисуем…', 'Painting…'],
   sm_pick_view: ["Ko'rinishni tanlang", 'Выберите ракурс', 'Pick the view'],
   before: ['Oldin', 'До', 'Before'],

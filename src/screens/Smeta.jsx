@@ -171,7 +171,7 @@ export default function Smeta({ project, setProject, config, go }) {
               </div>
               <button className="btn dark" onClick={() => render()} disabled={busy === 'render' || autoRender}>
                 {busy === 'render' ? <Loader2 size={17} className="spin" /> : <WandSparkles size={17} />}
-                {busy === 'render' ? t('sm_rendering') : t('sm_render_btn')}
+                {busy === 'render' ? t('sm_rendering') : t(project.render ? 'sm_render_again' : 'sm_render_btn')}
               </button>
             </div>
             {project.render ? (
