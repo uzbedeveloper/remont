@@ -689,3 +689,10 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .ck.bad:not(.on) { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 30%, var(--line)); }
 .ck { transition: transform .12s, background .15s; }
 .ck:active { transform: scale(.92); }
+/* Contractor cards: avatar at the top, flatter call buttons. */
+.usta.real { align-items: start; }
+.usta .btn.call, .usta .btn.tg { box-shadow: none; }
+@media (max-width: 720px) {
+  .usta .avatar { width: 44px; height: 44px; border-radius: 14px; font-size: 15px; }
+  .usta .contact .btn { flex: 1 1 0; }
+}
