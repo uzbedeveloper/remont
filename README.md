@@ -4,6 +4,8 @@
 
 Built for the Meta Global AI Developer Hackathon 2026 (track: Build for Your World). All code in this repo was written during the build window, starting 26 Oct 2026 after kickoff. `spike/` holds the first feasibility tests from that night.
 
+Words: an **usta** is a tradesperson or contractor (plasterer, tiler, electrician); a **smeta** is a renovation estimate. The app says "contractor" and "estimate" in English mode, and its voice assistant is called the Foreman there.
+
 ## Why
 
 Renovating a flat in Tashkent means guessing: how many m² the usta will charge for, whether 60 000 so'm per m² is fair, who to call. Owners sign handwritten quotes they can't check. Remont measures the room, prices the work from a fixed price base, finds real ustas and keeps the job on track.

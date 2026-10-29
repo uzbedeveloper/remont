@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Check } from 'lucide-react';
 import { I18n, LANGS, makeT } from './i18n.js';
 import { getConfig, getProject } from './api.js';
+import { remember } from './mine.js';
 import Home from './screens/Home.jsx';
 import Analyze from './screens/Analyze.jsx';
 import Measure from './screens/Measure.jsx';
@@ -51,6 +52,9 @@ export default function App() {
     setProject(null);
     getProject(route.id).then(setProject).catch(e => setError(e.message));
   }, [route.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Remember the project and the screen, so the home screen can bring them back.
+  useEffect(() => { if (project?.id && project.id === route.id) remember(project.id, route.step); }, [project?.id, route.id, route.step]);
 
   // While the server finishes SAM, the first smeta and the first picture, poll the project.
   const bgBusy = Boolean(project?.bg && ['sam', 'plan', 'render'].some(k => project.bg[k]) && Date.now() - Date.parse(project.bg.at) < 180000);

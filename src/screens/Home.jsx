@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Camera, Images, Loader2, Ruler, ReceiptText, Upload, Users, Video } from 'lucide-react';
+import { ArrowRight, Camera, ChevronRight, FolderOpen, Images, Loader2, Ruler, ReceiptText, Upload, Users, Video } from 'lucide-react';
 import { useT } from '../i18n.js';
-import { openSample, upload } from '../api.js';
+import { getProject, openSample, upload } from '../api.js';
+import { forget, mine } from '../mine.js';
 import { areas } from '../../lib/estimate.mjs';
 import MaskPlayer from '../components/MaskPlayer.jsx';
+
+const STEP_LABEL = { analyze: 'step_film', measure: 'step_measure', smeta: 'step_smeta', check: 'step_smeta', jobs: 'step_jobs', hire: 'step_jobs' };
 
 export default function Home({ open }) {
   const t = useT();
@@ -15,6 +18,12 @@ export default function Home({ open }) {
   const [retry, setRetry] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+
+  const [recent, setRecent] = useState([]);
+  useEffect(() => {
+    Promise.all(mine().map(m => getProject(m.id).then(p => ({ ...m, p })).catch(() => { forget(m.id); return null; })))
+      .then(list => setRecent(list.filter(Boolean)));
+  }, []);
 
   useEffect(() => { fetch('/sample/demo/project.json').then(r => r.ok && r.json()).then(setSample).catch(() => {}); }, []);
 
@@ -34,6 +43,24 @@ export default function Home({ open }) {
 
   return (
     <main className="page">
+      {recent.length > 0 && (
+        <section className="mine">
+          <div className="section-title"><h2><FolderOpen size={22} />{t('mine_title')}</h2></div>
+          <div className="mine-list">
+            {recent.map(({ id, step, at, p }) => (
+              <button key={id} className="card mine-card" onClick={() => open(p, step || 'analyze')}>
+                <img src={`/media/${id}/${p.render?.after ?? `frames/${String((p.hero_frame ?? 0) + 1).padStart(4, '0')}.jpg`}`} alt="" />
+                <span className="grow">
+                  <b>{t(`room_${p.measure?.room_type ?? 'other'}`)}{p.measure ? ` · ${t.num(areas(p.measure).floor)} m²` : ''}</b>
+                  <span className="muted small">{t(STEP_LABEL[step] ?? 'step_film')} · {new Date(at).toLocaleDateString(t.lang)}</span>
+                </span>
+                <ChevronRight size={20} />
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section className="hero">
         <div className="rise">
           <span className="kicker"><span className="pulse" />{t('home_kicker')}</span>
