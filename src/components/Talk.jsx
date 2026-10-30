@@ -2,9 +2,9 @@
 // or tap it once and talk: it sends by itself when you stop. Muse Spark hears it, decides what
 // to change, and the project updates.
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUp, Loader2, MessageCircle, Mic, Square, Volume2, VolumeX, X } from 'lucide-react';
+import { ArrowUp, Loader2, MessageCircle, Mic, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react';
 import { useT } from '../i18n.js';
-import { talk } from '../api.js';
+import { act, talk } from '../api.js';
 
 const MAX_SECONDS = 30;
 const HOLD_MS = 450;     // pressed longer than this = walkie-talkie: release sends
@@ -49,6 +49,10 @@ export default function Talk({ project, setProject, go, step }) {
   const down = useRef(0);
   const list = useRef();
   const chat = project.chat ?? [];
+  // Only the last change can be taken back, and only while nothing else changed it since.
+  const undo = async at => {
+    try { setProject(await act(project.id, 'undo', { at })); } catch (e) { setNote(e.message); }
+  };
 
   useEffect(() => { try { localStorage.setItem('speak', speak ? '1' : '0'); } catch { /* private mode */ } }, [speak]);
   useEffect(() => { if (used) try { localStorage.setItem('talked', '1'); } catch { /* private mode */ } }, [used]);
@@ -216,6 +220,10 @@ export default function Talk({ project, setProject, go, step }) {
                       {c.failed?.map((f, k) => <span key={`f${k}`} className="chip bad" title={f.error}>{t('talk_failed')}: {t(`what_${f.type}`)}</span>)}
                     </div>
                   )}
+                  {c.undo && c.undo === project.undo?.at && !c.undone && (
+                    <button className="btn sm ghost undo" onClick={() => undo(c.undo)} disabled={state !== 'idle'}><Undo2 size={14} />{t('talk_undo')}</button>
+                  )}
+                  {c.undone && <div className="tiny muted undone"><Undo2 size={12} />{t('talk_undone')}</div>}
                   {c.image && (
                     <button className="msg-img" onClick={() => { go('smeta'); setTimeout(() => document.getElementById('render')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400); }}>
                       <img src={`/media/${project.id}/${c.image}`} alt="" loading="lazy" />
