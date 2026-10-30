@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, DoorOpen, Loader2, Ruler, ScanLine } from 'lucide-react';
+import { ArrowRight, DoorOpen, DraftingCompass, Loader2, Ruler, ScanLine } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { patch } from '../api.js';
 import { SURFACE } from '../colors.js';
 import { areas, rescale } from '../../lib/estimate.mjs';
 import MaskPlayer from '../components/MaskPlayer.jsx';
+import RoomDrawing from '../components/RoomDrawing.jsx';
 
 function Metric({ label, color, value, unit, note }) {
   return (
@@ -34,6 +35,12 @@ export default function Measure({ project, setProject, go }) {
     }, 500);
   };
   useEffect(() => () => clearTimeout(saveTimer.current), []);
+
+  // Where a door or window sits changes no m², so the smeta stays as it is.
+  const place = async next => {
+    setM(next);
+    setProject(await patch(project.id, { measure: next }));
+  };
 
   const setDim = (k, v) => {
     const n = parseFloat(String(v).replace(',', '.'));
@@ -119,6 +126,11 @@ export default function Measure({ project, setProject, go }) {
           </div>
         </div>
       </div>
+      <section className="card pad" id="drawing" style={{ marginTop: 18 }}>
+        <h3 className="row" style={{ fontSize: 20, gap: 8 }}><DraftingCompass size={20} />{t('dr_title')}</h3>
+        <p className="muted small" style={{ margin: '6px 0 14px' }}>{t('dr_sub')}</p>
+        <RoomDrawing m={m} onChange={place} />
+      </section>
       <div className="sticky-cta">
         <button className="btn lg" onClick={() => go('smeta')}><ScanLine size={18} />{t('me_next')}<ArrowRight size={18} /></button>
       </div>

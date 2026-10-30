@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, CalendarDays, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, Users, WandSparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, DraftingCompass, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, Users, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
 import { TRADE } from '../colors.js';
@@ -8,6 +8,8 @@ import { COLORS, OPTIONS, STYLES, lookFor, startChoices } from '../../lib/look.m
 import BeforeAfter from '../components/BeforeAfter.jsx';
 import Shopping from '../components/Shopping.jsx';
 import Budget from '../components/Budget.jsx';
+import RoomDrawing from '../components/RoomDrawing.jsx';
+import { surfaceOf } from '../../lib/drawing.mjs';
 import { familyPicture, sharePicture, shareText } from '../share.js';
 
 // The works list shows this many until asked for all of them (print shows all).
@@ -27,6 +29,11 @@ export default function Smeta({ project, setProject, config, go }) {
   const [frame, setFrame] = useState(project.render?.frame ?? project.hero_frame ?? 0);
   const [look, setLook] = useState(project.look ?? {});
   const [allLines, setAllLines] = useState(false);
+  const [hl, setHl] = useState(null);
+  const showOnDrawing = surf => {
+    setHl(surf);
+    document.getElementById('sm-drawing')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // Usta (voice) and the background smeta change things behind our back: follow them.
   // Keyed by content, not identity: polling hands us a new object every few seconds.
@@ -309,6 +316,9 @@ export default function Smeta({ project, setProject, config, go }) {
                     {on && (
                       <div className="more">
                         <p className="why">{t.pick(l.why)}</p>
+                        {surfaceOf(l.item_id) && (
+                          <button className="btn sm ghost dr-link no-print" onClick={() => showOnDrawing(surfaceOf(l.item_id))}><DraftingCompass size={14} />{t('dr_show')}</button>
+                        )}
                         <table className="mats tab"><tbody>
                           <tr><td><b>{t('sm_labor')}</b></td><td>{t.num(l.qty)} × {t.money(l.labor_rate)}</td><td><b>{t.money(l.labor)}</b></td></tr>
                           {l.materials.map((mt, k) => (
@@ -334,6 +344,8 @@ export default function Smeta({ project, setProject, config, go }) {
             )}
           </section>
 
+          <SmetaDrawing project={project} hl={hl} setHl={setHl} go={go} t={t} />
+
           <Shopping project={project} setProject={setProject} smeta={smeta} prices={prices} />
 
           <button className="check-cta no-print" onClick={() => go('check')}>
@@ -348,6 +360,30 @@ export default function Smeta({ project, setProject, config, go }) {
         </>
       )}
     </main>
+  );
+}
+
+// The room drawing under the smeta: chips light up each surface with its m².
+function SmetaDrawing({ project, hl, setHl, go, t }) {
+  const m = project.measure;
+  const a = areas(m);
+  const chips = [['floor', 'floor', a.floor], ['walls', 'walls', a.walls_net], ['ceiling', 'ceiling', a.ceiling], ['window', 'window', a.windows], ['door', 'door', null]];
+  return (
+    <section className="card pad" id="sm-drawing">
+      <div className="section-title">
+        <h3 className="row" style={{ fontSize: 20, gap: 8 }}><DraftingCompass size={20} />{t('dr_title')}</h3>
+        <button className="btn sm ghost no-print" onClick={() => go('measure')}>{t('dr_edit')}</button>
+      </div>
+      <div className="dr-chips no-print">
+        {chips.map(([k, label, v]) => (
+          <button key={k} className={hl === k ? 'on' : ''} onClick={() => setHl(hl === k ? null : k)}>
+            {t(label)}{v != null && <span className="tab">{t.num(v)} m²</span>}
+          </button>
+        ))}
+      </div>
+      <RoomDrawing m={m} hl={hl} />
+      <p className="muted tiny" style={{ margin: '12px 0 0' }}>{t('dr_note')}</p>
+    </section>
   );
 }
 

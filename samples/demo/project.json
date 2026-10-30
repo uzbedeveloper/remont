@@ -176,14 +176,20 @@
     ],
     "openings": [
       {
-        "height_m": 2,
         "type": "door",
-        "width_m": 0.8
+        "width_m": 0.8,
+        "height_m": 2,
+        "wall": 1,
+        "offset_m": 0.3,
+        "sill_m": 0
       },
       {
-        "height_m": 1.5,
         "type": "window",
-        "width_m": 1.8
+        "width_m": 1.8,
+        "height_m": 1.5,
+        "wall": 2,
+        "offset_m": 0.8,
+        "sill_m": 0.8
       }
     ],
     "radiators": 1,

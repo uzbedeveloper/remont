@@ -703,3 +703,53 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .bu-wait-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.55); color: var(--ink); }
 .bu-wait-row .grow { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .bu-wait-row .tiny { color: var(--muted); }
+
+/* Room drawing: plan from above + the four walls unfolded */
+.drawing { display: flex; flex-direction: column; gap: 16px; }
+.dr-plan { width: 100%; max-height: 420px; display: block; background: #fbf8f2; border-radius: 16px; border: 1px solid var(--line); }
+.dr-floor { fill: #fff; }
+.dr-wall { fill: var(--ink); transition: fill .25s; }
+.dr-wall.hl { fill: #1f8f85; }
+.dr-win polygon, .dr-win rect { fill: #dcecfb; stroke: #2a6fb0; stroke-width: 0.02; }
+.dr-win line { stroke: #2a6fb0; stroke-width: 0.015; }
+.dr-win.hl polygon, .dr-win.hl rect { fill: #5ab0ff; }
+.dr-door .gap { fill: #fbf8f2; stroke: none; }
+.dr-door line { stroke: var(--ink); stroke-width: 0.035; }
+.dr-door .swing { fill: none; stroke: var(--muted); stroke-width: 0.012; stroke-dasharray: 0.05 0.04; }
+.dr-door rect { fill: #fde6dc; stroke: #c8452a; stroke-width: 0.02; }
+.dr-door.hl rect, .dr-door.hl .swing { fill: rgba(255, 107, 74, .35); stroke: #e8552b; }
+.dr-door text, .dr-win text { fill: var(--ink-2); text-anchor: middle; font-family: var(--body); font-weight: 700; }
+.dr-rad { fill: #f9c6dd; stroke: #c2417f; stroke-width: 0.015; }
+.dr-rad.hl { fill: #f472b6; }
+.dr-num circle { fill: #fff; stroke: var(--ink); stroke-width: 0.015; }
+.dr-num text { text-anchor: middle; font-family: var(--body); font-weight: 800; fill: var(--ink); }
+.dr-dim line { stroke: var(--muted); stroke-width: 0.012; }
+.dr-dim text { fill: var(--ink-2); text-anchor: middle; font-family: var(--body); font-weight: 700; }
+.dr-room { text-anchor: middle; font-family: var(--body); fill: var(--muted); font-weight: 600; }
+.dr-room .b { fill: var(--ink); font-weight: 800; }
+.dr-walls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.dr-elev { margin: 0; padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: #fbf8f2; }
+.dr-elev figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; flex-wrap: wrap; font-size: 13px; margin-bottom: 6px; }
+.dr-elev figcaption span { color: var(--muted); font-size: 12px; }
+.dr-elev svg { width: 100%; display: block; }
+.dr-face { fill: #efe9df; stroke: var(--ink); stroke-width: 0.03; transition: fill .25s; }
+.dr-face.hl { fill: rgba(46, 196, 182, .35); }
+.dr-ground { stroke: var(--ink); stroke-width: 0.04; }
+.dr-edit { display: flex; flex-direction: column; gap: 8px; }
+.dr-edit-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dr-key { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; min-width: 120px; }
+.dr-key i { width: 10px; height: 10px; border-radius: 3px; }
+.dr-seg { display: inline-flex; background: var(--bg-2); border-radius: 10px; padding: 3px; gap: 2px; }
+.dr-seg button { border: 0; background: none; font: 700 14px var(--body); width: 34px; height: 30px; border-radius: 8px; cursor: pointer; color: var(--muted); }
+.dr-seg button.on { background: var(--ink); color: #fff; }
+.dr-off { display: inline-flex; align-items: center; gap: 6px; }
+.dr-off .input { width: 72px; padding: 6px 10px; }
+@media (max-width: 640px) { .dr-walls { gap: 8px; } .dr-elev { padding: 8px; } .dr-elev figcaption { font-size: 12px; } }
+@media print { .drawing { break-inside: avoid; } .dr-edit { display: none; } }
+.dr-chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 14px; }
+.dr-chips button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 12px; font: 700 13px var(--body); color: var(--ink-2); cursor: pointer; }
+.dr-chips button span { color: var(--muted); font-weight: 600; }
+.dr-chips button.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.dr-chips button.on span { color: rgba(255,255,255,.7); }
+.dr-link { margin: 0 0 10px; }
+#sm-drawing, #drawing { scroll-margin-top: 110px; }
