@@ -35,7 +35,7 @@ export default function Shopping({ project, setProject, smeta, prices }) {
   };
 
   return (
-    <section className="card pad shop">
+    <section className="card pad shop" id="sm-shop">
       <div className="section-title">
         <div>
           <h3 style={{ fontSize: 20 }} className="row"><ShoppingCart size={20} />{t('sh_title')}</h3>

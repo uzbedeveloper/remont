@@ -177,6 +177,93 @@ export default function Smeta({ project, setProject, config, go }) {
               <RefreshCw size={14} style={{ display: 'inline', verticalAlign: -2 }} /> {t('me_edit_hint')} <button className="btn sm ghost" onClick={build}>{t('sm_rebuild')}</button>
             </div>
           )}
+          <div className="grid2">
+            <section className="total-card rise">
+              <div className="row" style={{ justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
+                <span className="label" style={{ color: 'rgba(255,255,255,.6)' }}>{t('sm_total')}</span>
+                <span className="badge" style={{ background: 'rgba(255,255,255,.1)', color: '#fff' }}><CalendarDays size={13} />{t('sm_days', { n: t.day(smeta.days) })}</span>
+              </div>
+              <div className="big tab">{Math.round(smeta.total).toLocaleString('ru-RU')}<small>{t('currency')}</small></div>
+              <div className="split"><div className="l" style={{ width: `${(smeta.labor / smeta.total) * 100}%` }} /><div className="m" style={{ flex: 1 }} /></div>
+              <div className="split-legend">
+                <span><i style={{ background: 'var(--accent)' }} />{t('sm_labor')} <b className="tab">{t.mln(smeta.labor)}</b></span>
+                <span><i style={{ background: '#2ec4b6' }} />{t('sm_materials')} <b className="tab">{t.mln(smeta.materials)}</b></span>
+              </div>
+              <p style={{ color: 'rgba(255,255,255,.85)', margin: '18px 0', position: 'relative' }}>{t.pick(project.plan.summary)}</p>
+              <div className="seg no-print" style={{ position: 'relative' }}>
+                {TIERS.map(x => <button key={x} className={tier === x ? 'on' : ''} onClick={() => pickTier(x)}>{t(`tier_${x}`)}</button>)}
+              </div>
+              <p className="tiny adv" style={{ color: 'rgba(255,255,255,.5)', margin: '14px 0 0', position: 'relative' }}>{t('sm_price_note', { date: prices.date })}</p>
+            </section>
+
+            <section className="card pad">
+              <div className="section-title" style={{ marginBottom: 16 }}>
+                <h3 style={{ fontSize: 20 }}>{t('sm_schedule')}</h3>
+                <div className="row no-print">
+                  <button className="btn sm ghost" onClick={share} aria-label={t('sm_share')}><Share2 size={15} /></button>
+                  <button className="btn sm ghost" onClick={() => print()} aria-label={t('sm_print')}><Printer size={15} /></button>
+                </div>
+              </div>
+              <div className="gantt adv">
+                {jobs.map((j, ji) => (
+                  <Row key={j.trade} t={t} j={j} days={smeta.days} name={t.pick(prices.trades[j.trade])} delay={ji * 0.06} />
+                ))}
+                <div />
+                <div className="axis tab"><span>0</span><span>{t.day(smeta.days / 2)}</span><span>{t.day(smeta.days)} {t('sm_day')}</span></div>
+              </div>
+            </section>
+          </div>
+
+          <SectionNav t={t} />
+          <BriefLine t={t} choices={choices} onEdit={() => { setEditing(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+
+          <section className="card pad" id="sm-lines">
+            <div className="section-title"><h3 style={{ fontSize: 20 }}>{t('sm_lines')}</h3><span className="muted small">{smeta.lines.length}</span></div>
+            <ul className="lines">
+              {smeta.lines.map((l, i) => {
+                const on = open === i;
+                return (
+                  <li key={l.item_id} className={`line${on ? ' open' : ''}${!allLines && i >= SHORT ? ' extra' : ''}`}>
+                    <button onClick={() => setOpen(on ? null : i)}>
+                      <span className="n" style={{ background: TRADE[l.trade].color }}>{i + 1}</span>
+                      <span className="grow">
+                        <span className="w">{t.pick(l.name)}</span>
+                        <span className="q tab" style={{ display: 'block' }}>{t.num(l.qty)} {t.unit(l.unit)} · {t.pick(prices.trades[l.trade])} · {t.span(l.start, l.end)}</span>
+                      </span>
+                      <span className="sum tab">{t.money(l.total)}</span>
+                      <ChevronRight size={16} className="chev" />
+                    </button>
+                    {on && (
+                      <div className="more">
+                        <p className="why">{t.pick(l.why)}</p>
+                        {surfaceOf(l.item_id) && (
+                          <button className="btn sm ghost dr-link no-print" onClick={() => showOnDrawing(surfaceOf(l.item_id))}><DraftingCompass size={14} />{t('dr_show')}</button>
+                        )}
+                        <table className="mats tab"><tbody>
+                          <tr><td><b>{t('sm_labor')}</b></td><td>{t.num(l.qty)} × {t.money(l.labor_rate)}</td><td><b>{t.money(l.labor)}</b></td></tr>
+                          {l.materials.map((mt, k) => (
+                            <tr key={k}><td>{t.pick(mt.name)}</td><td>{t.num(mt.qty)} {t.unit(mt.unit)} × {t.money(mt.price)}</td><td>{t.money(mt.total)}</td></tr>
+                          ))}
+                        </tbody></table>
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+            {!allLines && smeta.lines.length > SHORT && (
+              <button className="btn ghost show-all no-print" onClick={() => setAllLines(true)}>
+                {t('sm_all_lines', { n: smeta.lines.length })}<ChevronDown size={16} />
+              </button>
+            )}
+            {project.plan.assumptions?.length > 0 && (
+              <div className="adv" style={{ marginTop: 18 }}>
+                <div className="label" style={{ marginBottom: 6 }}>{t('sm_assumptions')}</div>
+                <ul className="notes">{project.plan.assumptions.map((x, i) => <li key={i} className="small">{t.pick(x)}</li>)}</ul>
+              </div>
+            )}
+          </section>
+
           <section className="card pad no-print" id="render">
             <div className="section-title">
               <div>
@@ -257,94 +344,11 @@ export default function Smeta({ project, setProject, config, go }) {
             )}
           </section>
 
-          <div className="grid2">
-            <section className="total-card rise">
-              <div className="row" style={{ justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
-                <span className="label" style={{ color: 'rgba(255,255,255,.6)' }}>{t('sm_total')}</span>
-                <span className="badge" style={{ background: 'rgba(255,255,255,.1)', color: '#fff' }}><CalendarDays size={13} />{t('sm_days', { n: t.day(smeta.days) })}</span>
-              </div>
-              <div className="big tab">{Math.round(smeta.total).toLocaleString('ru-RU')}<small>{t('currency')}</small></div>
-              <div className="split"><div className="l" style={{ width: `${(smeta.labor / smeta.total) * 100}%` }} /><div className="m" style={{ flex: 1 }} /></div>
-              <div className="split-legend">
-                <span><i style={{ background: 'var(--accent)' }} />{t('sm_labor')} <b className="tab">{t.mln(smeta.labor)}</b></span>
-                <span><i style={{ background: '#2ec4b6' }} />{t('sm_materials')} <b className="tab">{t.mln(smeta.materials)}</b></span>
-              </div>
-              <p style={{ color: 'rgba(255,255,255,.85)', margin: '18px 0', position: 'relative' }}>{t.pick(project.plan.summary)}</p>
-              <div className="seg no-print" style={{ position: 'relative' }}>
-                {TIERS.map(x => <button key={x} className={tier === x ? 'on' : ''} onClick={() => pickTier(x)}>{t(`tier_${x}`)}</button>)}
-              </div>
-              <p className="tiny adv" style={{ color: 'rgba(255,255,255,.5)', margin: '14px 0 0', position: 'relative' }}>{t('sm_price_note', { date: prices.date })}</p>
-            </section>
 
-            <section className="card pad">
-              <div className="section-title" style={{ marginBottom: 16 }}>
-                <h3 style={{ fontSize: 20 }}>{t('sm_schedule')}</h3>
-                <div className="row no-print">
-                  <button className="btn sm ghost" onClick={() => setEditing(true)}>{t('sm_title')}</button>
-                  <button className="btn sm ghost" onClick={share} aria-label={t('sm_share')}><Share2 size={15} /></button>
-                  <button className="btn sm ghost" onClick={() => print()} aria-label={t('sm_print')}><Printer size={15} /></button>
-                </div>
-              </div>
-              <div className="gantt adv">
-                {jobs.map((j, ji) => (
-                  <Row key={j.trade} t={t} j={j} days={smeta.days} name={t.pick(prices.trades[j.trade])} delay={ji * 0.06} />
-                ))}
-                <div />
-                <div className="axis tab"><span>0</span><span>{t.day(smeta.days / 2)}</span><span>{t.day(smeta.days)} {t('sm_day')}</span></div>
-              </div>
-            </section>
-          </div>
+          <SmetaDrawing project={project} hl={hl} setHl={setHl} go={go} t={t} />
 
           <Budget project={project} setProject={setProject} prices={prices} />
 
-          <section className="card pad">
-            <div className="section-title"><h3 style={{ fontSize: 20 }}>{t('sm_lines')}</h3><span className="muted small">{smeta.lines.length}</span></div>
-            <ul className="lines">
-              {smeta.lines.map((l, i) => {
-                const on = open === i;
-                return (
-                  <li key={l.item_id} className={`line${on ? ' open' : ''}${!allLines && i >= SHORT ? ' extra' : ''}`}>
-                    <button onClick={() => setOpen(on ? null : i)}>
-                      <span className="n" style={{ background: TRADE[l.trade].color }}>{i + 1}</span>
-                      <span className="grow">
-                        <span className="w">{t.pick(l.name)}</span>
-                        <span className="q tab" style={{ display: 'block' }}>{t.num(l.qty)} {t.unit(l.unit)} · {t.pick(prices.trades[l.trade])} · {t.span(l.start, l.end)}</span>
-                      </span>
-                      <span className="sum tab">{t.money(l.total)}</span>
-                      <ChevronRight size={16} className="chev" />
-                    </button>
-                    {on && (
-                      <div className="more">
-                        <p className="why">{t.pick(l.why)}</p>
-                        {surfaceOf(l.item_id) && (
-                          <button className="btn sm ghost dr-link no-print" onClick={() => showOnDrawing(surfaceOf(l.item_id))}><DraftingCompass size={14} />{t('dr_show')}</button>
-                        )}
-                        <table className="mats tab"><tbody>
-                          <tr><td><b>{t('sm_labor')}</b></td><td>{t.num(l.qty)} × {t.money(l.labor_rate)}</td><td><b>{t.money(l.labor)}</b></td></tr>
-                          {l.materials.map((mt, k) => (
-                            <tr key={k}><td>{t.pick(mt.name)}</td><td>{t.num(mt.qty)} {t.unit(mt.unit)} × {t.money(mt.price)}</td><td>{t.money(mt.total)}</td></tr>
-                          ))}
-                        </tbody></table>
-                      </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-            {!allLines && smeta.lines.length > SHORT && (
-              <button className="btn ghost show-all no-print" onClick={() => setAllLines(true)}>
-                {t('sm_all_lines', { n: smeta.lines.length })}<ChevronDown size={16} />
-              </button>
-            )}
-            {project.plan.assumptions?.length > 0 && (
-              <div className="adv" style={{ marginTop: 18 }}>
-                <div className="label" style={{ marginBottom: 6 }}>{t('sm_assumptions')}</div>
-                <ul className="notes">{project.plan.assumptions.map((x, i) => <li key={i} className="small">{t.pick(x)}</li>)}</ul>
-              </div>
-            )}
-          </section>
-
-          <SmetaDrawing project={project} hl={hl} setHl={setHl} go={go} t={t} />
 
           <Shopping project={project} setProject={setProject} smeta={smeta} prices={prices} />
 
@@ -360,6 +364,47 @@ export default function Smeta({ project, setProject, config, go }) {
         </>
       )}
     </main>
+  );
+}
+
+// Shortcuts to the sections of this long page; the one on screen is marked.
+const SECTIONS = [['sm-lines', 'nav_lines'], ['render', 'nav_picture'], ['sm-drawing', 'nav_drawing'], ['sm-budget', 'nav_budget'], ['sm-shop', 'nav_shop']];
+function SectionNav({ t }) {
+  const [on, setOn] = useState(SECTIONS[0][0]);
+  const [top, setTop] = useState(0);
+  const bar = useRef();
+  useEffect(() => {
+    const head = document.querySelector('.top');
+    const fit = () => setTop(head ? head.offsetHeight : 0);
+    fit();
+    window.addEventListener('resize', fit);
+    const seen = new Map();
+    const io = new IntersectionObserver(es => {
+      for (const e of es) seen.set(e.target.id, e.isIntersecting);
+      const first = SECTIONS.find(([id]) => seen.get(id));
+      if (first) setOn(first[0]);
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    SECTIONS.forEach(([id]) => { const el = document.getElementById(id); if (el) io.observe(el); });
+    return () => { io.disconnect(); window.removeEventListener('resize', fit); };
+  }, []);
+  // Keep the marked chip in view when the row scrolls sideways on a phone.
+  useEffect(() => { bar.current?.querySelector('.on')?.scrollIntoView({ block: 'nearest', inline: 'center' }); }, [on]);
+  const jump = id => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  return (
+    <nav className="sec-nav no-print" style={{ top }} ref={bar}>
+      {SECTIONS.map(([id, k]) => <button key={id} className={on === id ? 'on' : ''} onClick={() => jump(id)}>{t(k)}</button>)}
+    </nav>
+  );
+}
+
+// What the owner chose, in one line; the full form opens only to change it.
+function BriefLine({ t, choices, onEdit }) {
+  const picked = Object.entries(choices).filter(([, v]) => v && v !== 'keep');
+  return (
+    <div className="brief-line no-print">
+      <span className="grow">{picked.map(([k, v]) => <span key={k}><b>{t(`b_${k}`)}:</b> {t(`o_${v}`)}</span>)}</span>
+      <button className="btn sm ghost" onClick={onEdit}>{t('sm_change')}</button>
+    </div>
   );
 }
 

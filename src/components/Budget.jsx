@@ -54,7 +54,7 @@ export default function Budget({ project, setProject, prices }) {
   const laterNames = [...new Set(later.map(w => byId[w.item_id] && t.pick(byId[w.item_id].name)).filter(Boolean))];
 
   return (
-    <section className="card pad budget no-print">
+    <section className="card pad budget no-print" id="sm-budget">
       <h3 className="row" style={{ fontSize: 20, gap: 8 }}><Wallet size={20} />{t('bu_title')}</h3>
       <p className="muted small" style={{ margin: '6px 0 12px' }}>{t('bu_sub')}</p>
       <div className="row" style={{ gap: 8 }}>
