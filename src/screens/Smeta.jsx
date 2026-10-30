@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, CalendarDays, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, Users, WandSparkles } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, patch } from '../api.js';
@@ -59,18 +59,25 @@ export default function Smeta({ project, setProject, config, go }) {
   };
   const render = async (l = look) => {
     setBusy('render'); setError('');
-    try { setProject(await act(project.id, 'render', { frame, style: lookFor(choices, tier, note, l) })); }
+    try {
+      const p = await act(project.id, 'render', { frame, style: lookFor(choices, tier, note, l) });
+      setProject(p.render ? await patch(project.id, { render: { ...p.render, look: l } }) : p);
+    }
     catch (e) { setError(e.message); }
     setBusy('');
   };
-  // Tap a style or a colour: remember it and paint the room in it right away.
+  // Tap a style or a colour: only remember it. Painting waits for the owner's tap on draw,
+  // so they can pick both (and change their mind) without a 10 s wait after every tap.
   const pickLook = (k, v) => {
     if (busy === 'render') return;
     const next = { ...look, [k]: look[k] === v ? undefined : v };
     setLook(next);
     patch(project.id, { look: next }).catch(() => {});
-    render(next);
   };
+  // The look the current picture was drawn in (older pictures: the look we opened with).
+  const firstLook = useRef(project.look ?? {});
+  const lookKey = l => `${l?.style ?? ''}|${l?.color ?? ''}`;
+  const changed = Boolean(project.render) && lookKey(look) !== lookKey(project.render.look ?? firstLook.current);
 
   const share = async () => {
     const lines = smeta.lines.map(l => `- ${t.pick(l.name)}: ${t.num(l.qty)} ${t.unit(l.unit)}, ${t.money(l.total)}`).join('\n');
@@ -209,6 +216,12 @@ export default function Smeta({ project, setProject, config, go }) {
                 </button>
               ))}
             </div>
+            {changed ? (
+              <button className="btn dark draw-pick" onClick={() => render()} disabled={busy === 'render'}>
+                {busy === 'render' ? <Loader2 size={17} className="spin" /> : <WandSparkles size={17} />}
+                {busy === 'render' ? t('sm_rendering') : t('sm_draw_pick')}
+              </button>
+            ) : !project.render && <p className="muted tiny" style={{ margin: '10px 0 0' }}>{t('sm_pick_hint')}</p>}
             {n > 1 && (
               <div className="adv">
                 <div className="label" style={{ margin: '14px 0 8px' }}>{t('sm_pick_view')}</div>

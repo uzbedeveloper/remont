@@ -696,3 +696,10 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
   .usta .avatar { width: 44px; height: 44px; border-radius: 14px; font-size: 15px; }
   .usta .contact .btn { flex: 1 1 0; }
 }
+
+/* Style picker: drawing waits for a tap. Budget: what waits, and what it costs. */
+.draw-pick { width: 100%; margin-top: 14px; }
+.bu-wait { width: 100%; display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px solid currentColor; border-top-color: color-mix(in srgb, currentColor 20%, transparent); }
+.bu-wait-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.55); color: var(--ink); }
+.bu-wait-row .grow { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bu-wait-row .tiny { color: var(--muted); }
