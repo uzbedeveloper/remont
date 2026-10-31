@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, CalendarDays, DraftingCompass, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, Users, WandSparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, DraftingCompass, Check, ChevronDown, ChevronRight, Loader2, Printer, RefreshCw, ScanText, Share2, Sparkles, Users, WandSparkles, Zap } from 'lucide-react';
 import { useT } from '../i18n.js';
-import { act, patch } from '../api.js';
+import { act, getProject, patch } from '../api.js';
 import { TRADE } from '../colors.js';
 import { TIERS, areas, jobsFrom, priceSmeta } from '../../lib/estimate.mjs';
 import { COLORS, OPTIONS, STYLES, lookFor, startChoices } from '../../lib/look.mjs';
@@ -79,12 +79,30 @@ export default function Smeta({ project, setProject, config, go }) {
     if (busy === 'render') return;
     const next = { ...look, [k]: look[k] === v ? undefined : v };
     setLook(next);
-    patch(project.id, { look: next }).catch(() => {});
+    const ready = readyFor(next);
+    // Drawn ahead (Premium): show it at once instead of waiting for a new picture.
+    if (ready) {
+      setProject({ ...project, look: next, render: { ...ready, look: next } });
+      patch(project.id, { look: next, render: { ...ready, look: next } }).then(setProject).catch(() => {});
+    }
+    else patch(project.id, { look: next }).catch(() => {});
   };
   // The look the current picture was drawn in (older pictures: the look we opened with).
   const firstLook = useRef(project.look ?? {});
   const lookKey = l => `${l?.style ?? ''}|${l?.color ?? ''}`;
   const changed = Boolean(project.render) && lookKey(look) !== lookKey(project.render.look ?? firstLook.current);
+  // Premium: pictures drawn ahead for each style. Only good while the finishes and tier still match.
+  const readyFor = l => {
+    const r = project.premium && l?.style && project.ready?.[lookKey(l)];
+    return r && r.style === lookFor(choices, tier, note, l) ? r : null;
+  };
+  const preRunning = Boolean(project.pre?.running) && Date.now() - Date.parse(project.pre.at) < 600000;
+  useEffect(() => {
+    if (!preRunning) return;
+    const id = setInterval(() => getProject(project.id).then(p => setProject(cur => (cur?.id === p.id && cur.updated !== p.updated ? p : cur))).catch(() => {}), 3000);
+    return () => clearInterval(id);
+  }, [preRunning, project.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  const togglePremium = async () => setProject(await patch(project.id, { premium: !project.premium }));
 
   const share = async () => {
     const lines = smeta.lines.map(l => `- ${t.pick(l.name)}: ${t.num(l.qty)} ${t.unit(l.unit)}, ${t.money(l.total)}`).join('\n');
@@ -291,15 +309,29 @@ export default function Smeta({ project, setProject, config, go }) {
                 {busy === 'family' ? <Loader2 size={17} className="spin" /> : <Users size={17} />}{t('fam_btn')}
               </button>
             )}
+            <button className={`premium${project.premium ? ' on' : ''}`} onClick={togglePremium} aria-pressed={Boolean(project.premium)}>
+              <Zap size={18} />
+              <span className="grow">
+                <b>{t('pr_title')}</b>
+                <span className="tiny">{project.premium
+                  ? (preRunning ? t('pr_progress', { d: project.pre.done, n: project.pre.total }) : t('pr_on_d'))
+                  : t('pr_off_d')}</span>
+              </span>
+              <span className="switch"><i /></span>
+            </button>
             <div className="label" style={{ margin: '16px 0 8px' }}>{t('st_title')}</div>
             <div className="styles">
-              {Object.entries(STYLES).map(([k, st]) => (
-                <button key={k} className={look.style === k ? 'on' : ''} disabled={busy === 'render' || autoRender} onClick={() => pickLook('style', k)}>
-                  <img src={`/styles/${k}.webp`} alt="" loading="lazy" />
+              {Object.entries(STYLES).map(([k, st]) => {
+                const ready = readyFor({ ...look, style: k });
+                return (
+                <button key={k} className={`${look.style === k ? 'on' : ''}${ready ? ' ready' : ''}`} disabled={busy === 'render' || autoRender} onClick={() => pickLook('style', k)}>
+                  <img src={ready ? `/media/${project.id}/${ready.after}` : `/styles/${k}.webp`} alt="" loading="lazy" />
+                  {ready && <span className="ready-tag"><Zap size={11} fill="currentColor" />{t('pr_ready')}</span>}
                   <span className="st-name">{look.style === k && (busy === 'render' || autoRender) ? <Loader2 size={13} className="spin" /> : look.style === k && <Check size={13} strokeWidth={3} />}<b>{t(`st_${k}`)}</b></span>
                   <span className="tiny muted">{t(`st_${k}_d`)}</span>
                 </button>
-              ))}
+                );
+              })}
             </div>
             <div className="label" style={{ margin: '14px 0 8px' }}>{t('st_color')}</div>
             <div className="swatches">

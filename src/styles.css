@@ -843,3 +843,17 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
   .pitch { padding: 24px 22px; border-radius: 24px; }
   .pitch blockquote { font-size: 21px; }
 }
+
+/* Premium (trial): every style drawn ahead */
+.premium { display: flex; align-items: center; gap: 12px; width: 100%; margin-top: 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(120deg, #fff 0%, #fff7ef 100%); font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.premium > svg { flex: none; color: var(--accent); }
+.premium .grow { display: flex; flex-direction: column; gap: 2px; }
+.premium .tiny { color: var(--muted); }
+.premium .switch { width: 44px; height: 26px; border-radius: 99px; background: var(--line); position: relative; flex: none; transition: background .2s; }
+.premium .switch i { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .2); transition: left .2s; }
+.premium.on { border-color: var(--accent); background: linear-gradient(120deg, #fff4ec 0%, #ffe8da 100%); }
+.premium.on .switch { background: var(--accent); }
+.premium.on .switch i { left: 21px; }
+.styles button { position: relative; }
+.styles .ready-tag { position: absolute; top: 6px; right: 6px; display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 99px; background: rgba(22, 24, 29, .78); color: #ffd36b; font-size: 11px; font-weight: 800; }
+.ba img { transition: opacity .25s; }
