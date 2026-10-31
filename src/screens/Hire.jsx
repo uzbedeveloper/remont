@@ -103,7 +103,7 @@ export default function Hire({ project, setProject, config, go, trade }) {
       <section className="card pad">
         <div className="row wrap" style={{ gap: 16 }}>
           <span className="icon" style={{ background: color, width: 54, height: 54, borderRadius: 16, display: 'grid', placeItems: 'center', color: '#fff' }}><Icon size={26} /></span>
-          <div className="grow">
+          <div className="grow" style={{ flexBasis: 200 }}>
             <h2 style={{ fontSize: 28 }}>{t.pick(prices.trades[job.trade])}</h2>
             <div className="muted small">{job.lines.map(l => `${t.pick(l.name)} ${t.num(l.qty)} ${t.unit(l.unit)}`).join(' · ')}</div>
           </div>
