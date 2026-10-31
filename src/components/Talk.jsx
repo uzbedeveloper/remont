@@ -2,7 +2,7 @@
 // or tap it once and talk: it sends by itself when you stop. Muse Spark hears it, decides what
 // to change, and the project updates.
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUp, Loader2, MessageCircle, Mic, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react';
+import { ArrowRight, ArrowUp, Loader2, MessageCircle, Mic, Square, Undo2, Volume2, VolumeX, X } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { act, talk } from '../api.js';
 
@@ -45,6 +45,9 @@ export default function Talk({ project, setProject, go, step }) {
   const [held, setHeld] = useState(false); // walkie-talkie mode while the finger is down
   const [used, setUsed] = useState(() => stored('talked', false)); // the mic pulses until the first go
   const [bubble, setBubble] = useState(true); // the "hold and talk" bubble shows for a few seconds
+  const [typing, setTyping] = useState(false);
+  // Where the page's main button goes next (shown in the bar on a phone)
+  const next = { measure: ['smeta', 'step_smeta'], smeta: project.plan ? ['jobs', 'step_hire'] : null }[step];
   const rec = useRef(null);
   const down = useRef(0);
   const list = useRef();
@@ -271,8 +274,8 @@ export default function Talk({ project, setProject, go, step }) {
               <MessageCircle size={20} />
               {chat.length > 0 && !open && <span className="dot-count">{Math.ceil(chat.length / 2)}</span>}
             </button>
-            <input className="talk-input grow" value={text} onChange={e => setText(e.target.value)} placeholder={t('talk_ph')}
-              disabled={state === 'busy'} onFocus={() => setOpen(true)} enterKeyHint="send" />
+            <input className="talk-input grow" value={text} onChange={e => setText(e.target.value)} placeholder={t(next && matchMedia('(max-width: 720px)').matches ? 'talk_ph_short' : 'talk_ph')}
+              disabled={state === 'busy'} onFocus={() => { setOpen(true); setTyping(true); }} onBlur={() => setTyping(false)} enterKeyHint="send" />
             {text.trim() && state === 'idle' && <button className="icon-btn send" aria-label="send"><ArrowUp size={20} /></button>}
           </>
         )}
@@ -282,6 +285,10 @@ export default function Talk({ project, setProject, go, step }) {
           aria-label={state === 'rec' ? 'send' : 'talk'} style={state === 'rec' ? { '--lvl': level } : undefined}>
           {state === 'busy' ? <Loader2 size={24} className="spin" /> : state === 'rec' ? <Square size={20} fill="currentColor" /> : <Mic size={24} />}
         </button>
+        {/* On a phone the page's next-step button lives here, so there is one bar at the bottom, not two. */}
+        {next && state === 'idle' && !text && !typing && (
+          <button type="button" className="talk-next" onClick={() => go(next[0])}>{t(next[1])}<ArrowRight size={17} /></button>
+        )}
       </form>
     </div>
   );

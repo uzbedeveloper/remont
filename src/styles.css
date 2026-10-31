@@ -770,3 +770,76 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 @media (max-width: 640px) { .brief-line { font-size: 13px; padding: 10px 12px; } .brief-line .grow > span { white-space: normal; } }
 .msg .undo { margin-top: 8px; }
 .msg .undone { display: flex; align-items: center; gap: 4px; margin-top: 6px; }
+
+/* ---------- header tools: text size (Aa) and the phone menu ---------- */
+.hd-btn { position: relative; flex: none; height: 36px; min-width: 36px; padding: 0 9px; border: 0; border-radius: 999px; background: var(--bg-2); color: var(--ink-2); display: inline-flex; align-items: center; justify-content: center; gap: 1px; font: 700 15px var(--display); line-height: 1; cursor: pointer; }
+.hd-btn.on { background: var(--ink); color: #fff; }
+.hd-dot { position: absolute; top: 5px; right: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.pop-wrap { position: relative; flex: none; }
+.pop { position: absolute; right: 0; top: calc(100% + 8px); z-index: 40; width: 252px; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 24px 50px -20px rgba(22, 24, 29, .45); animation: rise .2s both; }
+.fs-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 8px; }
+.fs-opts button { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px 8px; border: 1.5px solid var(--line); border-radius: 14px; background: #fbf9f5; font: 700 13px var(--body); color: var(--ink-2); cursor: pointer; }
+.fs-opts button.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+.fs-a { font-family: var(--display); font-weight: 700; line-height: 1; height: 28px; display: flex; align-items: flex-end; }
+.pop-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 10px; border: 0; border-radius: 12px; background: none; font: 700 15px var(--body); color: var(--ink); text-decoration: none; cursor: pointer; text-align: left; }
+.pop-row:hover { background: var(--bg); }
+.pop-count { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 99px; background: var(--accent); color: #fff; font-size: 12px; display: grid; place-items: center; }
+.only-sm, .plan-line, .talk-next { display: none; }
+/* One line under the header: what to do on this screen. */
+.here { max-width: 1200px; margin: 0 auto; padding: 16px 20px 0; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.here b { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 12px; }
+.here + .page { padding-top: 14px; }
+.plan-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; margin-top: 3px; }
+.plan-meta > span { white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+.plan-meta > span + span::before { content: '·'; margin-right: 1px; }
+.shop-sum > span { white-space: nowrap; }
+
+/* ---------- text size ---------- */
+.fs-s .page, .fs-s .talk, .fs-s .plan-strip, .fs-s .here { zoom: .9; }
+.easy .here { zoom: 1.15; }
+
+/* ---------- phones: one slim bar on top, one at the bottom, words that fit ---------- */
+@media (max-width: 720px) {
+  .top-in { flex-wrap: nowrap; gap: 8px; padding: 8px 12px; }
+  .top.has-steps .logo-word { display: none; }
+  .steps { order: 0; flex: 1 1 auto; flex-basis: auto; justify-content: center; gap: 2px; min-width: 0; }
+  .step:not(.on) .lbl { display: none; }
+  .step:not(.on) { padding: 4px; }
+  .step.on { padding: 4px 11px 4px 4px; }
+  .only-sm { display: block; }
+  .hd-btn { height: 34px; min-width: 34px; }
+  .plan-strip { display: none; }
+  .plan-line { display: block; height: 3px; background: var(--line); }
+  .plan-line i { display: block; height: 100%; background: var(--accent); transition: width .5s; }
+  .here { padding: 12px 16px 0; font-size: 13px; }
+  .here + .page { padding-top: 12px; }
+
+  .talk-next { display: inline-flex; align-items: center; gap: 6px; flex: none; height: 48px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font: 800 14px var(--body); cursor: pointer; white-space: nowrap; }
+  .talk-bar:has(.talk-next) .mic { width: 48px; height: 48px; }
+  .talk-bar:has(.talk-next) .icon-btn { width: 38px; }
+  body:has(.talk-next) .sticky-cta { display: none; }
+  body:has(.talk) .page { padding-bottom: 110px; }
+
+  .page h2, .section-title h2 { font-size: 22px; }
+  .page h3[style] { font-size: 18px !important; }
+  .hero h1 { font-size: clamp(36px, 11vw, 44px); }
+  .hero p.sub { font-size: 16px; }
+  .total-card { padding: 22px 20px; }
+  .total-card .big { font-size: clamp(28px, 9.5vw, 40px); white-space: nowrap; }
+  .compare b { font-size: 14px; white-space: nowrap; }
+  .label { font-size: 11px; letter-spacing: .05em; }
+  .dims .label { display: block; font-size: 10px; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cond div { gap: 8px; }
+  .total-card .seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+  .total-card .seg button { padding: 8px 4px; text-align: center; white-space: nowrap; }
+  .sec-nav, .styles, .tt-tabs, .try.quick { -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent); mask-image: linear-gradient(90deg, #000 86%, transparent); }
+  .plan-next { flex-wrap: wrap; }
+  .plan-next .grow { flex-basis: 100%; }
+  .plan-next .btn { width: 100%; }
+  .hero .ctas .row .btn { padding: 12px 8px; white-space: nowrap; font-size: 14px; }
+  .shop-head { flex-wrap: wrap; row-gap: 0; }
+}
+@media (max-width: 720px) {
+  .pitch { padding: 24px 22px; border-radius: 24px; }
+  .pitch blockquote { font-size: 21px; }
+}

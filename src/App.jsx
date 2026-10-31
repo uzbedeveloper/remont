@@ -10,6 +10,7 @@ import Measure from './screens/Measure.jsx';
 import Smeta from './screens/Smeta.jsx';
 import Hire from './screens/Hire.jsx';
 import Talk from './components/Talk.jsx';
+import { PhoneMenu, TextSize } from './components/HeaderTools.jsx';
 import CheckQuote from './screens/Check.jsx';
 import Plan, { nextLine } from './screens/Plan.jsx';
 import { jobsFrom, priceSmeta } from '../lib/estimate.mjs';
@@ -102,9 +103,9 @@ export default function App() {
 
   return (
     <I18n.Provider value={t}>
-      <header className="top">
+      <header className={`top${project && route.id ? ' has-steps' : ''}`}>
         <div className="top-in">
-          <a className="logo" href="#/"><span className="logo-mark">R</span>Remont</a>
+          <a className="logo" href="#/"><span className="logo-mark">R</span><span className="logo-word">Remont</span></a>
           {project && route.id ? (
             <nav className="steps">
               {STEPS.map((s, i) => (
@@ -116,14 +117,21 @@ export default function App() {
               ))}
             </nav>
           ) : <div className="grow" />}
-          <a className={`my-btn${route.page === 'projects' ? ' on' : ''}`} href="#/projects" title={t('mine_title')}>
+          <a className={`my-btn hide-sm${route.page === 'projects' ? ' on' : ''}`} href="#/projects" title={t('mine_title')}>
             <FolderOpen size={17} /><span className="lbl">{t('mine_short')}</span>{count > 0 && <b>{count}</b>}
           </a>
-          <div className="langs">
+          <div className="langs hide-sm">
             {LANGS.map(l => <button key={l} className={l === lang ? 'on' : ''} onClick={() => setLang(l)}>{l.toUpperCase()}</button>)}
           </div>
+          <TextSize />
+          <PhoneMenu lang={lang} setLang={setLang} count={count} />
         </div>
+        {/* On a phone the plan strip folds into this thin line under the header. */}
+        {planState && route.id && <span className="plan-line"><i style={{ width: `${Math.max(3, planState.score * 100)}%` }} /></span>}
       </header>
+      {route.id && project && route.id === project.id && !PARENT[route.step] && t.has(`here_${navStep}`) && (
+        <div className="here no-print"><b>{stepIdx + 1}</b><span>{t(`here_${navStep}`)}</span></div>
+      )}
       {planState && route.id && navStep !== 'jobs' && (
         <button className="plan-strip" onClick={() => go('jobs')}>
           <span className="plan-strip-bar"><i style={{ width: `${Math.max(3, planState.score * 100)}%` }} /></span>

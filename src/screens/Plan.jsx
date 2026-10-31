@@ -117,11 +117,10 @@ export default function Plan({ project, setProject, config, go }) {
                     <b className="plan-trade">{t.pick(prices.trades[j.trade])}</b>
                     <span className={`st-chip st-${c.status}`}>{t(`st_${c.status}`)}</span>
                   </div>
-                  <div className="muted tiny row" style={{ gap: 6, marginTop: 3 }}>
-                    <CalendarDays size={12} />{t.span(j.start, j.end)}
-                    <span>·</span>
+                  <div className="muted tiny plan-meta">
+                    <span><CalendarDays size={12} />{t.span(j.start, j.end)}</span>
                     <span className="tab">{c.price ? t.money(c.price) : t.range(j.fair)}</span>
-                    {c.usta?.name && <><span>·</span><span>{c.usta.name}</span></>}
+                    {c.usta?.name && <span>{c.usta.name}</span>}
                   </div>
                   <div className="dots">{STATES.slice(1).map((s, k) => <i key={s} className={k < step ? 'on' : ''} />)}</div>
                 </div>

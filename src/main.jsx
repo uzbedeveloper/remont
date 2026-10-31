@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './styles.css';
-import { applyEasy } from './components/EasyToggle.jsx';
+import { applySize } from './textsize.js';
 
-applyEasy();
+applySize();
 
 createRoot(document.getElementById('root')).render(<App />);
