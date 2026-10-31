@@ -1,831 +1,929 @@
 {
-  "id": "demo",
-  "created": "2026-10-28T05:33:44.321Z",
-  "media": {
-    "original": "original.mp4",
-    "kind": "video",
-    "fps": 3,
-    "frames": 30,
-    "w": 1280,
-    "h": 720
-  },
-  "stage": "smeta",
-  "tier": "economy",
-  "updated": "2026-10-28T05:34:42.734Z",
-  "sam": {
-    "ceiling": {
-      "objects": [
-        {
-          "id": "0",
-          "frames": 30,
-          "area_px": 22869,
-          "conf": 0.84
-        }
-      ]
-    },
-    "radiator": {
-      "objects": [
-        {
-          "id": "0",
-          "frames": 30,
-          "area_px": 41804,
-          "conf": 0.95
-        }
-      ]
-    },
-    "door": {
-      "objects": [
-        {
-          "id": "0",
-          "frames": 30,
-          "area_px": 136257,
-          "conf": 0.96
-        }
-      ]
-    },
-    "window": {
-      "objects": [
-        {
-          "id": "0",
-          "frames": 30,
-          "area_px": 118018,
-          "conf": 0.88
-        }
-      ]
-    },
-    "floor": {
-      "objects": [
-        {
-          "id": "0",
-          "frames": 30,
-          "area_px": 83150,
-          "conf": 0.96
-        }
-      ]
-    },
-    "wall": {
-      "objects": [
-        {
-          "id": "0",
-          "frames": 30,
-          "area_px": 150621,
-          "conf": 0.88
-        },
-        {
-          "id": "1",
-          "frames": 30,
-          "area_px": 118642,
-          "conf": 0.92
-        },
-        {
-          "id": "2",
-          "frames": 27,
-          "area_px": 62056,
-          "conf": 0.76
-        },
-        {
-          "id": "3",
-          "frames": 14,
-          "area_px": 26918,
-          "conf": 0.7
-        },
-        {
-          "id": "4",
-          "frames": 3,
-          "area_px": 34252,
-          "conf": 0.72
-        }
-      ]
-    },
-    "seconds": 81
-  },
-  "measure_ai": {
-    "condition": {
-      "ceiling": "poor",
-      "floor": "worn",
-      "walls": "poor",
-      "window": "worn"
-    },
-    "confidence": "medium",
-    "height_m": 2.6,
-    "length_m": 4.5,
-    "lights": 0,
-    "method": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
-    "observations": [
-      {
-        "en": "Wallpaper peeling everywhere with damp marks near window and ceiling, needs full stripping.",
-        "ru": "Обои везде отслаиваются, у окна и потолка следы влаги, нужен полный демонтаж.",
-        "uz": "Hamma devorda oboy ko'chgan, deraza va shift yonida nam dog'lar bor, to'liq qirib tashlash kerak."
-      },
-      {
-        "en": "Ceiling has yellow stains and peeling plaster, needs repair and repainting.",
-        "ru": "На потолке желтые пятна и отслоение штукатурки, нужен ремонт и покраска.",
-        "uz": "Shiftda sariq dog'lar va ko'chgan suvoq bor, ta'mirlash va bo'yash kerak."
-      },
-      {
-        "en": "Old wooden window and cast iron radiator under it, parquet floor worn and dirty.",
-        "ru": "Старое деревянное окно и чугунная батарея под ним, паркет изношен и грязный.",
-        "uz": "Eski yog'och deraza va tagida cho'yan batareya turibdi, parket eskirgan va kir."
-      }
-    ],
-    "openings": [
-      {
-        "height_m": 2,
-        "type": "door",
-        "width_m": 0.8
-      },
-      {
-        "height_m": 1.5,
-        "type": "window",
-        "width_m": 1.8
-      }
-    ],
-    "radiators": 1,
-    "room_type": "living_room",
-    "sockets": 1,
-    "width_m": 3.4
-  },
-  "measure": {
-    "condition": {
-      "ceiling": "poor",
-      "floor": "worn",
-      "walls": "poor",
-      "window": "worn"
-    },
-    "confidence": "medium",
-    "height_m": 2.6,
-    "length_m": 4.5,
-    "lights": 0,
-    "method": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
-    "observations": [
-      {
-        "en": "Wallpaper peeling everywhere with damp marks near window and ceiling, needs full stripping.",
-        "ru": "Обои везде отслаиваются, у окна и потолка следы влаги, нужен полный демонтаж.",
-        "uz": "Hamma devorda oboy ko'chgan, deraza va shift yonida nam dog'lar bor, to'liq qirib tashlash kerak."
-      },
-      {
-        "en": "Ceiling has yellow stains and peeling plaster, needs repair and repainting.",
-        "ru": "На потолке желтые пятна и отслоение штукатурки, нужен ремонт и покраска.",
-        "uz": "Shiftda sariq dog'lar va ko'chgan suvoq bor, ta'mirlash va bo'yash kerak."
-      },
-      {
-        "en": "Old wooden window and cast iron radiator under it, parquet floor worn and dirty.",
-        "ru": "Старое деревянное окно и чугунная батарея под ним, паркет изношен и грязный.",
-        "uz": "Eski yog'och deraza va tagida cho'yan batareya turibdi, parket eskirgan va kir."
-      }
-    ],
-    "openings": [
-      {
-        "type": "door",
-        "width_m": 0.8,
-        "height_m": 2,
-        "wall": 1,
-        "offset_m": 0.3,
-        "sill_m": 0
-      },
-      {
-        "type": "window",
-        "width_m": 1.8,
-        "height_m": 1.5,
-        "wall": 2,
-        "offset_m": 0.8,
-        "sill_m": 0.8
-      }
-    ],
-    "radiators": 1,
-    "room_type": "living_room",
-    "sockets": 1,
-    "width_m": 3.4
-  },
-  "hero_frame": 9,
-  "brief": {
-    "choices": {
-      "walls": "paint",
-      "floor": "laminate",
-      "ceiling": "stretch",
-      "window": "replace",
-      "door": "replace",
-      "radiator": "replace",
-      "electrics": "rewire"
-    },
-    "text": ""
-  },
-  "plan": {
-    "assumptions": [
-      {
-        "en": "Walls need standard gypsum plaster up to 2 cm, no major geometry fix.",
-        "ru": "По стенам заложена обычная гипсовая штукатурка до 2 см, без серьезного исправления геометрии.",
-        "uz": "Devorlarga 2 sm gacha oddiy gipsli suvoq ketadi, katta geometriya tuzatish yo'q."
-      },
-      {
-        "en": "Floor slab is solid, screed up to 3 cm is enough.",
-        "ru": "Плита пола целая, стяжки до 3 см достаточно.",
-        "uz": "Pol plitasi mustahkam, 3 sm gacha styajka yetadi."
-      },
-      {
-        "en": "Window and door are standard middle class PVC and MDF, electrics with copper cable in standard walls.",
-        "ru": "Окно и дверь стандартные среднего класса ПВХ и МДФ, электрика медным кабелем в обычных стенах.",
-        "uz": "Deraza va eshik o'rtacha standart PVX va MDF, simlar mis kabelda oddiy devorda."
-      }
-    ],
-    "summary": {
-      "en": "Full living room renovation with rewire, window and door replacement, wall levelling and painting, laminate floor and stretch ceiling.",
-      "ru": "Полный ремонт гостиной с заменой проводки, окна и двери, выравниванием и покраской стен, ламинатом и натяжным потолком.",
-      "uz": "Yashash xonasini to'liq ta'mirlash, simlarni almashtirish, deraza va eshikni yangilash, devorlarni tekislab bo'yash, laminat va cho'zma shift qilish."
-    },
-    "works": [
-      {
-        "item_id": "demo_wall_finish",
-        "qty": 36.8,
-        "why": {
-          "en": "Strip old finish so new plaster and paint stick.",
-          "ru": "Снять старую отделку, чтобы новая штукатурка и краска держались.",
-          "uz": "Eski qoplamani tozalash kerak, yangi suvoq va bo'yoq yopishishi uchun."
-        }
-      },
-      {
-        "item_id": "demo_plaster",
-        "qty": 36.8,
-        "why": {
-          "en": "Walls are poor, loose plaster must go before levelling.",
-          "ru": "Стены в плохом состоянии, отслоившуюся штукатурку нужно сбить перед выравниванием.",
-          "uz": "Devorlar yomon holatda, tekislashdan oldin ko'chgan suvoqni qoqish kerak."
-        }
-      },
-      {
-        "item_id": "demo_floor",
-        "qty": 15.3,
-        "why": {
-          "en": "Remove worn flooring to get a clean base for screed.",
-          "ru": "Убрать изношенный пол, чтобы получить чистое основание под стяжку.",
-          "uz": "Eskirgan polni olib tashlash kerak, styajka uchun toza asos bo'ladi."
-        }
-      },
-      {
-        "item_id": "demo_window",
-        "qty": 1,
-        "why": {
-          "en": "Old worn window must be taken out for PVC replacement.",
-          "ru": "Старое изношенное окно нужно демонтировать для замены на ПВХ.",
-          "uz": "Eskirgan yog'och derazani yechish kerak, PVX qo'yish uchun."
-        }
-      },
-      {
-        "item_id": "debris",
-        "qty": 15.3,
-        "why": {
-          "en": "All demolition waste must be hauled away.",
-          "ru": "Нужно вывезти весь мусор после демонтажа.",
-          "uz": "Buzishdan chiqqan hamma musorni olib chiqish kerak."
-        }
-      },
-      {
-        "item_id": "el_point",
-        "qty": 8,
-        "why": {
-          "en": "Full rewire needs new chases and cable for sockets and lights.",
-          "ru": "Для полной замены проводки нужны новые штробы и кабель под розетки и свет.",
-          "uz": "To'liq qayta montaj uchun rozetka va chiroqlarga yangi shtroba va kabel kerak."
-        }
-      },
-      {
-        "item_id": "el_panel",
-        "qty": 1,
-        "why": {
-          "en": "New wiring needs a modern fuse box with breakers.",
-          "ru": "Для новой проводки нужен современный щиток с автоматами.",
-          "uz": "Yangi simlar uchun avtomatli zamonaviy shit kerak."
-        }
-      },
-      {
-        "item_id": "el_socket",
-        "qty": 6,
-        "why": {
-          "en": "One socket is not enough for a living room, 6 for normal use.",
-          "ru": "Одной розетки мало для гостиной, ставим 6 для нормального пользования.",
-          "uz": "Bitta rozetka yashash xonasiga kam, normal ishlatish uchun 6 ta qo'yamiz."
-        }
-      },
-      {
-        "item_id": "el_light",
-        "qty": 2,
-        "why": {
-          "en": "No lights now, 2 points for main light and spots in stretch ceiling.",
-          "ru": "Сейчас света нет, делаем 2 точки под люстру и споты в натяжном потолке.",
-          "uz": "Hozir chiroq yo'q, cho'zma shiftga asosiy chiroq va spotlar uchun 2 ta nuqta."
-        }
-      },
-      {
-        "item_id": "pl_radiator",
-        "qty": 1,
-        "why": {
-          "en": "Owner asked to replace the old radiator.",
-          "ru": "По желанию заказчика меняем старый радиатор на новый.",
-          "uz": "Eski radiatorni yangisiga almashtirish kerak, buyurtmachi shuni so'radi."
-        }
-      },
-      {
-        "item_id": "wd_window",
-        "qty": 2.7,
-        "why": {
-          "en": "Fit new PVC window to replace the worn one.",
-          "ru": "Ставим новое ПВХ окно взамен изношенного.",
-          "uz": "Eskirgan deraza o'rniga yangi PVX deraza o'rnatamiz."
-        }
-      },
-      {
-        "item_id": "wd_slopes",
-        "qty": 4.8,
-        "why": {
-          "en": "Reveals must be finished after window replacement.",
-          "ru": "После замены окна нужно отделать откосы.",
-          "uz": "Deraza almashtirilgandan keyin otkoslarni pardozlash kerak."
-        }
-      },
-      {
-        "item_id": "wd_door",
-        "qty": 1,
-        "why": {
-          "en": "Owner asked to replace the interior door.",
-          "ru": "По желанию заказчика меняем межкомнатную дверь.",
-          "uz": "Buyurtmachi ichki eshikni almashtirishni so'radi."
-        }
-      },
-      {
-        "item_id": "pls_plaster",
-        "qty": 36.8,
-        "why": {
-          "en": "Walls are poor, levelling with gypsum plaster is a must.",
-          "ru": "Стены в плохом состоянии, выравнивание гипсовой штукатуркой обязательно.",
-          "uz": "Devorlar yomon holatda, gipsli suvoq bilan tekislash shart."
-        }
-      },
-      {
-        "item_id": "pls_putty",
-        "qty": 36.8,
-        "why": {
-          "en": "Skim coat is required base before painting.",
-          "ru": "Перед покраской обязательно шпаклюем в два слоя.",
-          "uz": "Bo'yashdan oldin shpatlyovka asosi shart."
-        }
-      },
-      {
-        "item_id": "fl_screed",
-        "qty": 15.3,
-        "why": {
-          "en": "Worn floor needs levelling before laminate.",
-          "ru": "Изношенный пол нужно выровнять стяжкой перед ламинатом.",
-          "uz": "Eskirgan pol laminatdan oldin tekislashni talab qiladi."
-        }
-      },
-      {
-        "item_id": "fl_laminate",
-        "qty": 15.3,
-        "why": {
-          "en": "Lay new laminate with underlay as owner chose.",
-          "ru": "Укладываем новый ламинат на подложку по выбору заказчика.",
-          "uz": "Buyurtmachi tanlagan yangi laminatni podlojka bilan yotqizamiz."
-        }
-      },
-      {
-        "item_id": "fl_skirting",
-        "qty": 15,
-        "why": {
-          "en": "New skirting to finish the new floor perimeter.",
-          "ru": "Ставим новый плинтус по периметру нового пола.",
-          "uz": "Yangi pol chetini chiroyli yopish uchun yangi plintus qo'yamiz."
-        }
-      },
-      {
-        "item_id": "pt_wall_paint",
-        "qty": 36.8,
-        "why": {
-          "en": "Final finish as owner chose, 2 coats on prepared walls.",
-          "ru": "Финишная отделка по выбору заказчика, краска в 2 слоя по подготовленным стенам.",
-          "uz": "Buyurtmachi tanlagan yakuniy pardoz, tayyor devorga 2 qatlam bo'yoq."
-        }
-      },
-      {
-        "item_id": "cl_stretch",
-        "qty": 15.3,
-        "why": {
-          "en": "Stretch ceiling to cover poor ceiling fast and clean.",
-          "ru": "Делаем натяжной потолок, чтобы быстро и чисто закрыть плохой потолок.",
-          "uz": "Yomon shiftni tez va toza yopish uchun cho'zma shift qilamiz."
-        }
-      }
-    ]
-  },
-  "ads": {
-    "floor": {
-      "ru": "Нужен укладчик пола 📍\n\nЧиланзар, Ташкент\nНачало: с 5 ноября\n\nОбъем:\n- Стяжка пола до 3 см: 15.3 м2\n- Укладка ламината с подложкой: 15.3 м2\n- Установка плинтусов: 15 м\n\nМатериалы покупаю сам.\n\nНапишите в ответ:\n- цена (за м2 или всего)\n- когда можете начать\n- опыт (лет)\n- фото прошлых работ",
-      "uz": "Pol ustasi kerak 📍\n\nChilonzor, Toshkent\nBoshlanish: 5 noyabrdan\n\nIsh hajmi:\n- Pol styajkasi, 3 sm gacha: 15.3 m2\n- Podlojka bilan laminat yotqizish: 15.3 m2\n- Plintus o'rnatish: 15 m\n\nMaterialni o'zim olaman.\n\nIltimos, izohda yozing:\n- narx (m2 uchun yoki jami)\n- qachon boshlay olasiz\n- necha yillik tajribangiz bor\n- oldingi ishlar foto",
-      "created": "2026-10-27T12:24:24.268Z"
-    }
-  },
-  "replies": {
-    "floor": {
-      "text": "Assalomu alaykum, laminat 30 ming m2, styajka 40 ming, ertaga boshlay olaman. 10 yil tajriba. Ishlarimni rasmini tashlayman\n@shox_pol: салам брат, всё под ключ 2.5 млн, через неделю свободен\nMen qilaman, narxini kelishamiz, oldindan 50% to'lov\nPol ishlari 85 ming kv metr hammasi bilan, Yunusoboddan\n",
-      "items": [
-        {
-          "contact": "",
-          "experience_years": 10,
-          "flags": [],
-          "has_photos": true,
-          "name": "",
-          "offers": [
-            {
-              "basis": "per_unit",
-              "covers": [
-                1
-              ],
-              "includes_materials": false,
-              "per_line": 1,
-              "price_uzs": 30000
-            },
-            {
-              "basis": "per_unit",
-              "covers": [
-                0
-              ],
-              "includes_materials": false,
-              "per_line": 0,
-              "price_uzs": 40000
-            }
-          ],
-          "start": "ertaga",
-          "summary": {
-            "en": "Will lay laminate for 30k per m2 and do screed for 40k, can start tomorrow, 10 years experience, will send photos of work.",
-            "ru": "Уложит ламинат по 30 тыс за м2 и сделает стяжку по 40 тыс, может начать завтра, опыт 10 лет, пришлет фото работ.",
-            "uz": "Laminat 30 ming m2, styajka 40 ming, ertaga boshlay oladi, 10 yil tajriba, ishlar rasmini tashlaydi."
-          }
-        },
-        {
-          "contact": "@shox_pol",
-          "experience_years": 0,
-          "flags": [],
-          "has_photos": false,
-          "name": "@shox_pol",
-          "offers": [
-            {
-              "basis": "total",
-              "covers": [],
-              "includes_materials": true,
-              "per_line": -1,
-              "price_uzs": 2500000
-            }
-          ],
-          "start": "через неделю",
-          "summary": {
-            "en": "Offers the whole job turnkey for 2.5 mln, available in a week.",
-            "ru": "Предлагает всю работу под ключ за 2,5 млн, свободен через неделю.",
-            "uz": "Hamma ishni pod klyuch 2.5 mln ga qiladi, bir haftadan keyin bo'sh."
-          }
-        },
-        {
-          "contact": "",
-          "experience_years": 0,
-          "flags": [
-            {
-              "en": "No price given",
-              "ru": "Цена не названа",
-              "uz": "Narx aytilmagan"
-            },
-            {
-              "en": "Asks for 50% upfront payment",
-              "ru": "Просит 50% предоплаты",
-              "uz": "Oldindan 50% to'lov so'raydi"
-            }
-          ],
-          "has_photos": false,
-          "name": "",
-          "offers": [],
-          "start": "",
-          "summary": {
-            "en": "Agrees to do the work with no fixed price and asks for 50 percent upfront.",
-            "ru": "Берется за работу без фиксированной цены и просит 50% предоплаты.",
-            "uz": "Ishni qilaman deydi, aniq narx yo'q, kelishamiz deydi va oldindan 50% so'raydi."
-          }
-        },
-        {
-          "contact": "",
-          "experience_years": 0,
-          "flags": [],
-          "has_photos": false,
-          "name": "",
-          "offers": [
-            {
-              "basis": "per_unit",
-              "covers": [
-                0,
-                1
-              ],
-              "includes_materials": true,
-              "per_line": 1,
-              "price_uzs": 85000
-            }
-          ],
-          "start": "",
-          "summary": {
-            "en": "Offers floor works at 85k per sqm including materials, from Yunusobod.",
-            "ru": "Предлагает половые работы по 85 тыс за м2 с материалами, из Юнусабада.",
-            "uz": "Pol ishlarini 85 ming m2 hammasi bilan qiladi, Yunusoboddan."
-          }
-        }
-      ]
-    }
-  },
-  "render": {
-    "before": "hero_10.jpg",
-    "after": "render_1793165645188.webp",
-    "frame": 10,
-    "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
-    "change": null,
-    "at": "2026-10-28T05:34:17.819Z"
-  },
-  "renders": [
+ "id": "demo",
+ "created": "2026-10-28T05:33:44.321Z",
+ "media": {
+  "original": "original.mp4",
+  "kind": "video",
+  "fps": 3,
+  "frames": 30,
+  "w": 1280,
+  "h": 720
+ },
+ "stage": "smeta",
+ "tier": "economy",
+ "updated": "2026-10-28T05:34:42.734Z",
+ "sam": {
+  "ceiling": {
+   "objects": [
     {
-      "before": "hero_10.jpg",
-      "after": "render_1793103972312.webp",
-      "frame": 10,
-      "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator"
+     "id": "0",
+     "frames": 30,
+     "area_px": 22869,
+     "conf": 0.84
+    }
+   ]
+  },
+  "radiator": {
+   "objects": [
+    {
+     "id": "0",
+     "frames": 30,
+     "area_px": 41804,
+     "conf": 0.95
+    }
+   ]
+  },
+  "door": {
+   "objects": [
+    {
+     "id": "0",
+     "frames": 30,
+     "area_px": 136257,
+     "conf": 0.96
+    }
+   ]
+  },
+  "window": {
+   "objects": [
+    {
+     "id": "0",
+     "frames": 30,
+     "area_px": 118018,
+     "conf": 0.88
+    }
+   ]
+  },
+  "floor": {
+   "objects": [
+    {
+     "id": "0",
+     "frames": 30,
+     "area_px": 83150,
+     "conf": 0.96
+    }
+   ]
+  },
+  "wall": {
+   "objects": [
+    {
+     "id": "0",
+     "frames": 30,
+     "area_px": 150621,
+     "conf": 0.88
     },
     {
-      "before": "hero_10.jpg",
-      "after": "render_1793165628767.webp",
-      "frame": 10,
-      "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator; paint walls light grey, light bright laminate floor",
-      "change": "paint walls light grey, light bright laminate floor",
-      "at": "2026-10-28T05:34:01.245Z"
+     "id": "1",
+     "frames": 30,
+     "area_px": 118642,
+     "conf": 0.92
     },
     {
-      "before": "hero_10.jpg",
-      "after": "render_1793165645188.webp",
-      "frame": 10,
-      "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
-      "change": null,
-      "at": "2026-10-28T05:34:17.819Z"
+     "id": "2",
+     "frames": 27,
+     "area_px": 62056,
+     "conf": 0.76
+    },
+    {
+     "id": "3",
+     "frames": 14,
+     "area_px": 26918,
+     "conf": 0.7
+    },
+    {
+     "id": "4",
+     "frames": 3,
+     "area_px": 34252,
+     "conf": 0.72
     }
+   ]
+  },
+  "seconds": 81
+ },
+ "measure_ai": {
+  "condition": {
+   "ceiling": "poor",
+   "floor": "worn",
+   "walls": "poor",
+   "window": "worn"
+  },
+  "confidence": "medium",
+  "height_m": 2.6,
+  "length_m": 4.5,
+  "lights": 0,
+  "method": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
+  "observations": [
+   {
+    "en": "Wallpaper peeling everywhere with damp marks near window and ceiling, needs full stripping.",
+    "ru": "Обои везде отслаиваются, у окна и потолка следы влаги, нужен полный демонтаж.",
+    "uz": "Hamma devorda oboy ko'chgan, deraza va shift yonida nam dog'lar bor, to'liq qirib tashlash kerak."
+   },
+   {
+    "en": "Ceiling has yellow stains and peeling plaster, needs repair and repainting.",
+    "ru": "На потолке желтые пятна и отслоение штукатурки, нужен ремонт и покраска.",
+    "uz": "Shiftda sariq dog'lar va ko'chgan suvoq bor, ta'mirlash va bo'yash kerak."
+   },
+   {
+    "en": "Old wooden window and cast iron radiator under it, parquet floor worn and dirty.",
+    "ru": "Старое деревянное окно и чугунная батарея под ним, паркет изношен и грязный.",
+    "uz": "Eski yog'och deraza va tagida cho'yan batareya turibdi, parket eskirgan va kir."
+   }
   ],
-  "chat": [
-    {
-      "who": "me",
-      "text": "devorlarni och kulrang qil, polga yorug' laminat",
-      "at": "2026-10-28T05:34:01.246Z"
-    },
-    {
-      "who": "ai",
-      "reply": {
-        "en": "Got it, showing light grey walls and a light laminate.",
-        "ru": "Понял, показываю светло-серые стены и светлый ламинат.",
-        "uz": "Bo'ldi, devorlarni och kulrang, polga yorug' laminat qilib ko'rsatayapman."
-      },
-      "actions": [
-        "render"
-      ],
-      "failed": [],
-      "image": "render_1793165628767.webp",
-      "at": "2026-10-28T05:34:01.246Z"
-    },
-    {
-      "who": "me",
-      "text": "arzonroq variant bo'lsa-chi?",
-      "at": "2026-10-28T05:34:05.146Z"
-    },
-    {
-      "who": "ai",
-      "reply": {
-        "en": "Got it, switching to a more budget-friendly option.",
-        "ru": "Понял, переключаю на более бюджетный вариант.",
-        "uz": "Bo'ldi, arzonroq variantga o'tkazyapman."
-      },
-      "actions": [
-        "tier"
-      ],
-      "failed": [],
-      "image": null,
-      "at": "2026-10-28T05:34:05.146Z"
-    },
-    {
-      "who": "me",
-      "text": "buzish ishlarini Akmal aka bilan 1.7 mlnga kelishdik, ertaga boshlaydi",
-      "at": "2026-10-28T05:34:39.417Z"
-    },
-    {
-      "who": "ai",
-      "reply": {
-        "en": "Got it, marked demolition agreed with Akmal aka for 1.7 million, good luck for tomorrow!",
-        "ru": "Понял, отметил демонтаж с Akmal aka за 1,7 млн, удачного старта завтра!",
-        "uz": "Bo'ldi, buzish ishlarini Akmal aka bilan 1,7 mlnga kelishildi deb belgiladim, ertaga omadli boshlasin!"
-      },
-      "actions": [
-        "deal"
-      ],
-      "failed": [],
-      "image": null,
-      "at": "2026-10-28T05:34:39.417Z"
-    },
-    {
-      "who": "me",
-      "text": "elektrik bilan gaplashdim, narxini ertaga aytadi",
-      "at": "2026-10-28T05:34:42.729Z"
-    },
-    {
-      "who": "ai",
-      "reply": {
-        "en": "Got it, marked talked with the electrician, waiting for the price tomorrow.",
-        "ru": "Понял, отметил что поговорили с электриком, ждем цену завтра.",
-        "uz": "Tushundim, elektrik bilan gaplashganingizni belgiladim, ertaga narxini kutamiz."
-      },
-      "actions": [
-        "deal"
-      ],
-      "failed": [],
-      "image": null,
-      "at": "2026-10-28T05:34:42.729Z"
-    }
+  "openings": [
+   {
+    "height_m": 2,
+    "type": "door",
+    "width_m": 0.8
+   },
+   {
+    "height_m": 1.5,
+    "type": "window",
+    "width_m": 1.8
+   }
   ],
-  "look": {
+  "radiators": 1,
+  "room_type": "living_room",
+  "sockets": 1,
+  "width_m": 3.4
+ },
+ "measure": {
+  "condition": {
+   "ceiling": "poor",
+   "floor": "worn",
+   "walls": "poor",
+   "window": "worn"
+  },
+  "confidence": "medium",
+  "height_m": 2.6,
+  "length_m": 4.5,
+  "lights": 0,
+  "method": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
+  "observations": [
+   {
+    "en": "Wallpaper peeling everywhere with damp marks near window and ceiling, needs full stripping.",
+    "ru": "Обои везде отслаиваются, у окна и потолка следы влаги, нужен полный демонтаж.",
+    "uz": "Hamma devorda oboy ko'chgan, deraza va shift yonida nam dog'lar bor, to'liq qirib tashlash kerak."
+   },
+   {
+    "en": "Ceiling has yellow stains and peeling plaster, needs repair and repainting.",
+    "ru": "На потолке желтые пятна и отслоение штукатурки, нужен ремонт и покраска.",
+    "uz": "Shiftda sariq dog'lar va ko'chgan suvoq bor, ta'mirlash va bo'yash kerak."
+   },
+   {
+    "en": "Old wooden window and cast iron radiator under it, parquet floor worn and dirty.",
+    "ru": "Старое деревянное окно и чугунная батарея под ним, паркет изношен и грязный.",
+    "uz": "Eski yog'och deraza va tagida cho'yan batareya turibdi, parket eskirgan va kir."
+   }
+  ],
+  "openings": [
+   {
+    "type": "door",
+    "width_m": 0.8,
+    "height_m": 2,
+    "wall": 1,
+    "offset_m": 0.3,
+    "sill_m": 0
+   },
+   {
+    "type": "window",
+    "width_m": 1.8,
+    "height_m": 1.5,
+    "wall": 2,
+    "offset_m": 0.8,
+    "sill_m": 0.8
+   }
+  ],
+  "radiators": 1,
+  "room_type": "living_room",
+  "sockets": 1,
+  "width_m": 3.4
+ },
+ "hero_frame": 9,
+ "brief": {
+  "choices": {
+   "walls": "paint",
+   "floor": "laminate",
+   "ceiling": "stretch",
+   "window": "replace",
+   "door": "replace",
+   "radiator": "replace",
+   "electrics": "rewire"
+  },
+  "text": ""
+ },
+ "plan": {
+  "assumptions": [
+   {
+    "en": "Walls need standard gypsum plaster up to 2 cm, no major geometry fix.",
+    "ru": "По стенам заложена обычная гипсовая штукатурка до 2 см, без серьезного исправления геометрии.",
+    "uz": "Devorlarga 2 sm gacha oddiy gipsli suvoq ketadi, katta geometriya tuzatish yo'q."
+   },
+   {
+    "en": "Floor slab is solid, screed up to 3 cm is enough.",
+    "ru": "Плита пола целая, стяжки до 3 см достаточно.",
+    "uz": "Pol plitasi mustahkam, 3 sm gacha styajka yetadi."
+   },
+   {
+    "en": "Window and door are standard middle class PVC and MDF, electrics with copper cable in standard walls.",
+    "ru": "Окно и дверь стандартные среднего класса ПВХ и МДФ, электрика медным кабелем в обычных стенах.",
+    "uz": "Deraza va eshik o'rtacha standart PVX va MDF, simlar mis kabelda oddiy devorda."
+   }
+  ],
+  "summary": {
+   "en": "Full living room renovation with rewire, window and door replacement, wall levelling and painting, laminate floor and stretch ceiling.",
+   "ru": "Полный ремонт гостиной с заменой проводки, окна и двери, выравниванием и покраской стен, ламинатом и натяжным потолком.",
+   "uz": "Yashash xonasini to'liq ta'mirlash, simlarni almashtirish, deraza va eshikni yangilash, devorlarni tekislab bo'yash, laminat va cho'zma shift qilish."
+  },
+  "works": [
+   {
+    "item_id": "demo_wall_finish",
+    "qty": 36.8,
+    "why": {
+     "en": "Strip old finish so new plaster and paint stick.",
+     "ru": "Снять старую отделку, чтобы новая штукатурка и краска держались.",
+     "uz": "Eski qoplamani tozalash kerak, yangi suvoq va bo'yoq yopishishi uchun."
+    }
+   },
+   {
+    "item_id": "demo_plaster",
+    "qty": 36.8,
+    "why": {
+     "en": "Walls are poor, loose plaster must go before levelling.",
+     "ru": "Стены в плохом состоянии, отслоившуюся штукатурку нужно сбить перед выравниванием.",
+     "uz": "Devorlar yomon holatda, tekislashdan oldin ko'chgan suvoqni qoqish kerak."
+    }
+   },
+   {
+    "item_id": "demo_floor",
+    "qty": 15.3,
+    "why": {
+     "en": "Remove worn flooring to get a clean base for screed.",
+     "ru": "Убрать изношенный пол, чтобы получить чистое основание под стяжку.",
+     "uz": "Eskirgan polni olib tashlash kerak, styajka uchun toza asos bo'ladi."
+    }
+   },
+   {
+    "item_id": "demo_window",
+    "qty": 1,
+    "why": {
+     "en": "Old worn window must be taken out for PVC replacement.",
+     "ru": "Старое изношенное окно нужно демонтировать для замены на ПВХ.",
+     "uz": "Eskirgan yog'och derazani yechish kerak, PVX qo'yish uchun."
+    }
+   },
+   {
+    "item_id": "debris",
+    "qty": 15.3,
+    "why": {
+     "en": "All demolition waste must be hauled away.",
+     "ru": "Нужно вывезти весь мусор после демонтажа.",
+     "uz": "Buzishdan chiqqan hamma musorni olib chiqish kerak."
+    }
+   },
+   {
+    "item_id": "el_point",
+    "qty": 8,
+    "why": {
+     "en": "Full rewire needs new chases and cable for sockets and lights.",
+     "ru": "Для полной замены проводки нужны новые штробы и кабель под розетки и свет.",
+     "uz": "To'liq qayta montaj uchun rozetka va chiroqlarga yangi shtroba va kabel kerak."
+    }
+   },
+   {
+    "item_id": "el_panel",
+    "qty": 1,
+    "why": {
+     "en": "New wiring needs a modern fuse box with breakers.",
+     "ru": "Для новой проводки нужен современный щиток с автоматами.",
+     "uz": "Yangi simlar uchun avtomatli zamonaviy shit kerak."
+    }
+   },
+   {
+    "item_id": "el_socket",
+    "qty": 6,
+    "why": {
+     "en": "One socket is not enough for a living room, 6 for normal use.",
+     "ru": "Одной розетки мало для гостиной, ставим 6 для нормального пользования.",
+     "uz": "Bitta rozetka yashash xonasiga kam, normal ishlatish uchun 6 ta qo'yamiz."
+    }
+   },
+   {
+    "item_id": "el_light",
+    "qty": 2,
+    "why": {
+     "en": "No lights now, 2 points for main light and spots in stretch ceiling.",
+     "ru": "Сейчас света нет, делаем 2 точки под люстру и споты в натяжном потолке.",
+     "uz": "Hozir chiroq yo'q, cho'zma shiftga asosiy chiroq va spotlar uchun 2 ta nuqta."
+    }
+   },
+   {
+    "item_id": "pl_radiator",
+    "qty": 1,
+    "why": {
+     "en": "Owner asked to replace the old radiator.",
+     "ru": "По желанию заказчика меняем старый радиатор на новый.",
+     "uz": "Eski radiatorni yangisiga almashtirish kerak, buyurtmachi shuni so'radi."
+    }
+   },
+   {
+    "item_id": "wd_window",
+    "qty": 2.7,
+    "why": {
+     "en": "Fit new PVC window to replace the worn one.",
+     "ru": "Ставим новое ПВХ окно взамен изношенного.",
+     "uz": "Eskirgan deraza o'rniga yangi PVX deraza o'rnatamiz."
+    }
+   },
+   {
+    "item_id": "wd_slopes",
+    "qty": 4.8,
+    "why": {
+     "en": "Reveals must be finished after window replacement.",
+     "ru": "После замены окна нужно отделать откосы.",
+     "uz": "Deraza almashtirilgandan keyin otkoslarni pardozlash kerak."
+    }
+   },
+   {
+    "item_id": "wd_door",
+    "qty": 1,
+    "why": {
+     "en": "Owner asked to replace the interior door.",
+     "ru": "По желанию заказчика меняем межкомнатную дверь.",
+     "uz": "Buyurtmachi ichki eshikni almashtirishni so'radi."
+    }
+   },
+   {
+    "item_id": "pls_plaster",
+    "qty": 36.8,
+    "why": {
+     "en": "Walls are poor, levelling with gypsum plaster is a must.",
+     "ru": "Стены в плохом состоянии, выравнивание гипсовой штукатуркой обязательно.",
+     "uz": "Devorlar yomon holatda, gipsli suvoq bilan tekislash shart."
+    }
+   },
+   {
+    "item_id": "pls_putty",
+    "qty": 36.8,
+    "why": {
+     "en": "Skim coat is required base before painting.",
+     "ru": "Перед покраской обязательно шпаклюем в два слоя.",
+     "uz": "Bo'yashdan oldin shpatlyovka asosi shart."
+    }
+   },
+   {
+    "item_id": "fl_screed",
+    "qty": 15.3,
+    "why": {
+     "en": "Worn floor needs levelling before laminate.",
+     "ru": "Изношенный пол нужно выровнять стяжкой перед ламинатом.",
+     "uz": "Eskirgan pol laminatdan oldin tekislashni talab qiladi."
+    }
+   },
+   {
+    "item_id": "fl_laminate",
+    "qty": 15.3,
+    "why": {
+     "en": "Lay new laminate with underlay as owner chose.",
+     "ru": "Укладываем новый ламинат на подложку по выбору заказчика.",
+     "uz": "Buyurtmachi tanlagan yangi laminatni podlojka bilan yotqizamiz."
+    }
+   },
+   {
+    "item_id": "fl_skirting",
+    "qty": 15,
+    "why": {
+     "en": "New skirting to finish the new floor perimeter.",
+     "ru": "Ставим новый плинтус по периметру нового пола.",
+     "uz": "Yangi pol chetini chiroyli yopish uchun yangi plintus qo'yamiz."
+    }
+   },
+   {
+    "item_id": "pt_wall_paint",
+    "qty": 36.8,
+    "why": {
+     "en": "Final finish as owner chose, 2 coats on prepared walls.",
+     "ru": "Финишная отделка по выбору заказчика, краска в 2 слоя по подготовленным стенам.",
+     "uz": "Buyurtmachi tanlagan yakuniy pardoz, tayyor devorga 2 qatlam bo'yoq."
+    }
+   },
+   {
+    "item_id": "cl_stretch",
+    "qty": 15.3,
+    "why": {
+     "en": "Stretch ceiling to cover poor ceiling fast and clean.",
+     "ru": "Делаем натяжной потолок, чтобы быстро и чисто закрыть плохой потолок.",
+     "uz": "Yomon shiftni tez va toza yopish uchun cho'zma shift qilamiz."
+    }
+   }
+  ]
+ },
+ "ads": {
+  "floor": {
+   "ru": "Нужен укладчик пола 📍\n\nЧиланзар, Ташкент\nНачало: с 5 ноября\n\nОбъем:\n- Стяжка пола до 3 см: 15.3 м2\n- Укладка ламината с подложкой: 15.3 м2\n- Установка плинтусов: 15 м\n\nМатериалы покупаю сам.\n\nНапишите в ответ:\n- цена (за м2 или всего)\n- когда можете начать\n- опыт (лет)\n- фото прошлых работ",
+   "uz": "Pol ustasi kerak 📍\n\nChilonzor, Toshkent\nBoshlanish: 5 noyabrdan\n\nIsh hajmi:\n- Pol styajkasi, 3 sm gacha: 15.3 m2\n- Podlojka bilan laminat yotqizish: 15.3 m2\n- Plintus o'rnatish: 15 m\n\nMaterialni o'zim olaman.\n\nIltimos, izohda yozing:\n- narx (m2 uchun yoki jami)\n- qachon boshlay olasiz\n- necha yillik tajribangiz bor\n- oldingi ishlar foto",
+   "created": "2026-10-27T12:24:24.268Z"
+  }
+ },
+ "replies": {
+  "floor": {
+   "text": "Assalomu alaykum, laminat 30 ming m2, styajka 40 ming, ertaga boshlay olaman. 10 yil tajriba. Ishlarimni rasmini tashlayman\n@shox_pol: салам брат, всё под ключ 2.5 млн, через неделю свободен\nMen qilaman, narxini kelishamiz, oldindan 50% to'lov\nPol ishlari 85 ming kv metr hammasi bilan, Yunusoboddan\n",
+   "items": [
+    {
+     "contact": "",
+     "experience_years": 10,
+     "flags": [],
+     "has_photos": true,
+     "name": "",
+     "offers": [
+      {
+       "basis": "per_unit",
+       "covers": [
+        1
+       ],
+       "includes_materials": false,
+       "per_line": 1,
+       "price_uzs": 30000
+      },
+      {
+       "basis": "per_unit",
+       "covers": [
+        0
+       ],
+       "includes_materials": false,
+       "per_line": 0,
+       "price_uzs": 40000
+      }
+     ],
+     "start": "ertaga",
+     "summary": {
+      "en": "Will lay laminate for 30k per m2 and do screed for 40k, can start tomorrow, 10 years experience, will send photos of work.",
+      "ru": "Уложит ламинат по 30 тыс за м2 и сделает стяжку по 40 тыс, может начать завтра, опыт 10 лет, пришлет фото работ.",
+      "uz": "Laminat 30 ming m2, styajka 40 ming, ertaga boshlay oladi, 10 yil tajriba, ishlar rasmini tashlaydi."
+     }
+    },
+    {
+     "contact": "@shox_pol",
+     "experience_years": 0,
+     "flags": [],
+     "has_photos": false,
+     "name": "@shox_pol",
+     "offers": [
+      {
+       "basis": "total",
+       "covers": [],
+       "includes_materials": true,
+       "per_line": -1,
+       "price_uzs": 2500000
+      }
+     ],
+     "start": "через неделю",
+     "summary": {
+      "en": "Offers the whole job turnkey for 2.5 mln, available in a week.",
+      "ru": "Предлагает всю работу под ключ за 2,5 млн, свободен через неделю.",
+      "uz": "Hamma ishni pod klyuch 2.5 mln ga qiladi, bir haftadan keyin bo'sh."
+     }
+    },
+    {
+     "contact": "",
+     "experience_years": 0,
+     "flags": [
+      {
+       "en": "No price given",
+       "ru": "Цена не названа",
+       "uz": "Narx aytilmagan"
+      },
+      {
+       "en": "Asks for 50% upfront payment",
+       "ru": "Просит 50% предоплаты",
+       "uz": "Oldindan 50% to'lov so'raydi"
+      }
+     ],
+     "has_photos": false,
+     "name": "",
+     "offers": [],
+     "start": "",
+     "summary": {
+      "en": "Agrees to do the work with no fixed price and asks for 50 percent upfront.",
+      "ru": "Берется за работу без фиксированной цены и просит 50% предоплаты.",
+      "uz": "Ishni qilaman deydi, aniq narx yo'q, kelishamiz deydi va oldindan 50% so'raydi."
+     }
+    },
+    {
+     "contact": "",
+     "experience_years": 0,
+     "flags": [],
+     "has_photos": false,
+     "name": "",
+     "offers": [
+      {
+       "basis": "per_unit",
+       "covers": [
+        0,
+        1
+       ],
+       "includes_materials": true,
+       "per_line": 1,
+       "price_uzs": 85000
+      }
+     ],
+     "start": "",
+     "summary": {
+      "en": "Offers floor works at 85k per sqm including materials, from Yunusobod.",
+      "ru": "Предлагает половые работы по 85 тыс за м2 с материалами, из Юнусабада.",
+      "uz": "Pol ishlarini 85 ming m2 hammasi bilan qiladi, Yunusoboddan."
+     }
+    }
+   ]
+  }
+ },
+ "render": {
+  "before": "hero_10.jpg",
+  "after": "render_1793165645188.webp",
+  "frame": 10,
+  "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+  "change": null,
+  "at": "2026-10-28T05:34:17.819Z"
+ },
+ "renders": [
+  {
+   "before": "hero_10.jpg",
+   "after": "render_1793103972312.webp",
+   "frame": 10,
+   "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator"
+  },
+  {
+   "before": "hero_10.jpg",
+   "after": "render_1793165628767.webp",
+   "frame": 10,
+   "style": "light grey painted walls, oak laminate, white stretch ceiling, white PVC window, new white door, modern radiator; paint walls light grey, light bright laminate floor",
+   "change": "paint walls light grey, light bright laminate floor",
+   "at": "2026-10-28T05:34:01.245Z"
+  },
+  {
+   "before": "hero_10.jpg",
+   "after": "render_1793165645188.webp",
+   "frame": 10,
+   "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "change": null,
+   "at": "2026-10-28T05:34:17.819Z"
+  }
+ ],
+ "chat": [
+  {
+   "who": "me",
+   "text": "devorlarni och kulrang qil, polga yorug' laminat",
+   "at": "2026-10-28T05:34:01.246Z"
+  },
+  {
+   "who": "ai",
+   "reply": {
+    "en": "Got it, showing light grey walls and a light laminate.",
+    "ru": "Понял, показываю светло-серые стены и светлый ламинат.",
+    "uz": "Bo'ldi, devorlarni och kulrang, polga yorug' laminat qilib ko'rsatayapman."
+   },
+   "actions": [
+    "render"
+   ],
+   "failed": [],
+   "image": "render_1793165628767.webp",
+   "at": "2026-10-28T05:34:01.246Z"
+  },
+  {
+   "who": "me",
+   "text": "arzonroq variant bo'lsa-chi?",
+   "at": "2026-10-28T05:34:05.146Z"
+  },
+  {
+   "who": "ai",
+   "reply": {
+    "en": "Got it, switching to a more budget-friendly option.",
+    "ru": "Понял, переключаю на более бюджетный вариант.",
+    "uz": "Bo'ldi, arzonroq variantga o'tkazyapman."
+   },
+   "actions": [
+    "tier"
+   ],
+   "failed": [],
+   "image": null,
+   "at": "2026-10-28T05:34:05.146Z"
+  },
+  {
+   "who": "me",
+   "text": "buzish ishlarini Akmal aka bilan 1.7 mlnga kelishdik, ertaga boshlaydi",
+   "at": "2026-10-28T05:34:39.417Z"
+  },
+  {
+   "who": "ai",
+   "reply": {
+    "en": "Got it, marked demolition agreed with Akmal aka for 1.7 million, good luck for tomorrow!",
+    "ru": "Понял, отметил демонтаж с Akmal aka за 1,7 млн, удачного старта завтра!",
+    "uz": "Bo'ldi, buzish ishlarini Akmal aka bilan 1,7 mlnga kelishildi deb belgiladim, ertaga omadli boshlasin!"
+   },
+   "actions": [
+    "deal"
+   ],
+   "failed": [],
+   "image": null,
+   "at": "2026-10-28T05:34:39.417Z"
+  },
+  {
+   "who": "me",
+   "text": "elektrik bilan gaplashdim, narxini ertaga aytadi",
+   "at": "2026-10-28T05:34:42.729Z"
+  },
+  {
+   "who": "ai",
+   "reply": {
+    "en": "Got it, marked talked with the electrician, waiting for the price tomorrow.",
+    "ru": "Понял, отметил что поговорили с электриком, ждем цену завтра.",
+    "uz": "Tushundim, elektrik bilan gaplashganingizni belgiladim, ertaga narxini kutamiz."
+   },
+   "actions": [
+    "deal"
+   ],
+   "failed": [],
+   "image": null,
+   "at": "2026-10-28T05:34:42.729Z"
+  }
+ ],
+ "look": {
+  "style": "scandi",
+  "color": "beige"
+ },
+ "check": {
+  "files": [
+   "quote_1793165657859.jpg"
+  ],
+  "read": {
+   "legible": "good",
+   "lines": [
+    {
+     "includes_materials": false,
+     "item_id": "demo_wall_finish",
+     "meaning": {
+      "en": "Strip old wallpaper",
+      "ru": "Снятие старых обоев",
+      "uz": "Eski oboylarni sidirish"
+     },
+     "qty": 48,
+     "surface": "walls",
+     "text": "Eski oboy sidirish 48 kv x 15 000",
+     "total_uzs": 720000,
+     "unit": "m2",
+     "unit_price_uzs": 15000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "pls_plaster",
+     "meaning": {
+      "en": "Level walls with gypsum plaster",
+      "ru": "Выравнивание стен гипсовой штукатуркой",
+      "uz": "Devorlarni shtukaturka qilish"
+     },
+     "qty": 48,
+     "surface": "walls",
+     "text": "Devor shtukaturka 48 kv x 60 000",
+     "total_uzs": 2880000,
+     "unit": "m2",
+     "unit_price_uzs": 60000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "pls_putty",
+     "meaning": {
+      "en": "Skim coat putty, 2 layers",
+      "ru": "Шпаклёвка в 2 слоя",
+      "uz": "Shpaklyovka 2 qavat qilish"
+     },
+     "qty": 48,
+     "surface": "walls",
+     "text": "Shpaklyovka 2 qavat 48 kv x 45 000",
+     "total_uzs": 2160000,
+     "unit": "m2",
+     "unit_price_uzs": 45000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "pt_wall_paint",
+     "meaning": {
+      "en": "Paint walls, 2 coats",
+      "ru": "Покраска стен в 2 слоя",
+      "uz": "Devorlarni 2 qavat kraska qilish"
+     },
+     "qty": 48,
+     "surface": "walls",
+     "text": "Kraska 2 qavat 48 kv x 30 000",
+     "total_uzs": 1440000,
+     "unit": "m2",
+     "unit_price_uzs": 30000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "fl_laminate",
+     "meaning": {
+      "en": "Lay laminate",
+      "ru": "Укладка ламината",
+      "uz": "Laminat ukladka qilish"
+     },
+     "qty": 18,
+     "surface": "floor",
+     "text": "Laminat ukladka 18 kv x 40 000",
+     "total_uzs": 720000,
+     "unit": "m2",
+     "unit_price_uzs": 40000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "fl_skirting",
+     "meaning": {
+      "en": "Fit skirting boards",
+      "ru": "Установка плинтуса",
+      "uz": "Plintus o'rnatish"
+     },
+     "qty": 16,
+     "surface": "none",
+     "text": "Plintus 16 m x 15 000",
+     "total_uzs": 240000,
+     "unit": "m",
+     "unit_price_uzs": 15000
+    },
+    {
+     "includes_materials": true,
+     "item_id": "cl_stretch",
+     "meaning": {
+      "en": "Stretch ceiling with materials",
+      "ru": "Натяжной потолок с материалом",
+      "uz": "Materiali bilan natyajnoy patolok"
+     },
+     "qty": 16,
+     "surface": "ceiling",
+     "text": "Natyajinoy patalok 16 kv x 95 000 (material bilan)",
+     "total_uzs": 1520000,
+     "unit": "m2",
+     "unit_price_uzs": 95000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "el_socket",
+     "meaning": {
+      "en": "Fit sockets and switches",
+      "ru": "Установка розеток и выключателей",
+      "uz": "Rozetka va viklyuchatel o'rnatish"
+     },
+     "qty": 6,
+     "surface": "none",
+     "text": "Rozetka, vikl. 6 ta x 50 000",
+     "total_uzs": 300000,
+     "unit": "pcs",
+     "unit_price_uzs": 50000
+    },
+    {
+     "includes_materials": false,
+     "item_id": "debris",
+     "meaning": {
+      "en": "Haul away rubble",
+      "ru": "Вывоз мусора",
+      "uz": "Musor vivoz qilish"
+     },
+     "qty": 0,
+     "surface": "none",
+     "text": "Musor vivoz",
+     "total_uzs": 400000,
+     "unit": "job",
+     "unit_price_uzs": 0
+    }
+   ],
+   "notes": [
+    {
+     "en": "Line totals sum to 10 380 000, but Jami written as 10 880 000, difference 500 000",
+     "ru": "Сумма строк 10 380 000, а итог написан 10 880 000, разница 500 000",
+     "uz": "Qatorlar yig'indisi 10 380 000 chiqadi, lekin Jami 10 880 000 deb yozilgan, farq 500 000"
+    },
+    {
+     "en": "70% advance payment requested upfront",
+     "ru": "Просят аванс 70% заранее",
+     "uz": "Oldindan 70% avans so'ralgan"
+    }
+   ],
+   "total_uzs": 10880000,
+   "usta": "Usta Baxtiyor"
+  },
+  "at": "2026-10-28T05:34:28.081Z",
+  "counter": {
+   "ru": "Ассалому алайкум, Уста Бахтиёр ака!\nПомерил комнату: стены не 48, а 36.8 м2, пол не 18, а 15.3 м2.\nЦены тоже выше обычных: сдирка 15 000 (около 12 000), штукатурка 60 000 (около 45 000), шпаклевка 45 000 (около 35 000), покраска 30 000, ламинат 40 000, розетки 50 000 (около 30 000).\nИтого написано 10 880 000, это на 500 000 больше суммы строк, наверное ошибка.\nЕсли за эту же работу будет около 7 200 000, я согласен.\nВместо большого аванса можно я оплачу материалы сразу, а остальное поэтапно?\nСбивка штукатурки, демонтаж пола, плинтуса и деревянного окна, штроба с кабелем и подрозетником, щиток с автоматами, замена радиатора входят или посчитаются отдельно?\nЧто входит в вывоз мусора? Жду исправленную смету, спасибо.",
+   "uz": "Assalomu alaykum, Usta Baxtiyor aka!\nXonani o'lchadim: devor 48 emas 36.8 m2, pol 18 emas 15.3 m2 ekan.\nNarxlar ham yuqori: sidirish 15 000 (12 000), shtukaturka 60 000 (45 000), shpaklyovka 45 000 (35 000), kraska 30 000, laminat 40 000, rozetka 50 000 (30 000) atrofida.\nJami 10 880 000 yozilibdi, qatorlar yig'indisidan 500 000 ko'p, adashgan bo'lsa kerak.\nShu ishga 7 200 000 atrofida kelishsak bo'ladimi?\nKatta avans o'rniga material pulini oldindan, qolganini bosqichma-bosqich to'lasam maylimi?\nSuvok ko'chirish, eski pol, plintus, yog'och deraza sökish, shtroba+kabel+podrozetnik, avtomatli shit, radiator almashtirish ichidami yoki alohida?\nMusor vivoz nimani o'z ichiga oladi? To'g'irlangan smeta kutaman, rahmat.",
+   "created": "2026-10-28T05:34:36.367Z"
+  }
+ },
+ "board": {
+  "demolition": {
+   "status": "agreed",
+   "calls": [],
+   "price": 1700000,
+   "usta": {
+    "name": "Akmal aka"
+   }
+  },
+  "electrician": {
+   "status": "talked",
+   "calls": []
+  }
+ },
+ "ready": {
+  "scandi|beige": {
+   "before": "hero_10.jpg",
+   "after": "render_1793165645188.webp",
+   "frame": 10,
+   "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "change": null,
+   "at": "2026-10-28T05:34:17.819Z",
+   "look": {
     "style": "scandi",
     "color": "beige"
+   }
   },
-  "check": {
-    "files": [
-      "quote_1793165657859.jpg"
-    ],
-    "read": {
-      "legible": "good",
-      "lines": [
-        {
-          "includes_materials": false,
-          "item_id": "demo_wall_finish",
-          "meaning": {
-            "en": "Strip old wallpaper",
-            "ru": "Снятие старых обоев",
-            "uz": "Eski oboylarni sidirish"
-          },
-          "qty": 48,
-          "surface": "walls",
-          "text": "Eski oboy sidirish 48 kv x 15 000",
-          "total_uzs": 720000,
-          "unit": "m2",
-          "unit_price_uzs": 15000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "pls_plaster",
-          "meaning": {
-            "en": "Level walls with gypsum plaster",
-            "ru": "Выравнивание стен гипсовой штукатуркой",
-            "uz": "Devorlarni shtukaturka qilish"
-          },
-          "qty": 48,
-          "surface": "walls",
-          "text": "Devor shtukaturka 48 kv x 60 000",
-          "total_uzs": 2880000,
-          "unit": "m2",
-          "unit_price_uzs": 60000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "pls_putty",
-          "meaning": {
-            "en": "Skim coat putty, 2 layers",
-            "ru": "Шпаклёвка в 2 слоя",
-            "uz": "Shpaklyovka 2 qavat qilish"
-          },
-          "qty": 48,
-          "surface": "walls",
-          "text": "Shpaklyovka 2 qavat 48 kv x 45 000",
-          "total_uzs": 2160000,
-          "unit": "m2",
-          "unit_price_uzs": 45000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "pt_wall_paint",
-          "meaning": {
-            "en": "Paint walls, 2 coats",
-            "ru": "Покраска стен в 2 слоя",
-            "uz": "Devorlarni 2 qavat kraska qilish"
-          },
-          "qty": 48,
-          "surface": "walls",
-          "text": "Kraska 2 qavat 48 kv x 30 000",
-          "total_uzs": 1440000,
-          "unit": "m2",
-          "unit_price_uzs": 30000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "fl_laminate",
-          "meaning": {
-            "en": "Lay laminate",
-            "ru": "Укладка ламината",
-            "uz": "Laminat ukladka qilish"
-          },
-          "qty": 18,
-          "surface": "floor",
-          "text": "Laminat ukladka 18 kv x 40 000",
-          "total_uzs": 720000,
-          "unit": "m2",
-          "unit_price_uzs": 40000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "fl_skirting",
-          "meaning": {
-            "en": "Fit skirting boards",
-            "ru": "Установка плинтуса",
-            "uz": "Plintus o'rnatish"
-          },
-          "qty": 16,
-          "surface": "none",
-          "text": "Plintus 16 m x 15 000",
-          "total_uzs": 240000,
-          "unit": "m",
-          "unit_price_uzs": 15000
-        },
-        {
-          "includes_materials": true,
-          "item_id": "cl_stretch",
-          "meaning": {
-            "en": "Stretch ceiling with materials",
-            "ru": "Натяжной потолок с материалом",
-            "uz": "Materiali bilan natyajnoy patolok"
-          },
-          "qty": 16,
-          "surface": "ceiling",
-          "text": "Natyajinoy patalok 16 kv x 95 000 (material bilan)",
-          "total_uzs": 1520000,
-          "unit": "m2",
-          "unit_price_uzs": 95000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "el_socket",
-          "meaning": {
-            "en": "Fit sockets and switches",
-            "ru": "Установка розеток и выключателей",
-            "uz": "Rozetka va viklyuchatel o'rnatish"
-          },
-          "qty": 6,
-          "surface": "none",
-          "text": "Rozetka, vikl. 6 ta x 50 000",
-          "total_uzs": 300000,
-          "unit": "pcs",
-          "unit_price_uzs": 50000
-        },
-        {
-          "includes_materials": false,
-          "item_id": "debris",
-          "meaning": {
-            "en": "Haul away rubble",
-            "ru": "Вывоз мусора",
-            "uz": "Musor vivoz qilish"
-          },
-          "qty": 0,
-          "surface": "none",
-          "text": "Musor vivoz",
-          "total_uzs": 400000,
-          "unit": "job",
-          "unit_price_uzs": 0
-        }
-      ],
-      "notes": [
-        {
-          "en": "Line totals sum to 10 380 000, but Jami written as 10 880 000, difference 500 000",
-          "ru": "Сумма строк 10 380 000, а итог написан 10 880 000, разница 500 000",
-          "uz": "Qatorlar yig'indisi 10 380 000 chiqadi, lekin Jami 10 880 000 deb yozilgan, farq 500 000"
-        },
-        {
-          "en": "70% advance payment requested upfront",
-          "ru": "Просят аванс 70% заранее",
-          "uz": "Oldindan 70% avans so'ralgan"
-        }
-      ],
-      "total_uzs": 10880000,
-      "usta": "Usta Baxtiyor"
-    },
-    "at": "2026-10-28T05:34:28.081Z",
-    "counter": {
-      "ru": "Ассалому алайкум, Уста Бахтиёр ака!\nПомерил комнату: стены не 48, а 36.8 м2, пол не 18, а 15.3 м2.\nЦены тоже выше обычных: сдирка 15 000 (около 12 000), штукатурка 60 000 (около 45 000), шпаклевка 45 000 (около 35 000), покраска 30 000, ламинат 40 000, розетки 50 000 (около 30 000).\nИтого написано 10 880 000, это на 500 000 больше суммы строк, наверное ошибка.\nЕсли за эту же работу будет около 7 200 000, я согласен.\nВместо большого аванса можно я оплачу материалы сразу, а остальное поэтапно?\nСбивка штукатурки, демонтаж пола, плинтуса и деревянного окна, штроба с кабелем и подрозетником, щиток с автоматами, замена радиатора входят или посчитаются отдельно?\nЧто входит в вывоз мусора? Жду исправленную смету, спасибо.",
-      "uz": "Assalomu alaykum, Usta Baxtiyor aka!\nXonani o'lchadim: devor 48 emas 36.8 m2, pol 18 emas 15.3 m2 ekan.\nNarxlar ham yuqori: sidirish 15 000 (12 000), shtukaturka 60 000 (45 000), shpaklyovka 45 000 (35 000), kraska 30 000, laminat 40 000, rozetka 50 000 (30 000) atrofida.\nJami 10 880 000 yozilibdi, qatorlar yig'indisidan 500 000 ko'p, adashgan bo'lsa kerak.\nShu ishga 7 200 000 atrofida kelishsak bo'ladimi?\nKatta avans o'rniga material pulini oldindan, qolganini bosqichma-bosqich to'lasam maylimi?\nSuvok ko'chirish, eski pol, plintus, yog'och deraza sökish, shtroba+kabel+podrozetnik, avtomatli shit, radiator almashtirish ichidami yoki alohida?\nMusor vivoz nimani o'z ichiga oladi? To'g'irlangan smeta kutaman, rahmat.",
-      "created": "2026-10-28T05:34:36.367Z"
-    }
+  "modern|beige": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_modern_beige_1793452615842.webp",
+   "frame": 10,
+   "style": "modern style: clean lines, simple handle-less furniture, a few dark metal accents, warm hidden lighting, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "look": {
+    "style": "modern",
+    "color": "beige"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:06.750Z"
   },
-  "board": {
-    "demolition": {
-      "status": "agreed",
-      "calls": [],
-      "price": 1700000,
-      "usta": {
-        "name": "Akmal aka"
-      }
-    },
-    "electrician": {
-      "status": "talked",
-      "calls": []
-    }
+  "classic|beige": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_classic_beige_1793452615881.webp",
+   "frame": 10,
+   "style": "classic style: warm cream walls with wall mouldings, wooden furniture, a soft rug, brass light fittings, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "look": {
+    "style": "classic",
+    "color": "beige"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:08.460Z"
+  },
+  "minimal|beige": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_minimal_beige_1793452628463.webp",
+   "frame": 10,
+   "style": "minimalist style: almost empty, white and very light grey, built-in storage, no decor clutter, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "look": {
+    "style": "minimal",
+    "color": "beige"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:19.013Z"
+  },
+  "loft|beige": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_loft_beige_1793452626753.webp",
+   "frame": 10,
+   "style": "loft style: one wall of exposed red brick, black metal details, concrete-grey tones, Edison bulbs, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "look": {
+    "style": "loft",
+    "color": "beige"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:19.045Z"
+  },
+  "sharq|beige": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_sharq_beige_1793452639015.webp",
+   "frame": 10,
+   "style": "modern Uzbek style: warm walls, a carved wooden panel or door detail, an ikat-pattern cushion or rug, blue and terracotta accents, kept modern and light, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour soft warm beige",
+   "look": {
+    "style": "sharq",
+    "color": "beige"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:30.369Z"
+  },
+  "scandi|white": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_scandi_white_1793452639047.webp",
+   "frame": 10,
+   "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour warm white",
+   "look": {
+    "style": "scandi",
+    "color": "white"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:32.020Z"
+  },
+  "scandi|grey": {
+   "before": "hero_10.jpg",
+   "after": "render_pre_scandi_grey_1793452650373.webp",
+   "frame": 10,
+   "style": "Scandinavian style: bright and airy, pale oak wood, white and soft beige, linen textiles, green plants, simple, affordable finishes, smooth painted walls, natural oak laminate floor, flat white matte stretch ceiling with small spot lights, new white PVC window with a white sill, new interior door, slim modern white radiator, main wall colour light grey",
+   "look": {
+    "style": "scandi",
+    "color": "grey"
+   },
+   "change": null,
+   "at": "2026-10-31T13:17:42.195Z"
   }
+ }
 }

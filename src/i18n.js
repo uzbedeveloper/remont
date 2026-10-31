@@ -392,6 +392,7 @@ const D = {
   pr_on_d: ["Barcha uslublar oldindan chizilgan: bosing va darhol ko'ring.", 'Все стили нарисованы заранее: нажмите и сразу смотрите.', 'Every style is drawn ahead: tap and see it at once.'],
   pr_progress: ["Oldindan chizilmoqda: {d} / {n} tayyor", 'Рисуем заранее: готово {d} из {n}', 'Drawing ahead: {d} of {n} ready'],
   pr_ready: ['tayyor', 'готово', 'ready'],
+  pr_public: ["Bu demo saytda Premium namuna xonada ishlaydi. Ishga tushgach, har bir xona uchun bo'ladi.", 'На демо-сайте Premium работает в примере комнаты. После запуска будет для каждой комнаты.', 'On this demo site, Premium works in the sample room. After launch it will work for every room.'],
   fs_title: ["Yozuv o'lchami", 'Размер текста', 'Text size'],
   fs_s: ['Kichik', 'Мелкий', 'Small'],
   fs_m: ["O'rta", 'Средний', 'Medium'],

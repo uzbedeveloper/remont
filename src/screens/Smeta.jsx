@@ -314,7 +314,7 @@ export default function Smeta({ project, setProject, config, go }) {
               <span className="grow">
                 <b>{t('pr_title')}</b>
                 <span className="tiny">{project.premium
-                  ? (preRunning ? t('pr_progress', { d: project.pre.done, n: project.pre.total }) : t('pr_on_d'))
+                  ? (preRunning ? t('pr_progress', { d: project.pre.done, n: project.pre.total }) : config.public && !project.ready ? t('pr_public') : t('pr_on_d'))
                   : t('pr_off_d')}</span>
               </span>
               <span className="switch"><i /></span>
