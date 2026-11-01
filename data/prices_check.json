@@ -1,0 +1,223 @@
+{
+ "built": "2026-11-01",
+ "messages": 1672,
+ "quotes": 135,
+ "note": "Labour prices per unit from public Telegram renovation groups, read by Muse Spark. crew = what a foreman pays ustas on big jobs; offers = what ustas ask owners.",
+ "items": [
+  {
+   "id": "pls_plaster",
+   "name": {
+    "en": "Level walls with gypsum plaster",
+    "uz": "Devorni gipsli suvoq bilan tekislash",
+    "ru": "Выравнивание стен гипсовой штукатуркой"
+   },
+   "unit": "m2",
+   "ours": 45000,
+   "n": 46,
+   "crew": {
+    "n": 43,
+    "median": 30000,
+    "low": 26000,
+    "high": 30000
+   },
+   "offers": {
+    "n": 3,
+    "median": 35000,
+    "low": 35000,
+    "high": 35000
+   },
+   "last": "2026-10-30"
+  },
+  {
+   "id": "pls_putty",
+   "name": {
+    "en": "Skim coat, 2 layers, sanded",
+    "uz": "Shpaklyovka, 2 qatlam, silliqlash bilan",
+    "ru": "Шпаклёвка в 2 слоя со шлифовкой"
+   },
+   "unit": "m2",
+   "ours": 35000,
+   "n": 19,
+   "crew": {
+    "n": 18,
+    "median": 35000,
+    "low": 30000,
+    "high": 45000
+   },
+   "offers": {
+    "n": 1,
+    "median": 40000,
+    "low": 40000,
+    "high": 40000
+   },
+   "last": "2026-10-27"
+  },
+  {
+   "id": "tl_floor",
+   "name": {
+    "en": "Tile the floor",
+    "uz": "Polga kafel yotqizish",
+    "ru": "Укладка плитки на пол"
+   },
+   "unit": "m2",
+   "ours": 90000,
+   "n": 19,
+   "crew": {
+    "n": 18,
+    "median": 60000,
+    "low": 60000,
+    "high": 60000
+   },
+   "offers": {
+    "n": 1,
+    "median": 60000,
+    "low": 60000,
+    "high": 60000
+   },
+   "last": "2026-10-27"
+  },
+  {
+   "id": "tl_wall",
+   "name": {
+    "en": "Tile the walls",
+    "uz": "Devorga kafel yotqizish",
+    "ru": "Укладка плитки на стены"
+   },
+   "unit": "m2",
+   "ours": 100000,
+   "n": 12,
+   "crew": {
+    "n": 12,
+    "median": 70000,
+    "low": 70000,
+    "high": 90000
+   },
+   "offers": null,
+   "last": "2026-10-28"
+  },
+  {
+   "id": "wd_slopes",
+   "name": {
+    "en": "Finish the window reveals",
+    "uz": "Rom atrofini (otkos) pardozlash",
+    "ru": "Отделка оконных откосов"
+   },
+   "unit": "m",
+   "ours": 60000,
+   "n": 7,
+   "crew": {
+    "n": 7,
+    "median": 30000,
+    "low": 15000,
+    "high": 35000
+   },
+   "offers": null,
+   "last": "2026-10-01"
+  },
+  {
+   "id": "fl_screed",
+   "name": {
+    "en": "Floor screed, up to 3 cm",
+    "uz": "Polga styajka quyish, 3 sm gacha",
+    "ru": "Стяжка пола до 3 см"
+   },
+   "unit": "m2",
+   "ours": 45000,
+   "n": 5,
+   "crew": {
+    "n": 5,
+    "median": 30000,
+    "low": 25000,
+    "high": 35000
+   },
+   "offers": null,
+   "last": "2026-10-18"
+  },
+  {
+   "id": "pt_wall_paint",
+   "name": {
+    "en": "Paint walls, 2 coats",
+    "uz": "Devorni 2 qatlam bo'yash",
+    "ru": "Покраска стен в 2 слоя"
+   },
+   "unit": "m2",
+   "ours": 25000,
+   "n": 4,
+   "crew": {
+    "n": 2,
+    "median": 6500,
+    "low": 5000,
+    "high": 8000
+   },
+   "offers": {
+    "n": 2,
+    "median": 20000,
+    "low": 20000,
+    "high": 20000
+   },
+   "last": "2026-10-27"
+  },
+  {
+   "id": "el_light",
+   "name": {
+    "en": "Fit a light or spot",
+    "uz": "Chiroq yoki spot o'rnatish",
+    "ru": "Установка светильника или спота"
+   },
+   "unit": "pcs",
+   "ours": 50000,
+   "n": 3,
+   "crew": null,
+   "offers": {
+    "n": 3,
+    "median": 60000,
+    "low": 55000,
+    "high": 80000
+   },
+   "last": "2026-10-14"
+  },
+  {
+   "id": "fl_laminate",
+   "name": {
+    "en": "Lay laminate with underlay",
+    "uz": "Laminatni podlojka bilan yotqizish",
+    "ru": "Укладка ламината с подложкой"
+   },
+   "unit": "m2",
+   "ours": 35000,
+   "n": 3,
+   "crew": {
+    "n": 3,
+    "median": 20000,
+    "low": 20000,
+    "high": 20000
+   },
+   "offers": null,
+   "last": "2026-09-26"
+  },
+  {
+   "id": "pt_wallpaper",
+   "name": {
+    "en": "Hang wallpaper",
+    "uz": "Gulqog'oz yopishtirish",
+    "ru": "Поклейка обоев"
+   },
+   "unit": "m2",
+   "ours": 30000,
+   "n": 3,
+   "crew": {
+    "n": 1,
+    "median": 25000,
+    "low": 25000,
+    "high": 25000
+   },
+   "offers": {
+    "n": 2,
+    "median": 35000,
+    "low": 25000,
+    "high": 45000
+   },
+   "last": "2026-10-27"
+  }
+ ]
+}
