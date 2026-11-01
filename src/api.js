@@ -6,6 +6,8 @@ async function json(res) {
 }
 
 export const getConfig = () => fetch('/api/config').then(json);
+export const browse = ({ type, cat, district, q, offset = 0 }) =>
+  fetch(`/api/browse?type=${type}&cat=${cat || ''}&district=${encodeURIComponent(district || '')}&q=${encodeURIComponent(q || '')}&offset=${offset}&limit=24`).then(json);
 export const getUstas = (trade, district, offset = 0) =>
   fetch(`/api/ustas?trade=${trade}&district=${encodeURIComponent(district || '')}&offset=${offset}&limit=8`).then(json);
 export const getProject = id => fetch(`/api/project/${id}`).then(json);

@@ -1,0 +1,2075 @@
+{
+ "built": "2026-11-01",
+ "sources": {
+  "channels": 0,
+  "groups": 0,
+  "candidates": 120
+ },
+ "stores": [
+  {
+   "id": "998902969795",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Construction equipment rental",
+    "ru": "Аренда строительной техники",
+    "uz": "Qurilish texnikasi ijarasi"
+   },
+   "phone": "998902969795",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998995319002",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of aerated concrete blocks",
+    "ru": "Продажа газобетонных блоков",
+    "uz": "Gazoblok sotuvchisi"
+   },
+   "phone": "998995319002",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "Nureluz",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of electrical equipment",
+    "ru": "Продажа электрооборудования",
+    "uz": "Elektrotexnika sotuvchisi"
+   },
+   "phone": null,
+   "tg": "@Nureluz",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "sabina_r_a",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of electrical panels",
+    "ru": "Продажа электрических щитов",
+    "uz": "Elektroshitlar sotuvchisi"
+   },
+   "phone": null,
+   "tg": "@sabina_r_a",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998994869525",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of Legrand electrical products",
+    "ru": "Продажа электротоваров Legrand",
+    "uz": "Legrand elektrotexnika sotuvchisi"
+   },
+   "phone": "998994869525",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998712000029",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling sockets, switches and frames",
+    "ru": "Магазин розеток, выключателей и рамок",
+    "uz": "Rozetka, viklyuchatel va ramkalar do'koni"
+   },
+   "phone": "998712000029",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998883310015",
+   "name": null,
+   "cats": [
+    "furniture"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Wooden furniture maker",
+    "ru": "Изготовление деревянной мебели",
+    "uz": "Yog'och mebel ishlab chiqaruvchisi"
+   },
+   "phone": "998883310015",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "Recver19",
+   "name": "Valfex",
+   "cats": [
+    "plumbing"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Valfex plumbing materials shop",
+    "ru": "Магазин сантехники Valfex",
+    "uz": "Valfex santexnika materiallari do'koni"
+   },
+   "phone": null,
+   "tg": "@Recver19",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998336912006",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling first and second grade tiles",
+    "ru": "Магазин кафельной плитки 1 и 2 сорта",
+    "uz": "1- va 2-sort kafel sotadigan do'kon"
+   },
+   "phone": "998336912006",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998951717171",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of Schneider circuit breakers",
+    "ru": "Продавец автоматов Schneider",
+    "uz": "Schneider avtomatlarini sotadi"
+   },
+   "phone": "998951717171",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998973765353",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Door manufacturer and seller",
+    "ru": "Производитель и продавец дверей",
+    "uz": "Eshik ishlab chiqaruvchi va sotuvchi"
+   },
+   "phone": "998973765353",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "MAXYUSEL581379",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Construction materials store",
+    "ru": "Магазин строительных материалов",
+    "uz": "Qurilish materiallari do'koni"
+   },
+   "phone": null,
+   "tg": "@MAXYUSEL581379",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998200005401",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Cement seller",
+    "ru": "Продавец цемента",
+    "uz": "Sement sotuvchi"
+   },
+   "phone": "998200005401",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998900241666",
+   "name": "Lutfulloh",
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": "Orikzor",
+   "city": "tashkent",
+   "about": {
+    "en": "Building materials shop at Orikzor",
+    "ru": "Магазин стройматериалов на Орикзоре",
+    "uz": "Orikzordagi qurilish materiallari do'koni"
+   },
+   "phone": "998900241666",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998338398181",
+   "name": null,
+   "cats": [
+    "ceiling"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Workshop selling gypsum moldings with installation",
+    "ru": "Мастерская по продаже и установке гипсовых молдингов",
+    "uz": "Gips qoliplarini o'rnatish bilan sotadigan ustaxona"
+   },
+   "phone": "998338398181",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998997370001",
+   "name": "Hasan",
+   "cats": [
+    "heating",
+    "plumbing"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling plumbing and heating materials",
+    "ru": "Магазин сантехники и материалов для отопления",
+    "uz": "Santexnika va isitish materiallari sotadigan do'kon"
+   },
+   "phone": "998997370001",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998889404404",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Power tool rental for repair masters",
+    "ru": "Аренда электроинструмента для мастеров",
+    "uz": "Ustalar uchun elektr asboblar ijarasi"
+   },
+   "phone": "998889404404",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998909697227",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Stainless steel chimneys for boilers from maker",
+    "ru": "Дымоходы из нержавейки для котлов от производителя",
+    "uz": "Qozonlar uchun nerjaveyka mo'rilar ishlab chiqaruvchidan"
+   },
+   "phone": "998909697227",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998735152222",
+   "name": null,
+   "cats": [
+    "furniture"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Furniture and jewelry store with installment plans",
+    "ru": "Магазин мебели и ювелирных изделий в рассрочку",
+    "uz": "Mebel va zargarlik do'koni nasiya savdo bilan"
+   },
+   "phone": "998735152222",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998937817040",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Ventilation dampers from maker",
+    "ru": "Вентиляционные заслонки от производителя",
+    "uz": "Ventilyatsiya zaslonkalari ishlab chiqaruvchidan"
+   },
+   "phone": "998937817040",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "oikosuzbekistan",
+   "name": null,
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling finishing materials",
+    "ru": "Магазин отделочных материалов",
+    "uz": "Pardozlash materiallari sotadigan do'kon"
+   },
+   "phone": null,
+   "tg": "@oikosuzbekistan",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998944101517",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Construction materials delivery shop",
+    "ru": "Магазин доставки строительных материалов",
+    "uz": "Qurilish materiallari yetkazib beradigan do'kon"
+   },
+   "phone": "998944101517",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998930000037",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Solar panel seller",
+    "ru": "Продавец солнечных панелей",
+    "uz": "Quyosh panellari sotuvchisi"
+   },
+   "phone": "998930000037",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "SAIDAKMAL_GS",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Laminate flooring seller, warehouse in Tashkent",
+    "ru": "Продавец ламината, склад в Ташкенте",
+    "uz": "Toshkentda laminat sotuvchisi, ombor"
+   },
+   "phone": null,
+   "tg": "@SAIDAKMAL_GS",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998952416600",
+   "name": null,
+   "cats": [
+    "plumbing",
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Plumbing and heating materials store",
+    "ru": "Магазин сантехники и отопления",
+    "uz": "Santexnika va isitish materiallari do'koni"
+   },
+   "phone": "998952416600",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998944025252",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent_region",
+   "about": {
+    "en": "Construction materials delivery in Olmalik",
+    "ru": "Доставка стройматериалов в Алмалыке",
+    "uz": "Olmaliqda qurilish materiallari yetkazib berish"
+   },
+   "phone": "998944025252",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "Odilbek12_10",
+   "name": null,
+   "cats": [
+    "furniture"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shoe organizer seller",
+    "ru": "Продавец органайзеров для обуви",
+    "uz": "Poyabzal uchun organizer sotuvchisi"
+   },
+   "phone": null,
+   "tg": "@Odilbek12_10",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998972667677",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Door and staircase shop",
+    "ru": "Магазин дверей и лестниц",
+    "uz": "Eshik va zinapoya do'koni"
+   },
+   "phone": "998972667677",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998773319",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling screws and anchor bolts",
+    "ru": "Магазин винтов и анкерных болтов",
+    "uz": "Vint va anker boltlar sotadigan do'kon"
+   },
+   "phone": "998998773319",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998231000",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling glass door hardware",
+    "ru": "Магазин фурнитуры для стеклянных дверей",
+    "uz": "Shisha eshiklar uchun furnitura sotadigan do'kon"
+   },
+   "phone": "998998231000",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998559997676",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Online store selling electrical products",
+    "ru": "Онлайн-магазин электротоваров",
+    "uz": "Elektrotexnika mahsulotlari onlayn do'koni"
+   },
+   "phone": "998559997676",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998778400213",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tile and plaster adhesives with delivery",
+    "ru": "Клей для плитки и штукатурки с доставкой",
+    "uz": "Kafel va gips yelimlari yetkazib berish bilan"
+   },
+   "phone": "998778400213",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998772883300",
+   "name": null,
+   "cats": [
+    "tools",
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tools and building materials for sale",
+    "ru": "Инструменты и стройматериалы на продажу",
+    "uz": "Asboblar va qurilish materiallari sotiladi"
+   },
+   "phone": "998772883300",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998935702027",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tile glue, bitumen and putty shop",
+    "ru": "Магазин плиточного клея, битума и шпаклевки",
+    "uz": "Kafel yelimi, bitum va shpaklyovka do'koni"
+   },
+   "phone": "998935702027",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998507286000",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling compressors",
+    "ru": "Магазин по продаже компрессоров",
+    "uz": "Kompressorlar sotadigan do'kon"
+   },
+   "phone": "998507286000",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998977958884",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Natural stone and granite shop",
+    "ru": "Магазин натурального камня и гранита",
+    "uz": "Tabiiy tosh va granit do'koni"
+   },
+   "phone": "998977958884",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998879651",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Heating boilers for sale",
+    "ru": "Отопительные котлы на продажу",
+    "uz": "Isitish qozonlari sotiladi"
+   },
+   "phone": "998998879651",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998949560521",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tiles and paving stones seller",
+    "ru": "Продавец плитки и брусчатки",
+    "uz": "Kafel va yulka toshlari sotuvchisi"
+   },
+   "phone": "998949560521",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998934694577",
+   "name": null,
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Wholesale emulsions, travertine and primers shop",
+    "ru": "Оптомагазин эмульсий, травертина и грунтовок",
+    "uz": "Emulsiya, travertin va gruntovka ulgurji do'koni"
+   },
+   "phone": "998934694577",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998916840800",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Ceramic granite tiles shop",
+    "ru": "Магазин керамогранита",
+    "uz": "Keramogranit kafel do'koni"
+   },
+   "phone": "998916840800",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998887804455",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Natural marble products, location not specified",
+    "ru": "Изделия из натурального мрамора, локация не указана",
+    "uz": "Tabiiy marmar mahsulotlari, joyi ko'rsatilmagan"
+   },
+   "phone": "998887804455",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998772994545",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Wholesale lighting supplier with promo, location not specified",
+    "ru": "Оптовый поставщик освещения с акцией, локация не указана",
+    "uz": "Aksiyali yoritish ulgurji yetkazib beruvchisi, joyi ko'rsatilmagan"
+   },
+   "phone": "998772994545",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998935969605",
+   "name": null,
+   "cats": [
+    "materials",
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Drywall and building materials with delivery, location not specified",
+    "ru": "Гипсокартон и стройматериалы с доставкой, локация не указана",
+    "uz": "Yetkazib berish bilan gipsokarton va qurilish materiallari, joyi ko'rsatilmagan"
+   },
+   "phone": "998935969605",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "niko906090",
+   "name": null,
+   "cats": [
+    "doors_windows",
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Supplier of window joint materials, location not specified",
+    "ru": "Поставщик материалов для оконных швов, локация не указана",
+    "uz": "Deraza choklari uchun materiallar yetkazib beruvchisi, joyi ko'rsatilmagan"
+   },
+   "phone": null,
+   "tg": "@niko906090",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998084800",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Roll waterproofing in stock in Tashkent",
+    "ru": "Рулонная гидроизоляция в наличии в Ташкенте",
+    "uz": "Toshkentda mavjud rulonli gidroizolyatsiya"
+   },
+   "phone": "998998084800",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998621110",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Glass door hardware shop, location not specified",
+    "ru": "Магазин фурнитуры для стеклянных дверей, локация не указана",
+    "uz": "Shisha eshiklar uchun furnitura do'koni, joyi ko'rsatilmagan"
+   },
+   "phone": "998998621110",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998983064346",
+   "name": "Umidjon",
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Wallpaper shop with delivery and wallpapering service",
+    "ru": "Магазин обоев с доставкой и поклейкой",
+    "uz": "Yetkazib berish va yopishtirish xizmati bilan oboy do'koni"
+   },
+   "phone": "998983064346",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998947130088",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of mini scaffolds for craftsmen",
+    "ru": "Продавец мини-лесов для мастеров",
+    "uz": "Ustalar uchun mini iskala sotuvchisi"
+   },
+   "phone": "998947130088",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998994439004",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of perforated bricks",
+    "ru": "Продавец перфорированного кирпича",
+    "uz": "Teshikli g'isht sotuvchisi"
+   },
+   "phone": "998994439004",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998581408",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Seller of finishing mixes with delivery in Tashkent",
+    "ru": "Продавец отделочных смесей с доставкой по Ташкенту",
+    "uz": "Toshkentda yetkazib berish bilan pardoz aralashmalari sotuvchisi"
+   },
+   "phone": "998998581408",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998908152060",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of ATOM B VRF systems",
+    "ru": "Продавец VRF-систем ATOM B",
+    "uz": "ATOM B VRF tizimlari sotuvchisi"
+   },
+   "phone": "998908152060",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "Rovshik42",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of metal siding for facades",
+    "ru": "Продавец металлического сайдинга для фасадов",
+    "uz": "Fasad uchun metal sayding sotuvchisi"
+   },
+   "phone": null,
+   "tg": "@Rovshik42",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998941634403",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of 60x60 tile skirting",
+    "ru": "Продавец плиточного плинтуса 60x60",
+    "uz": "60x60 kafel plintus sotuvchisi"
+   },
+   "phone": "998941634403",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998977021161",
+   "name": "Nuriddin",
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Wallpaper shop",
+    "ru": "Магазин обоев",
+    "uz": "Oboy do'koni"
+   },
+   "phone": "998977021161",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998943221005",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tile cutter shop",
+    "ru": "Магазин плиткорезов",
+    "uz": "Plitka kesadigan asboblar do'koni"
+   },
+   "phone": "998943221005",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998951853636",
+   "name": null,
+   "cats": [
+    "furniture"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Decorative Roman columns shop",
+    "ru": "Магазин декоративных римских колонн",
+    "uz": "Dekorativ rim ustunlari do'koni"
+   },
+   "phone": "998951853636",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998971970009",
+   "name": null,
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Wallpaper shop in Tashkent",
+    "ru": "Магазин обоев в Ташкенте",
+    "uz": "Toshkentda oboylar do'koni"
+   },
+   "phone": "998971970009",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998993072006",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Electric heating boilers shop",
+    "ru": "Магазин электрических отопительных котлов",
+    "uz": "Elektr isitish qozonlari do'koni"
+   },
+   "phone": "998993072006",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "abdulloho1",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tiles, laminate and flooring shop",
+    "ru": "Магазин плитки, ламината и напольных покрытий",
+    "uz": "Plitka, laminat va pol qoplamalari do'koni"
+   },
+   "phone": null,
+   "tg": "@abdulloho1",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998910174004",
+   "name": "Knauf",
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Knauf drywall sheets shop",
+    "ru": "Магазин гипсокартона Knauf",
+    "uz": "Knauf gipsokarton listlari do'koni"
+   },
+   "phone": "998910174004",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998712097007",
+   "name": "ARBOSS",
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "ARBOSS facade acrylic paint shop",
+    "ru": "Магазин фасадной акриловой краски ARBOSS",
+    "uz": "ARBOSS fasad akril bo'yoqlari do'koni"
+   },
+   "phone": "998712097007",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998900992335",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Scissor lift sale and rental",
+    "ru": "Продажа и аренда ножничных подъемников",
+    "uz": "Qaychili yuk ko'targich savdosi va ijarasi"
+   },
+   "phone": "998900992335",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998770001717",
+   "name": null,
+   "cats": [
+    "paint_walls",
+    "ceiling"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Wall and ceiling decor panels shop",
+    "ru": "Магазин декоративных панелей для стен и потолка",
+    "uz": "Devor va shift dekor panellari do'koni"
+   },
+   "phone": "998770001717",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998977142255",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Aluminium and bimetallic radiators shop",
+    "ru": "Магазин алюминиевых и биметаллических радиаторов",
+    "uz": "Alyumin va bimetall radiatorlar do'koni"
+   },
+   "phone": "998977142255",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998971438644",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Lighting store in Tashkent, sale of lamps and chandeliers",
+    "ru": "Магазин освещения в Ташкенте, продажа светильников и люстр",
+    "uz": "Toshkentda yoritish do'koni, chiroqlar va lyustralar sotiladi"
+   },
+   "phone": "998971438644",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998977737576",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Tool rental with delivery in Tashkent",
+    "ru": "Аренда инструментов с доставкой в Ташкенте",
+    "uz": "Toshkentda asboblar ijarasi, yetkazib berish bilan"
+   },
+   "phone": "998977737576",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998996466956",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Blinds shop, made-to-order blinds with installation",
+    "ru": "Магазин жалюзи на заказ с установкой",
+    "uz": "Jalyuzi do'koni, buyurtma asosida tayyorlash va o'rnatish bilan"
+   },
+   "phone": "998996466956",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998770580690",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Factory selling hollow burnt bricks",
+    "ru": "Завод по продаже пустотелого жженого кирпича",
+    "uz": "Kovak pishgan g'isht sotadigan zavod"
+   },
+   "phone": "998770580690",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998330061212",
+   "name": null,
+   "cats": [
+    "heating"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling floor-standing boilers",
+    "ru": "Магазин напольных котлов",
+    "uz": "Polga o'rnatiladigan qozonlar sotadigan do'kon"
+   },
+   "phone": "998330061212",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998949961949",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling decorative and solar lights",
+    "ru": "Магазин декоративных светильников и светильников на солнечных батареях",
+    "uz": "Dekorativ va quyosh panelli chiroqlar sotadigan do'kon"
+   },
+   "phone": "998949961949",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998771218888",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Metal products shop with delivery",
+    "ru": "Магазин metalлопродукции с доставкой",
+    "uz": "Metall mahsulotlar do'koni, yetkazib berish bilan"
+   },
+   "phone": "998771218888",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998878737",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Door shop selling doors",
+    "ru": "Магазин дверей",
+    "uz": "Eshiklar sotadigan do'kon"
+   },
+   "phone": "998998878737",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998777412366",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling aerated concrete blocks (gazoblok)",
+    "ru": "Магазин газоблоков",
+    "uz": "Gazoblok sotadigan do'kon"
+   },
+   "phone": "998777412366",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998999999299",
+   "name": null,
+   "cats": [
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling paints and finishing materials",
+    "ru": "Магазин лакокрасочных и отделочных материалов",
+    "uz": "Bo'yoq va pardozlash materiallari sotadigan do'kon"
+   },
+   "phone": "998999999299",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998935312172",
+   "name": null,
+   "cats": [
+    "ceiling",
+    "paint_walls"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling ceiling drywall",
+    "ru": "Магазин потолочного гипсокартона",
+    "uz": "Shift uchun gipsokarton sotadigan dokon"
+   },
+   "phone": "998935312172",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998997000059",
+   "name": null,
+   "cats": [
+    "plumbing"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling plumbing materials with delivery",
+    "ru": "Магазин сантехники с доставкой",
+    "uz": "Yetkazib berish bilan santexnika sotadigan dokon"
+   },
+   "phone": "998997000059",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998946666621",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Metal shop selling profiles, pipes and angles",
+    "ru": "Магазин металла - профили, трубы и уголки",
+    "uz": "Profil, quvur va burchak sotadigan metal dokon"
+   },
+   "phone": "998946666621",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998200070065",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Construction materials seller with delivery",
+    "ru": "Продавец стройматериалов с доставкой",
+    "uz": "Yetkazib berish bilan qurilish materiallari sotuvchisi"
+   },
+   "phone": "998200070065",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998909557681",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of metal angles from the factory",
+    "ru": "Продавец металлических уголков с завода",
+    "uz": "Zavoddan metal burchaklar sotuvchisi"
+   },
+   "phone": "998909557681",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998888059500",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Manufacturer selling tactile PVC tiles",
+    "ru": "Производитель тактильной ПВХ-плитки",
+    "uz": "Taktil PVX plitka sotadigan ishlab chiqaruvchi"
+   },
+   "phone": "998888059500",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998935135665",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Tool rental service",
+    "ru": "Прокат инструментов",
+    "uz": "Asbob ijarasi xizmati"
+   },
+   "phone": "998935135665",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998936432555",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "tashkent",
+   "about": {
+    "en": "Tile glue seller in Tashkent",
+    "ru": "Продавец плиточного клея в Ташкенте",
+    "uz": "Toshkentda kafel kleye sotuvchisi"
+   },
+   "phone": "998936432555",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998235757",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Building materials shop hiring a seller",
+    "ru": "Магазин стройматериалов, требуется продавец",
+    "uz": "Qurilish mollari do'koni, sotuvchi kerak"
+   },
+   "phone": "998998235757",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998998499919",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of CONCH cement with delivery",
+    "ru": "Продавец цемента CONCH с доставкой",
+    "uz": "CONCH sementini yetkazib berish bilan sotuvchi"
+   },
+   "phone": "998998499919",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998880201212",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Manufacturer selling basalt geogrid",
+    "ru": "Производитель базальтовой геосетки",
+    "uz": "Bazalt geosetka sotadigan ishlab chiqaruvchi"
+   },
+   "phone": "998880201212",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998948880123",
+   "name": "Ultra Beton",
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Ultra Beton selling concrete, asphalt, slabs and blocks",
+    "ru": "Ultra Beton - бетон, асфальт, плиты и блоки",
+    "uz": "Ultra Beton, beton, asfalt, plita va blok sotiladi"
+   },
+   "phone": "998948880123",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998913639500",
+   "name": null,
+   "cats": [
+    "doors_windows"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Door shop with delivery and installation",
+    "ru": "Магазин дверей с доставкой и установкой",
+    "uz": "Yetkazib berish va o'rnatish bilan eshik do'koni"
+   },
+   "phone": "998913639500",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998977220630",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of cement and building mixes with delivery",
+    "ru": "Продавец цемента и строительных смесей с доставкой",
+    "uz": "Sement va qurilish aralashmalarini yetkazib berish bilan sotuvchi"
+   },
+   "phone": "998977220630",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998956415070",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Seller of concrete slabs, columns and blocks",
+    "ru": "Продавец бетонных плит, колонн и блоков",
+    "uz": "Beton plitalar, kolonnalar va bloklar sotuvchisi"
+   },
+   "phone": "998956415070",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998883656699",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Marble and granite for sale with delivery",
+    "ru": "Мрамор и гранит с доставкой",
+    "uz": "Marmar va granit sotiladi, dostavka bilan"
+   },
+   "phone": "998883656699",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "Realman23",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Welding machines for sale",
+    "ru": "Сварочные аппараты на продажу",
+    "uz": "Svarochniy apparatlar sotiladi"
+   },
+   "phone": null,
+   "tg": "@Realman23",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "Elektronchik",
+   "name": null,
+   "cats": [
+    "electrical"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Ready elevator electrical panels for sale",
+    "ru": "Готовые электрические панели для лифтов на продажу",
+    "uz": "Lift uchun tayyor elektr shitlar sotiladi"
+   },
+   "phone": null,
+   "tg": "@Elektronchik",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998208300000",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Rebar from Russian factories for sale",
+    "ru": "Арматура с российских заводов на продажу",
+    "uz": "Rossiya zavodlaridan armatura sotiladi"
+   },
+   "phone": "998208300000",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998935991555",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Welding equipment and sourcing from China",
+    "ru": "Сварочное оборудование и доставка из Китая",
+    "uz": "Svarochniy uskunalar sotiladi, Xitoydan olib kelish bilan"
+   },
+   "phone": "998935991555",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998977352002",
+   "name": "Lider Les",
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Lumber and plywood with delivery",
+    "ru": "Пиломатериалы и фанера с доставкой",
+    "uz": "Lider Les - yog'och materiallar va fanera, dostavka bilan"
+   },
+   "phone": "998977352002",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998958004644",
+   "name": null,
+   "cats": [
+    "tiles_floor"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Shop selling parquet and tarkett glue",
+    "ru": "Магазин - паркет и клей для таркетта",
+    "uz": "Magazin - parket va tarkett kleyi sotiladi"
+   },
+   "phone": "998958004644",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "d_a1602",
+   "name": null,
+   "cats": [
+    "tools"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Welding protection spray for sale",
+    "ru": "Сварочный защитный спрей на продажу",
+    "uz": "Svarka uchun himoya spreyi sotiladi"
+   },
+   "phone": null,
+   "tg": "@d_a1602",
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  },
+  {
+   "id": "998889875050",
+   "name": null,
+   "cats": [
+    "materials"
+   ],
+   "districts": [],
+   "market": null,
+   "city": "unknown",
+   "about": {
+    "en": "Fiber concrete decor products for sale",
+    "ru": "Декор из стеклофибробетона на продажу",
+    "uz": "Fibrobetondan dekor mahsulotlar sotiladi"
+   },
+   "phone": "998889875050",
+   "tg": null,
+   "link": null,
+   "members": null,
+   "last_seen": null,
+   "source": "usta_groups"
+  }
+ ]
+}

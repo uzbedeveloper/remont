@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Check, FolderOpen } from 'lucide-react';
+import { Check, Database, FolderOpen } from 'lucide-react';
 import { I18n, LANGS, makeT } from './i18n.js';
 import { getConfig, getProject } from './api.js';
 import { mine, remember } from './mine.js';
 import Projects from './screens/Projects.jsx';
+import Browse from './screens/Browse.jsx';
 import Home from './screens/Home.jsx';
 import Analyze from './screens/Analyze.jsx';
 import Measure from './screens/Measure.jsx';
@@ -24,6 +25,7 @@ const PARENT = { hire: 'jobs', check: 'smeta' };
 function readRoute() {
   const [, id, step = 'analyze', trade] = location.hash.replace(/^#\/?/, '').split('/');
   if (location.hash.startsWith('#/projects')) return { id: null, page: 'projects' };
+  if (location.hash.startsWith('#/browse')) return { id: null, page: 'browse' };
   return location.hash.startsWith('#/p/') ? { id, step, trade } : { id: null };
 }
 
@@ -104,6 +106,7 @@ export default function App() {
   );
   else if (error) screen = <div className="page"><div className="err">{t('error', { e: error })}</div></div>;
   else if (!config) screen = <div className="page muted">{t('loading')}</div>;
+  else if (route.page === 'browse') screen = <Browse config={config} />;
   else if (route.page === 'projects') screen = <Projects config={config} open={open} onCount={() => setCount(mine().length)} />;
   else if (!route.id) screen = <Home config={config} open={open} />;
   else if (!project) screen = <div className="page muted">{t('loading')}</div>;
@@ -131,6 +134,9 @@ export default function App() {
               ))}
             </nav>
           ) : <div className="grow" />}
+          <a className={`my-btn hide-sm${route.page === 'browse' ? ' on' : ''}`} href="#/browse" title={t('db_title')}>
+            <Database size={17} /><span className="lbl">{t('db_short')}</span>
+          </a>
           <a className={`my-btn hide-sm${route.page === 'projects' ? ' on' : ''}`} href="#/projects" title={t('mine_title')}>
             <FolderOpen size={17} /><span className="lbl">{t('mine_short')}</span>{count > 0 && <b>{count}</b>}
           </a>

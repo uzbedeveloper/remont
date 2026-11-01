@@ -1,7 +1,7 @@
 // Header tools: the Aa text size picker, and on a phone one menu for language and projects,
 // so the header fits in one slim row.
 import { useEffect, useRef, useState } from 'react';
-import { Check, FolderOpen, Menu, X } from 'lucide-react';
+import { Check, Database, FolderOpen, Menu, X } from 'lucide-react';
 import { LANGS, useT } from '../i18n.js';
 import { SIZES, useSize } from '../textsize.js';
 
@@ -61,6 +61,9 @@ export function PhoneMenu({ lang, setLang, count, onProjects }) {
         <div className="pop">
           <a className="pop-row" href="#/projects" onClick={() => { setOpen(false); onProjects?.(); }}>
             <FolderOpen size={18} /><span className="grow">{t('mine_title')}</span>{count > 0 && <b className="pop-count">{count}</b>}
+          </a>
+          <a className="pop-row" href="#/browse" onClick={() => setOpen(false)}>
+            <Database size={18} /><span className="grow">{t('db_title')}</span>
           </a>
           <div className="label" style={{ marginTop: 12 }}>{t('lang_title')}</div>
           {LANGS.map(l => (

@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Camera, Images, Loader2, Ruler, ReceiptText, Upload, Users, Video } from 'lucide-react';
+import { ArrowRight, Camera, Database, Images, Loader2, Ruler, ReceiptText, Upload, Users, Video } from 'lucide-react';
 import { useT } from '../i18n.js';
 import { openSample, upload } from '../api.js';
 import { areas } from '../../lib/estimate.mjs';
 import MaskPlayer from '../components/MaskPlayer.jsx';
 import EasyToggle from '../components/EasyToggle.jsx';
 
-export default function Home({ open }) {
+export default function Home({ config, open }) {
   const t = useT();
   const file = useRef();
   const film = useRef();
@@ -110,6 +110,14 @@ export default function Home({ open }) {
           ))}
         </div>
       </section>
+
+      {config?.directory && (
+        <a className="check-cta db-cta" href="#/browse">
+          <span className="ic"><Database size={22} /></span>
+          <span className="grow"><b>{t('db_title')}</b><span>{t('db_home', { u: config.directory.total.toLocaleString('ru-RU'), s: (config.stores?.total ?? 0).toLocaleString('ru-RU'), a: config.directory.sources.telegram_ads.toLocaleString('ru-RU') })}</span></span>
+          <ArrowRight size={20} />
+        </a>
+      )}
 
       <section className="pitch adv">
         <blockquote>{t('pitch')}</blockquote>

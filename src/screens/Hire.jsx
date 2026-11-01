@@ -284,16 +284,16 @@ export default function Hire({ project, setProject, config, go, trade }) {
   );
 }
 
-function ago(t, date) {
+export function ago(t, date) {
   const d = Math.max(0, Math.round((Date.now() - Date.parse(date)) / 86400000));
-  return d === 0 ? t('hi_today') : t('hi_days_ago', { n: d });
+  return d === 0 ? t('hi_today') : d === 1 ? t('hi_yday') : t('hi_days_ago', { n: d });
 }
 
 // Soft avatar colours picked from the id, so a list of many «Usta» does not look like one person.
 const TINTS = [['#fde7dc', '#c2410c'], ['#dcf2e6', '#15803d'], ['#e0ecfb', '#1d4ed8'], ['#f1e4fb', '#7e22ce'], ['#fdf1d3', '#a16207'], ['#dff5f4', '#0f766e']];
-const tint = id => TINTS[[...String(id)].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) % TINTS.length];
+export const tint = id => TINTS[[...String(id)].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) % TINTS.length];
 
-function UstaCard({ u, i, t, trades, onContact }) {
+export function UstaCard({ u, i, t, trades, onContact = () => {} }) {
   // Half the ads carry no name: then Spark's one line about them is the title, which tells the cards apart
   // better than a list of «Usta».
   const about = t.pick(u.about);
