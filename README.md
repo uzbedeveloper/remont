@@ -20,7 +20,7 @@ To try your own room, film 20 to 40 s slowly around it and talk while you film. 
 
 ## Why
 
-Renovating a flat in Tashkent means guessing. There is no price list. Ustas post in more than 200 Telegram groups, almost never with a price (in 27 000 messages we read, 3 had one; prices go to private chats). Owners sign handwritten quotes they can't check, so they overpay or run out of money halfway. Remont measures the room, prices the work from a fixed price base, finds real ustas and keeps the job on track.
+Renovating a flat in Tashkent means guessing. There is no price list. Ustas post in more than 200 Telegram groups, almost never with a price for the owner (of 50 627 ads we read, fewer than 40 did; prices go to private chats). Owners sign handwritten quotes they can't check, so they overpay or run out of money halfway. Remont measures the room, prices the work from a fixed price base, finds real ustas and keeps the job on track.
 
 ## What it does
 
@@ -32,7 +32,7 @@ Renovating a flat in Tashkent means guessing. There is no price list. Ustas post
    - **Premium:** while you read the smeta, the server draws all 6 styles in your colour, plus your style in 2 more colours, two at a time (`prerender` in `lib/api.mjs`). A tap shows the picture at once, marked ⚡ ready. Pictures whose prompt still matches are reused, and the set is redrawn only when the tier, finishes or look change.
 5. **Talk to it ("Usta").** Hold the mic and talk (release to send), or tap once and talk: it sends when you stop. Say "devorni havorang qil", "arzonroq variant", "kafelchi kerak". Spark 1.2 hears, Spark 1.3 turns it into JSON actions the server runs: repaint, change tier, fix a size, move a door on the drawing, rebuild the smeta, fit a budget ("menda 20 mln bor"), pick a style and colour, tick the shopping list ("gipsni oldim"), record a payment ("elektrikka 300 ming avans berdim"), mark a check, write a job post, update the plan. Every change can be undone from the chat. The reply shows in ~4 s; the new picture follows.
 6. **Check an usta's quote.** Photograph a handwritten quote. Spark reads every line (Uzbek, Russian, slang, "45к", "kv"); code checks each quantity against the measured room and each price against the base, finds arithmetic mistakes and missing works, and Spark drafts a polite reply with the numbers.
-7. **Call a real usta.** 670 Tashkent ustas gathered from 23 826 ads in 203 public Telegram groups and OLX.uz; Muse Spark sorted ustas from employers and shops, and read their trades, districts and experience. One tap to call or open Telegram (the job description is copied for you).
+7. **Call a real usta.** 1 027 Tashkent ustas gathered from 50 627 ads in 243 public Telegram groups and OLX.uz; Muse Spark sorted ustas from employers and shops, and read their trades, districts and experience. One tap to call or open Telegram (the job description is copied for you).
 8. **Made for real owners.** Type your budget and the smeta fits it (the best tier that fits; ceiling, windows, floor and tiles move to later only when needed; wiring, pipes and walls never wait). A bozor shopping list grouped by trade and day, sent to Telegram. One picture of the room now and finished, with the total, for the family chat. An Aa text size switch, with an easy mode with bigger text for parents.
 9. **Track it to the end.** The plan shows every trade in work order: need an usta → talked → agreed (price checked against the fair range) → working → done, with photos of the result. One line always says what to do next. Each trade has a one-page agreement for the usta (price, dates, payment stages, guarantee; sent on Telegram), a check before you pay (four plain tests per trade, like a 2 m straight edge on the wall), and a payment notebook with receipt photos.
 
@@ -81,6 +81,7 @@ The public site runs on one small DigitalOcean server (Ubuntu 24.04): Node 22, f
 node scripts/ustas_tg.mjs      # reads public Telegram renovation groups (needs a Telegram login: scripts/tg_login.mjs)
 node scripts/ustas_olx.mjs     # OLX.uz renovation services in Tashkent (slow on purpose; OLX blocks fast clients)
 node scripts/ustas_build.mjs   # Muse Spark reads the ads and writes the directory
+node scripts/prices_check.mjs  # Muse Spark reads posts with prices; code compares them with the price base
 ```
 
 Remont has not vetted these ustas; the app says so and suggests asking for photos of past work and paying in stages.
@@ -103,5 +104,5 @@ All code in this repo was written during the build window, starting 26 Oct 2026 
 
 ## Notes
 
-- The price base is a **draft** and is being checked by a working Tashkent usta.
+- The price base is a **draft**. `scripts/prices_check.mjs` checks it against real prices: Muse Spark read 1 672 Telegram posts that name a price per unit, told prices from job sizes ("3000 kv" is a volume), and matched them to catalog works (`data/prices_check.json`). Our labour prices sit above the wholesale rates foremen pay crews on big sites, as a single flat should, and close to what ustas ask owners; tiling, window slopes and screed look 30 to 50% high and are being reviewed.
 - `data/ustas.json` holds sample profiles used only when the directory is missing.
