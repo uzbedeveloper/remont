@@ -25,7 +25,7 @@ You open Remont in the phone browser, film the room once and say what you want, 
 3. **Your own room, finished.** Muse Image repaints the real room in the chosen style and colour. In Premium every style is drawn ahead in the background, so a tap is instant.
 4. **No forms.** A voice assistant (Spark 1.2 hears, Spark 1.3 decides) runs actions: "I have 20 million" fits the plan to the budget, "make the walls blue" repaints, "I paid the electrician 300 000" goes into the payment notebook. Every change can be undone.
 5. **Check a contractor's quote.** Photograph a handwritten quote; Spark reads every line, code checks quantities against the measured room and prices against the base, and Spark drafts a polite counter-offer.
-6. **Hire and track.** 1 027 real Tashkent contractors, read by Spark from 50 627 public ads in 243 Telegram groups and OLX. A plan per trade (talked → agreed → working → done), a one-page agreement, a check before you pay, receipts.
+6. **Hire and track.** 1 027 real Tashkent contractors, read by Spark from 50 627 public ads in 243 Telegram groups and OLX. A plan per trade (talked → agreed → working → done), a one-page agreement, a check before you pay, receipts. A Database page lists all of them plus 589 renovation stores Spark found in 529 Telegram store channels and marketplace groups.
 
 ## How we used Meta's models
 - **SAM 3.1** (video): surface tracking through the walk-around; masks highlight the surface behind each estimate line.
