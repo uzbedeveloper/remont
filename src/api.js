@@ -83,7 +83,7 @@ async function lines(res, onEvent) {
 // POST that streams back NDJSON events (the analyze pipeline).
 export async function stream(id, action, body, onEvent) {
   const res = await fetch(`/api/project/${id}/${action}`, { method: 'POST', body: JSON.stringify(body) });
-  if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
+  if (!res.ok || !res.body) await json(res);
   await lines(res, onEvent);
 }
 

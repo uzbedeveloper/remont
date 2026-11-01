@@ -15,6 +15,9 @@ const D = {
   sample_badge: ["Namuna ma'lumot", 'Пример', 'Sample data'],
   loading: ['Yuklanmoqda…', 'Загрузка…', 'Loading…'],
   error: ['Xatolik: {e}', 'Ошибка: {e}', 'Something went wrong: {e}'],
+  err_limit: ["Bugungi sinov limiti tugadi. Ertaga qayta urinib ko'ring.", 'Лимит демо на сегодня исчерпан. Попробуйте завтра.', 'Daily limit reached for this demo. Please try again tomorrow.'],
+  err_rest: ["Demo bugun dam olyapti (kunlik AI limiti). Ertaga qayta urinib ko'ring.", 'Демо сегодня отдыхает (дневной лимит ИИ). Попробуйте завтра.', 'The demo is resting for today (daily AI limit). Please try again tomorrow.'],
+  err_net: ["Internet bilan aloqa uzildi. Qayta urinib ko'ring.", 'Нет связи с интернетом. Попробуйте ещё раз.', 'Lost the connection. Please try again.'],
   retry: ['Qayta urinish', 'Повторить', 'Try again'],
 
   home_kicker: ['Toshkentdagi remontlar uchun', 'Для ремонта в Ташкенте', 'For renovations in Tashkent'],
@@ -539,6 +542,12 @@ export const DISTRICTS = Object.keys(DISTRICTS_RU);
 export function makeT(lang) {
   const i = Math.max(0, LANGS.indexOf(lang));
   const t = (key, vars) => {
+    // Server and browser errors come in English: say the common ones in the owner's language.
+    if (key === 'error' && vars?.e) {
+      const e = String(vars.e);
+      const k = /Daily limit/.test(e) ? 'err_limit' : /resting/.test(e) ? 'err_rest' : /network|Failed to fetch|timeout|NetworkError|Load failed/i.test(e) ? 'err_net' : null;
+      if (k) return D[k][i];
+    }
     let s = D[key]?.[i] ?? D[key]?.[2] ?? key;
     if (vars) for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, v);
     return s;

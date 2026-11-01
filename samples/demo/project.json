@@ -110,7 +110,11 @@
   "height_m": 2.6,
   "length_m": 4.5,
   "lights": 0,
-  "method": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
+  "method": {
+   "en": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
+   "ru": "Ориентиром по высоте служило полотно межкомнатной двери 2,0 м, а высота радиатора под окном помогла поправить перспективу для высоты потолка и размера окна.",
+   "uz": "Balandlik uchun 2,0 m li xona eshigi o'lchov bo'ldi, deraza ostidagi radiator balandligi esa shift balandligi va deraza o'lchamini to'g'rilashga yordam berdi."
+  },
   "observations": [
    {
     "en": "Wallpaper peeling everywhere with damp marks near window and ceiling, needs full stripping.",
@@ -156,7 +160,11 @@
   "height_m": 2.6,
   "length_m": 4.5,
   "lights": 0,
-  "method": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
+  "method": {
+   "en": "Used the 2.0 m interior door leaf as vertical ruler and the radiator height under the window to correct perspective for ceiling height and window size.",
+   "ru": "Ориентиром по высоте служило полотно межкомнатной двери 2,0 м, а высота радиатора под окном помогла поправить перспективу для высоты потолка и размера окна.",
+   "uz": "Balandlik uchun 2,0 m li xona eshigi o'lchov bo'ldi, deraza ostidagi radiator balandligi esa shift balandligi va deraza o'lchamini to'g'rilashga yordam berdi."
+  },
   "observations": [
    {
     "en": "Wallpaper peeling everywhere with damp marks near window and ceiling, needs full stripping.",

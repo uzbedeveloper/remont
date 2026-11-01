@@ -54,7 +54,7 @@ export default function Talk({ project, setProject, go, step }) {
   const chat = project.chat ?? [];
   // Only the last change can be taken back, and only while nothing else changed it since.
   const undo = async at => {
-    try { setProject(await act(project.id, 'undo', { at })); } catch (e) { setNote(e.message); }
+    try { setProject(await act(project.id, 'undo', { at })); } catch (e) { setNote(t('error', { e: e.message })); }
   };
 
   useEffect(() => { try { localStorage.setItem('speak', speak ? '1' : '0'); } catch { /* private mode */ } }, [speak]);

@@ -62,7 +62,7 @@ export default function Smeta({ project, setProject, config, go }) {
   };
   const pickTier = async v => {
     setTier(v);
-    setProject(await patch(project.id, { tier: v }));
+    try { setProject(await patch(project.id, { tier: v })); } catch (e) { setError(e.message); }
   };
   const render = async (l = look) => {
     setBusy('render'); setError('');

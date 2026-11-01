@@ -19,9 +19,11 @@ function Metric({ label, color, value, unit, note }) {
 
 export default function Measure({ project, setProject, go }) {
   const t = useT();
+  // Uzbek and Russian write 2,6 m, like the rest of the screen; input takes either.
+  const dec = v => (t.lang === 'en' ? String(v) : String(v).replace('.', ','));
   const [m, setM] = useState(project.measure);
   const door = m.openings.find(o => o.type === 'door');
-  const [doorH, setDoorH] = useState(door ? String(door.height_m) : '');
+  const [doorH, setDoorH] = useState(door ? dec(door.height_m) : '');
   const saveTimer = useRef();
   const a = areas(m);
   const counts = Object.fromEntries(Object.entries(project.sam ?? {}).filter(([, v]) => v?.objects).map(([k, v]) => [k, v.objects.length]));
@@ -80,9 +82,9 @@ export default function Measure({ project, setProject, go }) {
             <div className="row"><Ruler size={18} /><b>{t('me_dims')}</b></div>
             <div className="dims">
               {[['length_m', 'length'], ['width_m', 'width'], ['height_m', 'height']].map(([k, l]) => (
-                <label key={`${k}-${m[k]}`}>
+                <label key={`${k}-${m[k]}-${t.lang}`}>
                   <span className="label">{t(l)}, m</span>
-                  <input className="input tab" inputMode="decimal" defaultValue={m[k]} onBlur={e => setDim(k, e.target.value)}
+                  <input className="input tab" inputMode="decimal" defaultValue={dec(m[k])} onBlur={e => setDim(k, e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && e.currentTarget.blur()} />
                 </label>
               ))}
@@ -121,7 +123,7 @@ export default function Measure({ project, setProject, go }) {
               <summary className="muted small" style={{ cursor: 'pointer', fontWeight: 700 }}>
                 {t('me_how')} · {t('me_conf', { c: t(`conf_${m.confidence}`) })}
               </summary>
-              <p className="muted small" style={{ marginBottom: 0 }}>{m.method}</p>
+              <p className="muted small" style={{ marginBottom: 0 }}>{typeof m.method === 'string' ? m.method : t.pick(m.method)}</p>
             </details>
           </div>
         </div>
