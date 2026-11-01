@@ -3,7 +3,7 @@
 // 2. Muse Spark reads each group's ads in batches: is this an usta offering work in Tashkent, which trades,
 //    which districts, a name, experience. Employers ("ishchi kerak"), shops and other cities are dropped.
 // 3. Write data/ustas_directory.json for the app.
-//   node scripts/ustas_build.mjs [limit]
+//   node scripts/ustas_build.mjs [limit]      (DRY=1 counts the new groups without calling Spark)
 // Spark answers are cached in .data/ustas/read.json, so a rerun only reads new groups.
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { sparkJSON } from '../lib/meta.mjs';
@@ -95,6 +95,7 @@ const todo = [...groups.values()].filter(g => !cache[g.key]).slice(0, LIMIT);
 const batches = [];
 for (let i = 0; i < todo.length; i += 12) batches.push(todo.slice(i, i + 12));
 console.log(`reading ${todo.length} with Spark in ${batches.length} batches`);
+if (process.env.DRY) process.exit(0); // DRY=1: only count what a run would read
 let next = 0, done = 0;
 await Promise.all(Array.from({ length: 4 }, async () => {
   while (next < batches.length) {

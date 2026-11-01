@@ -58,13 +58,14 @@ export default function Home({ open }) {
               {busy ? <Loader2 size={18} className="spin" /> : null}{t('home_sample')} <ArrowRight size={18} />
             </button>
           </div>
+          {/* On a computer there is rarely a room video at hand: the finished sample comes first. */}
           <div className="ctas only-mouse">
-            <button className="btn lg" onClick={() => file.current.click()} disabled={progress !== null}>
+            <button className="btn lg" onClick={onSample} disabled={busy}>
+              {busy ? <Loader2 size={18} className="spin" /> : null}{t('home_sample')} <ArrowRight size={18} />
+            </button>
+            <button className="btn lg ghost" onClick={() => file.current.click()} disabled={progress !== null}>
               {progress !== null ? <Loader2 size={18} className="spin" /> : <Upload size={18} />}
               {progress !== null ? t('an_uploading', { p: Math.round(progress * 100) }) : t('home_upload')}
-            </button>
-            <button className="btn lg ghost" onClick={onSample} disabled={busy}>
-              {busy ? <Loader2 size={18} className="spin" /> : null}{t('home_sample')} <ArrowRight size={18} />
             </button>
           </div>
           <input ref={file} type="file" accept="video/*,image/*" hidden onChange={onFile} />

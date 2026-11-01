@@ -130,7 +130,7 @@ export default function Hire({ project, setProject, config, go, trade }) {
             </div>
             <p className="muted small" style={{ margin: '0 0 6px' }}>{t('hi_real_d', { ads: config.directory.sources.telegram_ads.toLocaleString('ru-RU'), chats: config.directory.sources.telegram_chats })}</p>
             {!dir && <div className="stack" style={{ marginTop: 12 }}>{[1, 2, 3].map(i => <div key={i} className="skeleton" style={{ height: 64 }} />)}</div>}
-            {dir?.ustas.map((u, i) => <UstaCard key={u.id} u={u} i={i} t={t} onContact={contact} />)}
+            {dir?.ustas.map((u, i) => <UstaCard key={u.id} u={u} i={i} t={t} trades={prices.trades} onContact={contact} />)}
             {dir && dir.ustas.length < dir.total && (
               <button className="btn ghost" style={{ width: '100%', marginTop: 8 }} onClick={more} disabled={busy === 'more'}>
                 {busy === 'more' ? <Loader2 size={16} className="spin" /> : null}{t('hi_more', { n: dir.total - dir.ustas.length })}
@@ -293,15 +293,19 @@ function ago(t, date) {
 const TINTS = [['#fde7dc', '#c2410c'], ['#dcf2e6', '#15803d'], ['#e0ecfb', '#1d4ed8'], ['#f1e4fb', '#7e22ce'], ['#fdf1d3', '#a16207'], ['#dff5f4', '#0f766e']];
 const tint = id => TINTS[[...String(id)].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) % TINTS.length];
 
-function UstaCard({ u, i, t, onContact }) {
-  const initials = (u.name || 'U').split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+function UstaCard({ u, i, t, trades, onContact }) {
+  // Half the ads carry no name: then Spark's one line about them is the title, which tells the cards apart
+  // better than a list of «Usta».
+  const about = t.pick(u.about);
+  const title = u.name || about || t('hi_noname');
+  const initials = (u.name || t.pick(trades[u.trades[0]]) || 'U').split(/\s+/).slice(0, u.name ? 2 : 1).map(w => w[0]).join('').toUpperCase();
   const where = u.districts.includes('all') ? t('hi_all_city') : u.districts.length ? u.districts.map(d => t.district(d)).join(', ') : u.city === 'tashkent_region' ? t('hi_region') : t('hi_city');
   return (
     <div className="usta real" style={{ animationDelay: `${i * 0.04}s` }}>
       <span className="avatar" style={{ background: tint(u.id)[0], color: tint(u.id)[1] }}>{initials}</span>
       <div style={{ minWidth: 0 }}>
-        <div className="name">{u.name || t('hi_noname')}</div>
-        <div className="why" style={{ marginTop: 2 }}>{t.pick(u.about)}</div>
+        <div className="name">{title}</div>
+        {u.name && <div className="why" style={{ marginTop: 2 }}>{about}</div>}
         <div className="meta" style={{ marginTop: 6 }}>
           <span className="row" style={{ gap: 3 }}><MapPin size={12} />{where}</span>
           {u.near && <span className="pill v-fair" style={{ padding: '1px 8px' }}>{t('hi_near')}</span>}

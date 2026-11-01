@@ -858,3 +858,4 @@ body:has(.talk) .sticky-cta { bottom: 96px; }
 .styles button { position: relative; }
 .styles .ready-tag { position: absolute; top: 6px; right: 6px; display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 99px; background: rgba(22, 24, 29, .78); color: #ffd36b; font-size: 11px; font-weight: 800; }
 .ba img { transition: opacity .25s; }
+.gone { max-width: 520px; margin: 40px auto; text-align: center; } .gone p { margin: 10px 0 20px; }

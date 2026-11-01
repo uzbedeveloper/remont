@@ -27,8 +27,16 @@ function readRoute() {
   return location.hash.startsWith('#/p/') ? { id, step, trade } : { id: null };
 }
 
+// First visit: in Uzbekistan Uzbek (Russian if the browser is Russian), elsewhere the browser's language,
+// so a visitor abroad lands in English. A language picked in the header is remembered.
+function firstLang() {
+  const langs = (navigator.languages?.length ? navigator.languages : [navigator.language || '']).map(l => l.toLowerCase());
+  if (langs.some(l => l.startsWith('uz'))) return 'uz';
+  if (langs[0]?.startsWith('ru')) return 'ru';
+  return /Tashkent|Samarkand/.test(Intl.DateTimeFormat().resolvedOptions().timeZone || '') ? 'uz' : 'en';
+}
 function storedLang() {
-  try { return localStorage.getItem('lang') || 'uz'; } catch { return 'uz'; }
+  try { return localStorage.getItem('lang') || firstLang(); } catch { return firstLang(); }
 }
 
 export default function App() {
@@ -88,7 +96,13 @@ export default function App() {
   }, [project?.plan, project?.board, project?.tier, config]);
 
   let screen;
-  if (error) screen = <div className="page"><div className="err">{t('error', { e: error })}</div></div>;
+  if (error && /not found/.test(error)) screen = (
+    <div className="page"><div className="card pad gone">
+      <h2>{t('gone_t')}</h2><p className="muted">{t('gone_d')}</p>
+      <a className="btn lg" href="#/" onClick={() => setError('')}>{t('gone_home')}</a>
+    </div></div>
+  );
+  else if (error) screen = <div className="page"><div className="err">{t('error', { e: error })}</div></div>;
   else if (!config) screen = <div className="page muted">{t('loading')}</div>;
   else if (route.page === 'projects') screen = <Projects config={config} open={open} onCount={() => setCount(mine().length)} />;
   else if (!route.id) screen = <Home config={config} open={open} />;
