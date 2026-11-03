@@ -40,7 +40,7 @@ Only Meta models are called at runtime. Low and minimal reasoning effort gave th
 - The price base is checked against reality: Spark read 1 672 Telegram posts that name a price per unit, separated prices from job sizes and wholesale crew rates from offers to owners; code compares the medians (`scripts/prices_check.mjs`).
 - Analysis is split so the owner waits ~13 s: Spark measures from a light 2 fps copy while SAM, the first estimate and the first picture run in the background.
 - Premium drawing ahead: 8 pictures per room, two workers, reused when the prompt still matches, redrawn when the tier or look changes.
-- Live on a 1-CPU server: the phone video is decoded once into both model copies; per-visitor daily limits and a site-wide cap protect the key; every push to master deploys itself through a key that can only run the update script.
+- Live on a small 2-CPU server: the phone video is decoded once into both model copies, without blocking other visitors (a 4K upload keeps the site answering in under 0.2 s); per-visitor daily limits and a site-wide cap protect the key; every push to master deploys itself through a key that can only run the update script.
 
 ## What's next
 We launch in Tashkent first, at remontchi.uz. The basic version stays free for everyone; Premium (everything instant) pays for the servers. Then Samarkand, Bukhara and the rest of Uzbekistan, with price bases checked by local contractors in each city.

@@ -72,7 +72,7 @@ The public site runs on one small DigitalOcean server (Ubuntu 24.04): Node 22, f
 
 - **Auto deploy:** every push to `master` runs `.github/workflows/deploy.yml`, which connects with an SSH key that can only run `deploy/update.sh` (pull, install only when the lockfile changed, build, restart, check `/api/health`).
 - **Public mode** (`PUBLIC=1`, `lib/guard.mjs`): each visitor has a daily allowance per paid action, and the whole site has a daily cap on Meta API calls. `/api/health` shows today's count. Premium drawing ahead is off for visitors' own rooms on the public site; the sample room ships with every style already drawn, so Premium is instant there.
-- **Small server tricks:** the phone video is decoded once and written as both the SAM copy and the Spark copy (`lib/media.mjs`), half the time on 1 CPU.
+- **Small server tricks:** the phone video is decoded once and written as both the SAM copy and the Spark copy (`lib/media.mjs`), half the time on a small server. ffmpeg runs async, so a 4K upload never freezes the site for others.
 
 ## The usta directory
 
