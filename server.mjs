@@ -30,10 +30,17 @@ const app = async (req, res) => {
 };
 
 if (LAN) lan();
-else createServer(app).listen(PORT, () => {
-  console.log(`Remont on http://localhost:${PORT}${PROD ? '' : ' (dev)'}`);
-  if (process.argv.includes('--phone')) tunnel();
-});
+else {
+  const server = createServer(app);
+  // Caddy keeps idle upstream connections for 2 min; Node's default 5 s closed them under it, and after a
+  // synchronous ffmpeg run that race turned a poll into "connection reset" → 502. Outlast the proxy.
+  server.keepAliveTimeout = 125_000;
+  server.headersTimeout = 126_000;
+  server.listen(PORT, () => {
+    console.log(`Remont on http://localhost:${PORT}${PROD ? '' : ' (dev)'}`);
+    if (process.argv.includes('--phone')) tunnel();
+  });
+}
 
 // --lan: https on this computer's Wi-Fi address, for a phone on the same network. The certificate is
 // self-made, so the phone warns once ("not private" → Advanced → continue); the camera and mic then work.
