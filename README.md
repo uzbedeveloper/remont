@@ -3,7 +3,7 @@
 **Film your room while you talk. Get a fair smeta, see it finished, call a real usta, and track the work to the end.** In Uzbek, Russian and English, phone first.
 
 - **Live:** https://remontchi.uz
-- **Demo video (3 min):** _link added at submission_
+- **Demo video (2:53):** https://www.youtube.com/watch?v=RlLvclp8NEU
 - **Track:** Build for Your World, Indie developer track, Meta Global AI Developer Hackathon 2026
 
 Words: an **usta** is a tradesperson or contractor (plasterer, tiler, electrician); a **smeta** is a renovation estimate. The app says "contractor" and "estimate" in English mode, and its voice assistant is called the Foreman there.

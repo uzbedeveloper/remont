@@ -12,7 +12,7 @@ Indie developer track. Theme: Build for Your World.
 ## Links
 - Live: https://remontchi.uz
 - Repo: https://github.com/uzbedeveloper/remont
-- Video: _add_
+- Video: https://www.youtube.com/watch?v=RlLvclp8NEU
 
 ## The problem
 In Uzbekistan there is no price list for renovation. Contractors (ustas) advertise in more than 200 Telegram groups, almost never with a price for the owner: of 50 627 ads we read, fewer than 40 had one. Owners can't measure the room themselves, get three quotes that differ by 2x, and sign handwritten papers nobody checks. People overpay, or run out of money halfway.
