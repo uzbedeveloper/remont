@@ -2,7 +2,7 @@
 
 **Film your room while you talk. Get a fair smeta, see it finished, call a real usta, and track the work to the end.** In Uzbek, Russian and English, phone first.
 
-- **Live:** https://remontchi.uz (until the domain is active: https://161-35-194-129.sslip.io)
+- **Live:** https://remontchi.uz
 - **Demo video (3 min):** _link added at submission_
 - **Track:** Build for Your World, Indie developer track, Meta Global AI Developer Hackathon 2026
 
